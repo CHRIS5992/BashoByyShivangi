@@ -9,7 +9,7 @@ function Home({ onNavigate }) {
   return (
     <div className="home">
 
-      {/* HERO SECTION */}
+      {/* ================= HERO VIDEO ================= */}
       <section className="video-hero">
         <video
           className="hero-video"
@@ -45,29 +45,31 @@ function Home({ onNavigate }) {
         </div>
       </section>
 
-      {/* PAPER LAYER */}
+      {/* ================= WHAT IS BASHO ================= */}
       <section
         ref={paperRef}
-        className="basho-paper"
+        className="whatisbasho-section"
         style={{
           backgroundImage: "url(/static/images/gallery/whatisbasho.jpg)",
         }}
       >
-        <div className="basho-paper-content">
-          <h2>WHAT IS BASHO</h2>
-          <p>
-            Basho is a Japanese word meaning “place.” It also carries the
-            legacy of a poet who found depth in simplicity and meaning in
-            fleeting moments. That idea lives on here, where clay is shaped
-            slowly, guided by touch, patience, and intention. Every piece
-            reflects a moment in time, embracing subtle imperfections and
-            quiet rhythm, inviting a deeper connection between the maker,
-            the object, and the space it belongs to.
-          </p>
+        <div className="whatisbasho-inner">
+          <div className="whatisbasho-text">
+            <h2>WHAT IS BASHO</h2>
+            <p>
+              Basho is a Japanese word meaning "place." It also carries the
+              legacy of a poet who found depth in simplicity and meaning in
+              fleeting moments. That idea lives on here, where clay is shaped
+              slowly, guided by touch, patience, and intention. Every piece
+              reflects a moment in time, embracing subtle imperfections and
+              quiet rhythm, inviting a deeper connection between the maker,
+              the object, and the space it belongs to.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* JAPANESE INSPIRATION SECTION */}
+      {/* ================= JAPANESE INSPIRATION ================= */}
       <section className="japanese-inspiration">
         <div className="container">
           <h2>Inspiration from Japanese Culture</h2>
