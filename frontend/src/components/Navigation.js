@@ -1,38 +1,57 @@
-import React from 'react';
-
-const Navigation = ({ currentPage, onNavigate }) => {
+function Navigation({ currentPage, onNavigate }) {
   return (
-    <nav className="main-nav" id="mainNav">
-      <div className="nav-container">
-        <div className="logo">
-          <a href="/" onClick={(e) => { e.preventDefault(); onNavigate('products'); }}>
-            <span className="logo-japanese">芭蕉</span>
-            <span className="logo-text">BASHO</span>
-          </a>
-        </div>
-        <ul className="nav-menu" id="navMenu">
-          <li>
-            <a 
-              href="/products" 
-              className={currentPage === 'products' ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); onNavigate('products'); }}
-            >
-              Collections
-            </a>
-          </li>
-          <li>
-            <a 
-              href="/workshops" 
-              className={currentPage === 'workshops' ? 'active' : ''}
-              onClick={(e) => { e.preventDefault(); onNavigate('workshops'); }}
-            >
-              Workshops
-            </a>
-          </li>
-        </ul>
+    <nav className="navbar">
+      {/* Logo */}
+      <div
+        className="logo"
+        onClick={() => onNavigate("home")}
+        style={{ cursor: "pointer" }}
+      >
+        <img
+          src="https://i.postimg.cc/nLh2w8mP/transbashologo.png"
+          alt="Basho Logo"
+        />
+      </div>
+
+      {/* Navigation Links */}
+      <div className="nav-links">
+        <span
+          className={currentPage === "products" ? "active" : ""}
+          onClick={() => onNavigate("products")}
+        >
+          Collections
+        </span>
+
+        <span
+          className={currentPage === "workshops" ? "active" : ""}
+          onClick={() => onNavigate("workshops")}
+        >
+          Workshops
+        </span>
+
+        <span
+          className={currentPage === "studio" ? "active" : ""}
+          onClick={() => onNavigate("studio")}
+        >
+          Studio
+        </span>
+
+        <span
+          className={currentPage === "corporate" ? "active" : ""}
+          onClick={() => onNavigate("corporate")}
+        >
+          Corporate
+        </span>
+
+        <span
+          className={currentPage === "media" ? "active" : ""}
+          onClick={() => onNavigate("media")}
+        >
+          Media
+        </span>
       </div>
     </nav>
   );
-};
+}
 
 export default Navigation;

@@ -1,56 +1,89 @@
-/* Import the existing CSS files */
-@import url('./style.css');
-@import url('./pages.css');
+/* GLOBAL */
+body {
+  margin: 0;
+  font-family: "Poppins";
+  color: #111;
+}
 
-/* Additional React-specific styles */
 .App {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
-/* Loading spinner */
-.loading-spinner {
+/* NAVBAR */
+.navbar {
   display: flex;
-  justify-content: center;
   align-items: center;
-  min-height: 400px;
-  font-size: 1.5rem;
-  color: var(--clay-dark);
+  justify-content: space-between;
+  padding: 18px 40px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-.spinner {
-  border: 4px solid var(--sand);
-  border-top: 4px solid var(--terracotta);
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  animation: spin 1s linear infinite;
+.logo img {
+  height: 40px;
+  width: auto;
+  display: block;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+/* NAV LINKS */
+.nav-links {
+  display: flex;
+  gap: 28px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .filter-bar {
-    flex-direction: column;
-    gap: var(--spacing-sm);
-  }
-  
-  .filter-group {
-    width: 100%;
-  }
-  
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
+.nav-links span {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 599;
+  color: #111;
+  padding-bottom: 6px;
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* underline from center */
+.nav-links span::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #652810;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-links span:hover::after {
+  width: 100%;
+}
+
+.nav-links span.active::after {
+  width: 100%;
+}
+
+/* GENERIC PAGE */
+.page {
+  padding: 80px 40px;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* PRODUCT PAGE HEADER */
+.page-header {
+  padding: 100px 40px;
+  text-align: center;
+  background: #f3efe8;
+}
+
+.page-title {
+  font-size: 3rem;
+}
+
+.page-subtitle {
+  margin-top: 12px;
+  color: #555;
 }
