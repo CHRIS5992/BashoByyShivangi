@@ -109,7 +109,7 @@ DELETE /api/registrations/{id}/
 ```
 Cancels and removes a registration.
 
----
+-----------------------------------------------------------------------------------------------
 
 ## Models
 
