@@ -1,30 +1,54 @@
-/* Workshops Page Styles - Matching Products Design */
+/* =============================================
+   WORKSHOPS PAGE - MODERN REDESIGN
+   ============================================= */
 /* Colors: #442D1C, #652810, #8E5022, #C85428, #EDD8B4 */
 
 .workshops-page {
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
   min-height: 100vh;
-  background-color: #f8f8f8;
-  padding-bottom: 50px;
+  padding-bottom: 80px;
 }
 
+/* Hero Header */
 .workshops-header {
-  background: linear-gradient(135deg, rgba(68, 45, 28, 0.05) 0%, rgba(101, 40, 16, 0.05) 100%);
+  position: relative;
+  background: linear-gradient(135deg, rgba(68, 45, 28, 0.95) 0%, rgba(101, 40, 16, 0.9) 100%);
+  padding: 120px 20px 80px;
   text-align: center;
-  padding: 80px 20px 60px;
-  border-bottom: 1px solid rgba(68, 45, 28, 0.1);
+  color: white;
+  overflow: hidden;
+}
+
+.workshops-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(200, 84, 40, 0.2) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .workshops-header h1 {
-  font-size: 3rem;
-  margin-bottom: 15px;
+  font-size: 3.5rem;
   font-weight: 700;
-  color: #442D1C;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  position: relative;
+  z-index: 1;
+  animation: fadeInDown 0.8s ease-out;
 }
 
 .workshops-header p {
   font-size: 1.3rem;
-  color: #652810;
-  opacity: 0.8;
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.95;
+  line-height: 1.8;
+  position: relative;
+  z-index: 1;
+  animation: fadeInUp 0.8s ease-out 0.2s backwards;
 }
 
 .workshops-loading {
@@ -34,46 +58,29 @@
   color: #442D1C;
 }
 
-/* Filter Buttons */
-.workshops-filter {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 40px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.workshops-filter button {
-  background-color: white;
-  border: 2px solid #e0e0e0;
-  color: #442D1C;
-  padding: 12px 30px;
-  border-radius: 30px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.workshops-filter button:hover {
-  background-color: #8E5022;
-  border-color: #8E5022;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(142, 80, 34, 0.2);
-}
-
-.workshops-filter button.active {
-  background-color: #442D1C;
-  border-color: #442D1C;
-  color: white;
-  box-shadow: 0 4px 12px rgba(68, 45, 28, 0.3);
-}
-
-/* Workshop Grid */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -85,44 +92,122 @@
   }
 }
 
-.workshops-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* Workshop Card */
+/* Filter Section */
+.workshops-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 50px 20px 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.workshops-filter button {
+  background: white;
+  border: 2px solid #e5e5e5;
+  color: #442D1C;
+  padding: 14px 32px;
+  border-radius: 50px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  letter-spacing: 0.3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.workshops-filter button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(142, 80, 34, 0.1);
+  transition: width 0.4s, height 0.4s, top 0.4s, left 0.4s;
+  transform: translate(-50%, -50%);
+}
+
+.workshops-filter button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.workshops-filter button:hover {
+  border-color: #8E5022;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(142, 80, 34, 0.15);
+}
+
+.workshops-filter button.active {
+  background: linear-gradient(135deg, #8E5022 0%, #C85428 100%);
+  border-color: #8E5022;
+  color: white;
+  box-shadow: 0 6px 20px rgba(142, 80, 34, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Workshops Grid */
+.workshops-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 35px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+/* Workshop Card - Redesigned */
 .workshop-card {
   background: white;
-  border-radius: 15px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   animation: fadeIn 0.6s ease-out;
+  border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 .workshop-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 25px rgba(68, 45, 28, 0.15);
+  transform: translateY(-12px);
+  box-shadow: 0 20px 40px rgba(68, 45, 28, 0.15);
+  border-color: rgba(142, 80, 34, 0.2);
 }
 
 .workshop-image {
-  height: 250px;
-  background-color: #EDD8B4;
+  height: 280px;
   position: relative;
   overflow: hidden;
+  background: linear-gradient(135deg, #EDD8B4 0%, #C85428 100%);
 }
 
 .workshop-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.workshop-card:hover .workshop-image img {
+  transform: scale(1.08);
 }
 
 .workshop-placeholder {
@@ -135,54 +220,62 @@
 }
 
 .workshop-icon {
-  font-size: 4rem;
+  font-size: 5rem;
+  opacity: 0.9;
 }
 
 .workshop-badge {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  top: 20px;
+  right: 20px;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: white;
+  backdrop-filter: blur(10px);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .workshop-badge.featured {
-  background-color: #C85428;
+  background: rgba(200, 84, 40, 0.95);
 }
 
 .workshop-badge.popular {
-  background-color: #652810;
-  top: 50px;
+  background: rgba(101, 40, 16, 0.95);
+  top: 60px;
 }
 
 .workshop-content {
-  padding: 25px;
+  padding: 30px;
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .workshop-content h3 {
-  font-size: 1.5rem;
+  font-size: 1.65rem;
   color: #442D1C;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  line-height: 1.3;
 }
 
 .workshop-type {
   color: #8E5022;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
 }
 
 .workshop-description {
-  color: #555;
+  color: #666;
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 20px;
   flex: 1;
 }
@@ -193,50 +286,75 @@
   gap: 15px;
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 2px solid #eee;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .workshop-info span {
   font-size: 0.9rem;
   color: #777;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .workshop-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .workshop-price {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: #C85428;
+  background: linear-gradient(135deg, #8E5022 0%, #C85428 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .workshop-availability {
   font-size: 0.9rem;
   color: #8E5022;
   font-weight: 600;
+  background: rgba(142, 80, 34, 0.08);
+  padding: 6px 14px;
+  border-radius: 20px;
 }
 
 .workshop-register-btn {
   background: linear-gradient(135deg, #8E5022 0%, #C85428 100%);
   color: white;
   border: none;
-  padding: 15px;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.workshop-register-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.workshop-register-btn:hover:not(:disabled)::before {
+  left: 100%;
 }
 
 .workshop-register-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #C85428 0%, #8E5022 100%);
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(142, 80, 34, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(142, 80, 34, 0.35);
 }
 
 .workshop-register-btn:disabled {
@@ -245,64 +363,72 @@
   box-shadow: none;
 }
 
-/* Modal Styles */
+/* Modal Overlay */
 .workshop-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
   padding: 20px;
+  animation: fadeIn 0.3s ease-out;
 }
 
 .workshop-modal {
   background: white;
-  border-radius: 20px;
-  max-width: 900px;
+  border-radius: 24px;
+  max-width: 950px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-close {
   position: absolute;
   top: 20px;
   right: 20px;
-  background: #442D1C;
+  background: rgba(68, 45, 28, 0.9);
   color: white;
   border: none;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   font-size: 1.5rem;
   cursor: pointer;
   z-index: 10;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
 }
 
 .modal-close:hover {
   background: #8E5022;
-  transform: rotate(90deg);
+  transform: rotate(90deg) scale(1.1);
 }
 
 .modal-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
-  padding: 40px;
+  gap: 40px;
+  padding: 50px;
 }
 
 .modal-image {
-  height: 400px;
-  border-radius: 15px;
+  height: 450px;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .modal-image img {
@@ -321,62 +447,83 @@
 }
 
 .modal-info h2 {
-  font-size: 2rem;
+  font-size: 2.2rem;
   color: #442D1C;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
 .modal-type {
-  color: #8E5022;
-  font-size: 1rem;
-  font-weight: 600;
+  display: inline-block;
+  background: linear-gradient(135deg, #8E5022 0%, #C85428 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-transform: uppercase;
-  margin-bottom: 15px;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
 }
 
 .modal-price {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #C85428;
+  background: linear-gradient(135deg, #8E5022 0%, #C85428 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 20px;
 }
 
 .modal-description {
   color: #555;
   line-height: 1.8;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
+  font-size: 1.05rem;
 }
 
 .modal-details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 15px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .detail-item {
-  padding: 12px;
-  background-color: #f8f8f8;
-  border-radius: 8px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%);
+  border-radius: 12px;
   font-size: 0.95rem;
   color: #442D1C;
   border: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.detail-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .detail-item strong {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
   color: #8E5022;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .modal-features {
-  margin-bottom: 25px;
+  margin-bottom: 30px;
 }
 
 .modal-features h3 {
   font-size: 1.3rem;
   color: #442D1C;
   margin-bottom: 15px;
+  font-weight: 700;
 }
 
 .modal-features ul {
@@ -385,67 +532,98 @@
 }
 
 .modal-features li {
-  padding: 8px 0;
+  padding: 10px 0;
   color: #555;
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-features li::before {
+  content: '✓';
+  color: #8E5022;
+  font-weight: 700;
+  font-size: 1.2rem;
 }
 
 .modal-register-btn {
-  background-color: #652810;
+  background: linear-gradient(135deg, #8E5022 0%, #C85428 100%);
   color: white;
   border: none;
   padding: 18px;
-  border-radius: 10px;
-  font-size: 1.2rem;
+  border-radius: 12px;
+  font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-register-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.modal-register-btn:hover:not(:disabled)::before {
+  left: 100%;
 }
 
 .modal-register-btn:hover:not(:disabled) {
-  background-color: #C85428;
-  transform: scale(1.02);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(142, 80, 34, 0.4);
 }
 
 .modal-register-btn:disabled {
-  background-color: #ccc;
+  background: #ccc;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 /* Registration Form */
 .registration-form {
-  max-width: 600px;
-  padding: 40px;
+  padding: 50px;
 }
 
 .registration-form h2 {
+  font-size: 2rem;
   color: #442D1C;
   margin-bottom: 30px;
-  font-size: 1.8rem;
+  text-align: center;
+  font-weight: 700;
 }
 
 .form-group {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   color: #442D1C;
   font-weight: 600;
+  font-size: 0.95rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
   width: 100%;
-  padding: 12px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
   font-size: 1rem;
-  transition: border-color 0.3s ease;
-  background-color: white;
+  transition: all 0.3s ease;
+  background: white;
+  font-family: inherit;
 }
 
 .form-group input:focus,
@@ -453,18 +631,19 @@
 .form-group textarea:focus {
   outline: none;
   border-color: #8E5022;
-  box-shadow: 0 0 0 3px rgba(142, 80, 34, 0.1);
+  box-shadow: 0 0 0 4px rgba(142, 80, 34, 0.1);
 }
 
 .form-total {
-  background-color: #f8f8f8;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  background: linear-gradient(135deg, rgba(142, 80, 34, 0.08) 0%, rgba(200, 84, 40, 0.08) 100%);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   color: #442D1C;
-  border: 2px solid #8E5022;
+  border: 2px solid rgba(142, 80, 34, 0.2);
+  font-weight: 700;
 }
 
 .submit-btn {
@@ -472,18 +651,34 @@
   color: white;
   border: none;
   padding: 18px;
-  border-radius: 10px;
-  font-size: 1.2rem;
+  border-radius: 12px;
+  font-size: 1.15rem;
   font-weight: 600;
   cursor: pointer;
   width: 100%;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.submit-btn:hover:not(:disabled)::before {
+  left: 100%;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: linear-gradient(135deg, #C85428 0%, #8E5022 100%);
-  transform: scale(1.02);
-  box-shadow: 0 4px 12px rgba(142, 80, 34, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(142, 80, 34, 0.4);
 }
 
 .submit-btn:disabled {
@@ -500,33 +695,38 @@
 }
 
 .success-icon {
-  width: 80px;
-  height: 80px;
-  background-color: #4CAF50;
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
   color: white;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  margin: 0 auto 25px;
+  font-size: 3.5rem;
+  margin: 0 auto 30px;
+  animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
 }
 
 .success-message h2 {
   color: #442D1C;
   margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: 700;
 }
 
 .success-message p {
   color: #555;
   font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 /* No Workshops Message */
 .no-workshops {
   text-align: center;
-  padding: 60px 20px;
-  font-size: 1.2rem;
+  padding: 80px 20px;
+  font-size: 1.3rem;
   color: #777;
 }
 
@@ -537,32 +737,38 @@
   }
   
   .modal-image {
-    height: 300px;
+    height: 320px;
+  }
+  
+  .workshops-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
   }
 }
 
 @media (max-width: 768px) {
   .workshops-header h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
   
   .workshops-header p {
     font-size: 1.1rem;
   }
   
-  .workshops-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .workshops-filter {
     flex-direction: column;
+    padding: 30px 20px;
   }
   
   .workshops-filter button {
     width: 100%;
   }
   
-  .modal-details-grid {
-    grid-template-columns: 1fr;
+  .modal-content {
+    padding: 30px 20px;
+  }
+  
+  .registration-form {
+    padding: 30px 20px;
   }
 }
