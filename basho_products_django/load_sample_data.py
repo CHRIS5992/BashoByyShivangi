@@ -18,6 +18,7 @@ SAMPLE_PRODUCTS = [
         'stock_quantity': 15,
         'is_featured': True,
         'is_bestseller': True,
+        'image_url': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop',
     },
     {
         'product_id': 'plate-1',
@@ -31,6 +32,7 @@ SAMPLE_PRODUCTS = [
         'in_stock': True,
         'stock_quantity': 12,
         'is_featured': True,
+        'image_url': 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
     },
     {
         'product_id': 'cup-1',
@@ -43,6 +45,7 @@ SAMPLE_PRODUCTS = [
         'dimensions': '3.5 inches diameter, holds 180ml',
         'in_stock': True,
         'stock_quantity': 20,
+        'image_url': 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=400&h=400&fit=crop',
     },
     {
         'product_id': 'vase-1',
@@ -56,6 +59,7 @@ SAMPLE_PRODUCTS = [
         'in_stock': True,
         'stock_quantity': 5,
         'is_featured': True,
+        'image_url': 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=400&fit=crop',
     },
     {
         'product_id': 'planter-1',
@@ -68,6 +72,7 @@ SAMPLE_PRODUCTS = [
         'dimensions': '5 inches diameter',
         'in_stock': True,
         'stock_quantity': 8,
+        'image_url': 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
     },
 ]
 
@@ -93,7 +98,12 @@ def load_sample_products():
         if created:
             print(f"✓ Created: {product.name}")
         else:
-            print(f"- Already exists: {product.name}")
+            # Update existing product with new data (especially image_url)
+            for key, value in product_data.items():
+                if key != 'product_id':  # Don't update the unique key
+                    setattr(product, key, value)
+            product.save()
+            print(f"✓ Updated: {product.name}")
     
     print(f"\nTotal products in database: {Product.objects.count()}")
     print("Done!")

@@ -127,6 +127,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'frontend' / 'build' / 'static',  # React build static files
+    BASE_DIR / 'frontend' / 'public',  # React public files (images, etc.)
 ]
 
 # Media files (User uploaded images)
