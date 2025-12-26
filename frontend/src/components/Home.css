@@ -1,21 +1,21 @@
-/* =========================
-   BASE
-========================= */
+/* ================= BASE ================= */
 
 .home {
   width: 100%;
+  min-height: 200vh;
+  /* allows scroll */
 }
 
-/* =========================
-   HERO VIDEO
-========================= */
+
+/* ================= HERO ================= */
 
 .video-hero {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
+
 
 .hero-video {
   position: absolute;
@@ -38,13 +38,7 @@
   left: 50%;
   transform: translate(-50%, -55%);
   z-index: 2;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-
-  padding: 0 24px;
 }
 
 .hero-logo {
@@ -56,111 +50,99 @@
   max-width: 520px;
   font-size: 1.3rem;
   margin-bottom: 28px;
-  font-weight: 500;
-  color: #111;
 }
 
 .home-actions {
   display: flex;
   gap: 16px;
+  justify-content: center;
 }
 
 .home-actions button {
   padding: 12px 28px;
   font-weight: 600;
   border: none;
-  cursor: pointer;
   background: #652810;
   color: white;
+  cursor: pointer;
 }
 
-/* =========================
-   WHAT IS BASHO SECTION
-========================= */
+/* ================= PAPER SECTION ================= */
 
-.whatisbasho-section {
+.basho-paper {
+  min-height: 100vh;
   width: 100%;
-  height: 100vh; /* force full viewport height */
+  position: relative;
+  z-index: 5;
 
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left top; /* anchor image to top */
+  background-size: cover;
+  background-position: left center;
 
-  background-color: #fbf4e6;
-
-  display: flex;
-  align-items: stretch; /* remove vertical centering gaps */
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.whatisbasho-inner {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
 
-  /* IMPORTANT: remove vertical padding */
-  padding: 0 80px;
-  box-sizing: border-box;
-}
 
-.whatisbasho-text {
+
+
+/* content printed on paper */
+.basho-paper-content {
+  position: absolute;
+  top: 50%;
+  right: 8%;
+  transform: translateY(-50%);
+
   max-width: 520px;
-  font-family: "Noto Serif JP", serif;
+  font-family: "Federo", sans-serif;
 }
 
-.whatisbasho-text h2 {
-  font-size: 2.4rem;
-  letter-spacing: 0.14em;
+.basho-paper-content h2 {
+  font-family: "Federo", sans-serif;
+  font-size: 3.2rem;
+  letter-spacing: 0.16em;
   margin-bottom: 24px;
-  font-weight: 600;
 }
 
-.whatisbasho-text p {
-  font-size: 1.6rem;
+.basho-paper-content p {
+  font-size: 1.35rem;
   line-height: 1.9;
 }
-/* =========================
-   WHAT IS BASHO SECTION
-========================= */
 
-.whatisbasho-section {
-  width: 100%;
-  height: 100vh; /* force full viewport height */
+/* ================= RESPONSIVE ================= */
 
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left top; /* anchor image to top */
+@media (max-width: 900px) {
+  .basho-paper {
+    background-position: center top;
+  }
 
-  background-color: #fbf4e6;
-
-  display: flex;
-  align-items: stretch; /* remove vertical centering gaps */
+  .basho-paper-content {
+    right: 50%;
+    transform: translate(50%, -50%);
+    text-align: left;
+    max-width: 90%;
+  }
 }
 
-.whatisbasho-inner {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  /* IMPORTANT: remove vertical padding */
-  padding: 0 80px;
-  box-sizing: border-box;
+/* ================= JAPANESE INSPIRATION ================= */
+.japanese-inspiration {
+  background-color: #c85428;
+  color: #fffef9;
+  /* washi-white */
+  padding: 120px 0;
+  position: relative;
+  z-index: 5;
+  text-align: center;
 }
 
-.whatisbasho-text {
-  max-width: 520px;
-  font-family: "Noto Serif JP", serif;
-}
-
-.whatisbasho-text h2 {
-  font-size: 2.4rem;
-  letter-spacing: 0.14em;
+.japanese-inspiration h2 {
+  font-size: 2.5rem;
   margin-bottom: 24px;
-  font-weight: 700;
 }
 
-.whatisbasho-text p {
-  font-size: 1.05rem;
-  line-height: 1.9;
+.japanese-inspiration p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
