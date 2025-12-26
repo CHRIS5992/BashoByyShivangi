@@ -85,6 +85,9 @@
 
 .whatisbasho-section {
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 5;
   height: 100vh;
 
   background-repeat: no-repeat;
@@ -95,8 +98,6 @@
 
   display: flex;
   align-items: stretch;
-  position: relative;
-  z-index: 5;
   box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -138,36 +139,11 @@
 
   .whatisbasho-inner {
     justify-content: center;
-    padding: 0 24px;
+    padding: 20px;
   }
 
   .whatisbasho-text {
     text-align: left;
     max-width: 90%;
   }
-}
-
-/* =========================
-   JAPANESE INSPIRATION
-========================= */
-
-.japanese-inspiration {
-  background-color: #c85428;
-  color: #fffef9;
-  padding: 120px 0;
-  position: relative;
-  z-index: 5;
-  text-align: center;
-}
-
-.japanese-inspiration h2 {
-  font-size: 2.5rem;
-  margin-bottom: 24px;
-}
-
-.japanese-inspiration p {
-  max-width: 700px;
-  margin: 0 auto;
-  font-size: 1.2rem;
-  line-height: 1.8;
 }

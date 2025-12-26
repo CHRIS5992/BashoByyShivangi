@@ -1,0 +1,288 @@
+/* Inspiration.css */
+
+/* Container Setup */
+.inspiration-container {
+    background-color: transparent;
+    /* Was #fbf4e6 - needs transparency for stacking over previous section */
+    color: #fff;
+    font-family: 'Noto Serif JP', serif;
+    padding-bottom: 0;
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Individual Scroll Beats (Sections) */
+.scroll-beat {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Parallax effect */
+
+    /* Stacking logic */
+    position: sticky;
+    top: 0;
+
+    /* 
+       PERFORMANCE FIX:
+       Replaced SVG Filter with Mask Image.
+       Using a high-noise base64 SVG URI for the "rough edge".
+       This is infinitely faster than feTurbulence.
+    */
+    --rough-edge: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0 50 L1000 50 L1000 0 Q 950 15, 900 5 Q 850 -5, 800 5 Q 750 15, 700 5 Q 650 -5, 600 5 Q 550 15, 500 5 Q 450 -5, 400 5 Q 350 15, 300 5 Q 250 -5, 200 5 Q 150 15, 100 5 Q 50 -5, 0 5 Z" fill="black" /></svg>');
+
+    /* 
+       We only mask the TOP edge. 
+       We composite the mask: Top Rough Edge + Full Content below.
+       Actually simpler: Just don't mask at the very top of Beat 1.
+    */
+
+    /* Default shadow for depth */
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.4);
+
+    /* Transition for transforms */
+    /* Ensure no white background bleeds through the filter */
+    background-color: transparent;
+
+    /* Clip content that bleeds out (like giant corner images) to prevent horizontal scrollbars */
+    overflow: hidden;
+    /* Smooth follow for JS updates */
+    transition: transform 0.1s linear;
+}
+
+/* Torn Edge Effect for all beats */
+.beat-1,
+.beat-2,
+.beat-3,
+.beat-4 {
+    /* Irregular polygon to mimic torn paper top */
+    mask-image: var(--rough-edge);
+    mask-size: 100% 40px;
+    /* Reduced height for subtler edge */
+    mask-repeat: no-repeat;
+    mask-position: top;
+
+    /* Ensure the rest of the content is visible */
+    /* We need a composite mask: Top Edge + Bottom Rectangle */
+    /* Actually, a single mask-image with gradient is easier for logic, 
+       but using the SVG + gradient avoids cutting off the bottom. */
+
+    mask-image:
+        var(--rough-edge),
+        linear-gradient(to bottom, transparent 20px, black 30px);
+
+    mask-size: 100% 50px, 100% 100%;
+    mask-position: top, top;
+    mask-repeat: no-repeat, no-repeat;
+    mask-composite: add;
+    /* Ensure they combine if browser supports, strictly standard syntax differs */
+
+    /* Simpler fallback that works broadly: */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 2%), linear-gradient(to bottom, black, black);
+    mask-size: 100% 25px, 100% 100%;
+}
+
+/* Specific Scattered Stack Rotations */
+/* We alternate rotations to create a consistent "messy stack" feel */
+
+/* Beat 1: Introduction - slight left tilt to start the pattern */
+.beat-1 {
+    z-index: 1;
+    transform: rotate(-1deg);
+    /* This ensures text isn't too crooked but the edge feels organic against "What is Basho" */
+}
+
+/* Decorative Corner Images for Beat 1 */
+.corner-deco {
+    position: absolute;
+    z-index: 1;
+    /* Above background (0), below content (2) */
+    pointer-events: none;
+    /* Let clicks pass through */
+    max-width: 1200px;
+    /* MASSIVE increase */
+    opacity: 0.9;
+    /* Integrate with background */
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.corner-deco.top-right {
+    top: -150px;
+    /* Deep bleed */
+    right: -150px;
+    width: 85vw;
+    /* Enormous coverage */
+}
+
+.corner-deco.bottom-left {
+    bottom: -150px;
+    left: -150px;
+    width: 100vw;
+    max-width: 1500px;
+    /* Specifically bigger than top-right */
+}
+
+/* Adjust corner images on mobile to not overwhelm */
+@media (max-width: 768px) {
+    .corner-deco {
+        width: 85vw !important;
+        /* huge on mobile too */
+        opacity: 0.5;
+    }
+}
+
+
+/* Beat 2 rotates slightly left (more pronounced) */
+.beat-2 {
+    z-index: 2;
+    transform: rotate(-1.5deg);
+    /* Since we deleted the clip-path, we just rely on the rotation and shadow for the messiness, 
+       plus a simple border-radius or just the rotation itself implies the paper stack.
+       The SVG mask data URI is complex to get right without external assets. 
+       The "Scattered Stack" (Rotation) is often enough to sell the effect cleanly.
+    */
+}
+
+/* Beat 3 rotates slightly right */
+.beat-3 {
+    z-index: 3;
+    transform: rotate(1.2deg);
+    color: #f0e6d2;
+}
+
+/* Beat 4 rotates back left to finish the rhythm */
+.beat-4 {
+    z-index: 4;
+    transform: rotate(-1.5deg);
+    /* Increased from -1.2deg to matches Beat 2 */
+    color: #f0e6d2;
+    /* Match Beat 3 text color */
+}
+
+
+.content-wrapper {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Counter-rotate text so it stays legible? Optional. 
+       For <2deg rotation, keeping it rotated adds to the charm. */
+}
+
+/* Typography styles */
+.poetic-text {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.beat-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+    font-family: 'Federo', sans-serif;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+.emphasis {
+    font-style: italic;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    color: #e67e5a;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.beat-3 .emphasis {
+    color: #ff9d76;
+}
+
+/* Specific styling for Beat 4 request */
+.text-bold {
+    font-weight: 700;
+    font-size: 1.8rem;
+    /* Make it pop */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+}
+
+.text-highlight {
+    color: #ff9d76;
+    /* Matching the accent from beat 3 or brighter */
+    font-style: italic;
+    font-weight: 600;
+}
+
+.list-like {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+.closure {
+    font-size: 1.9rem;
+    margin-top: 3rem;
+    font-family: 'Federo', sans-serif;
+}
+
+/* Animation Classes */
+.fade-item {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+    transition: all 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.fade-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* Delays for staggering effects */
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.delay-3 {
+    transition-delay: 0.6s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .scroll-beat {
+        background-attachment: scroll;
+    }
+
+    .poetic-text {
+        font-size: 1.3rem;
+    }
+
+    .beat-title {
+        font-size: 1.6rem;
+    }
+
+    .scroll-beat {
+        min-height: 70vh;
+        padding: 50px 20px;
+    }
+}
