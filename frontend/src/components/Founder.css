@@ -1,0 +1,137 @@
+/* Founder.css */
+
+.founder-section {
+    background-color: #c85428;
+    /* Requested Rust/Terracotta */
+    color: #fff;
+    /* High contrast text */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    position: relative;
+    z-index: 20;
+    /* Sit above sticky inspiration cards if they overlap at bottom */
+}
+
+.founder-container {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    /* Balanced split: Image significantly broad, text very spacious */
+    gap: 30px;
+    /* Tighter gap as requested */
+    align-items: center;
+}
+
+/* Image Styling */
+.founder-pimage-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.founder-frame {
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    max-width: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.founder-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(0.1);
+    border-radius: 12px;
+    transform: scale(1.45) translateX(-80px);
+    /* Shifted way more to the left */
+    transform-origin: center left;
+}
+
+/* Content Styling */
+.founder-content {
+    text-align: left;
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.founder-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 3.5rem;
+    /* Increased gap between heading and vision content */
+    line-height: 1.1;
+    color: #fbf4e6;
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.founder-body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+    text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
+    /* Increased shadow intensity */
+}
+
+.founder-body p {
+    margin-bottom: 1.5rem;
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    /* Subtle lift */
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-content {
+    transition-delay: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .founder-container {
+        grid-template-columns: 1fr;
+        text-align: left;
+        /* Revert layout for mobile readability usually, but keeping intent? 
+                           Let's stack but keep editorial feel. */
+    }
+
+    .founder-content {
+        text-align: left;
+        /* Hard to read right-aligned huge text blocks on mobile */
+        padding-left: 0;
+        order: -1;
+        /* Text first on mobile? Or Image? Usually image first for intro person */
+        order: 1;
+        /* Keep image top */
+    }
+
+    .founder-pimage-wrapper {
+        margin-bottom: 40px;
+    }
+
+    .founder-heading {
+        font-size: 2.5rem;
+    }
+}
