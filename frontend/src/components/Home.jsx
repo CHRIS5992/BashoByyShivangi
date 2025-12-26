@@ -13,7 +13,7 @@ function Home({ onNavigate }) {
       <section className="video-hero">
         <video
           className="hero-video"
-          src="/basho-here.mp4"
+          src="/static/basho-here.mp4"
           autoPlay
           muted
           loop
@@ -50,7 +50,7 @@ function Home({ onNavigate }) {
         ref={paperRef}
         className="basho-paper"
         style={{
-          backgroundImage: "url(/images/gallery/whatisbasho.jpg)",
+          backgroundImage: "url(/static/images/gallery/whatisbasho.jpg)",
         }}
       >
         <div className="basho-paper-content">
