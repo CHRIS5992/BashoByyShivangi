@@ -23,7 +23,6 @@ venv/
 env/
 ENV/
 .venv
-basho_products_django/venv/
 
 # Django
 *.log
@@ -48,15 +47,12 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 # Allow committing lockfiles for reproducible builds
-# package-lock.json
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
 # Build outputs
-basho_products_django/frontend/build/
-basho_products_django/static/
 myapp/build/
 
 # Environment variables

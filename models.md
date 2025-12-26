@@ -129,21 +129,6 @@
 - product (ForeignKey -> Product)
 - added_at (DateTimeField)
 
-## Coupon
-
-- code (CharField, unique)
-- description (CharField)
-- discount_type (CharField, choices)
-- discount_value (DecimalField)
-- min_purchase_amount (DecimalField)
-- max_discount_amount (DecimalField)
-- usage_limit (IntegerField)
-- used_count (IntegerField)
-- valid_from (DateTimeField)
-- valid_until (DateTimeField)
-- is_active (BooleanField)
-- created_at (DateTimeField)
-
 # Workshop
 
 - workshop_id (CharField, unique)
@@ -223,10 +208,4 @@
 - created_at (DateTimeField)
 - replied_at (DateTimeField)
 
-## NewsletterSubscription
 
-- email (EmailField, unique)
-- name (CharField)
-- is_active (BooleanField)
-- subscribed_at (DateTimeField)
-- unsubscribed_at (DateTimeField)
