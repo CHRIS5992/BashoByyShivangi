@@ -31,7 +31,7 @@ const Founder = () => {
         <section
             className="founder-section"
             ref={sectionRef}
-            style={{ backgroundImage: "url('/images/gallery/founderbg.jpg')" }}
+            style={{ backgroundImage: "url('/static/images/gallery/founderbg.jpg')" }}
         >
             <div className="founder-container">
 

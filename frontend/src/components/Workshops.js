@@ -17,6 +17,29 @@ const Workshops = () => {
     filterWorkshops();
   }, [selectedType, workshops]);
 
+  // Scroll animation for floating images
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    const floatingImages = document.querySelectorAll('.floating-image');
+    floatingImages.forEach(img => observer.observe(img));
+
+    return () => {
+      floatingImages.forEach(img => observer.unobserve(img));
+    };
+  }, []);
+
   const fetchWorkshops = async () => {
     try {
       const response = await fetch('/api/workshops/');
@@ -320,7 +343,7 @@ const Workshops = () => {
   return (
     <div className="workshops-page">
       {/* HEADER - 1/3 screen with pattern and Japanese text */}
-      <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/images/gallery/pattern-brown.jpg.png')" }}>
+      <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')" }}>
         <h1>
           <span className="japanese-accent">ワークショップ</span>
           Pottery Workshops & Experiences
@@ -328,29 +351,29 @@ const Workshops = () => {
         <p>Create, Learn, and Connect Through the Art of Pottery</p>
       </header>
 
-      {/* DESCRIPTION SECTION - 2/3 screen, collage layout */}
+      {/* DESCRIPTION SECTION - Clean centered text */}
       <section className="workshops-description-section">
-        <div className="workshops-collage-left">
-          <img src="/images/gallery/Workshop Pieces (1).png" alt="Workshop Piece 1" />
-          <img src="/images/gallery/Workshop Pieces (2).png" alt="Workshop Piece 2" />
-          <img src="/images/gallery/Workshop Pieces (3).png" alt="Workshop Piece 3" />
-          <img src="/images/gallery/Workshop Pieces (4).png" alt="Workshop Piece 4" />
-        </div>
         <div className="workshops-description-center">
-          <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 500, lineHeight: 1.7 }}>
+          <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 500, lineHeight: 1.7, maxWidth: '800px', margin: '0 auto' }}>
             At Basho, our workshops and experiences invite you to slow down and engage with clay in its most honest form. Guided by skilled artisans, each session blends hands-on learning with thoughtful design — creating spaces where individuals, couples, and groups come together to explore pottery, understand the craft, and create meaningful pieces through shared experience.
           </p>
         </div>
-        <div className="workshops-collage-right">
-          <img src="/images/gallery/Workshop Pieces (5).png" alt="Workshop Piece 5" />
-          <img src="/images/gallery/Workshop Pieces (6).png" alt="Workshop Piece 6" />
-          <img src="/images/gallery/Workshop Pieces (7).png" alt="Workshop Piece 7" />
-          <img src="/images/gallery/Workshop Pieces (8).png" alt="Workshop Piece 8" />
-        </div>
       </section>
 
-      {/* WORKSHOPS LIST SECTION - Slides up from bottom while scrolling */}
+      {/* WORKSHOPS LIST SECTION - With artistic floating images */}
       <section className="workshops-list-section">
+        {/* Artistic floating images that appear on scroll */}
+        <img src="/static/images/gallery/Workshop Pieces (1).png" alt="Workshop Piece 1" className="floating-image floating-image-1" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (2).png" alt="Workshop Piece 2" className="floating-image floating-image-2" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (3).png" alt="Workshop Piece 3" className="floating-image floating-image-3" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (4).png" alt="Workshop Piece 4" className="floating-image floating-image-4" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (5).png" alt="Workshop Piece 5" className="floating-image floating-image-5" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (6).png" alt="Workshop Piece 6" className="floating-image floating-image-6" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (7).png" alt="Workshop Piece 7" className="floating-image floating-image-7" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (8).png" alt="Workshop Piece 8" className="floating-image floating-image-8" data-scroll="fade-in" />
+        <img src="/static/images/gallery/Workshop Pieces (9).png" alt="Workshop Piece 9" className="floating-image floating-image-9" data-scroll="fade-in" />
+        
+        <div className="workshops-list-content">
         <div className="workshops-filter">
           <button
             className={selectedType === 'all' ? 'active' : ''}
@@ -401,6 +424,7 @@ const Workshops = () => {
             <p>No workshops available in this category.</p>
           </div>
         )}
+        </div>
       </section>
 
       {selectedWorkshop && !showRegistrationForm && (

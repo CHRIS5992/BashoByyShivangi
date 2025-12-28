@@ -64,7 +64,7 @@ function Studio() {
       {/* ================= HERO SECTION ================= */}
       <section
         className="studio-hero"
-        style={{ backgroundImage: "url('/images/gallery/studiobg.jpg')" }}
+        style={{ backgroundImage: "url('/static/images/gallery/studiobg.jpg')" }}
       >
         <div className="studio-hero-content">
           <h1>THE STUDIO</h1>

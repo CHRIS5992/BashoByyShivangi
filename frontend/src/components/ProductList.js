@@ -49,7 +49,7 @@ const ProductList = ({ products, loading }) => {
               >
                 <div className="product-image">
                   <img 
-                    src={product.image_url_full || product.image || '/images/products/placeholder.svg'} 
+                    src={product.image_url_full || product.image || '/static/images/products/placeholder.svg'} 
                     alt={product.name}
                     className="placeholder-img"
                   />

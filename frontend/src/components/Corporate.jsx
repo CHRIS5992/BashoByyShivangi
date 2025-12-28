@@ -74,7 +74,7 @@ function Corporate() {
       </section>
 
       {/* Combined Quote and Services Section */}
-      <section className="intro-quote" style={{ backgroundImage: 'url(/images/gallery/corporate-why.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay', backgroundColor: 'rgba(237, 216, 180, 0.87)', filter: 'contrast(1.05)', paddingBottom: '5rem' }}>
+      <section className="intro-quote" style={{ backgroundImage: 'url(/static/images/gallery/corporate-why.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay', backgroundColor: 'rgba(237, 216, 180, 0.87)', filter: 'contrast(1.05)', paddingBottom: '5rem' }}>
         <div className="quote-container" style={{ filter: 'contrast(0.952)' }}>
           <h2 className="quote-text">
             "We bridge traditional craftsmanship with modern business needs to create meaningful connections that last."
@@ -118,7 +118,7 @@ function Corporate() {
                 </p>
               </div>
               <div className="service-image-new">
-                <img src="/images/gallery/workshop-team.png" alt="Team Workshop" />
+                <img src="/static/images/gallery/workshop-team.png" alt="Team Workshop" />
               </div>
             </div>
 
@@ -134,7 +134,7 @@ function Corporate() {
                 </p>
               </div>
               <div className="service-image-new">
-                <img src="/images/gallery/collaboration.png" alt="Brand Collaborations" />
+                <img src="/static/images/gallery/collaboration.png" alt="Brand Collaborations" />
               </div>
             </div>
           </div>
@@ -190,7 +190,7 @@ function Corporate() {
           <div className="difference-grid">
             <div className="difference-item">
               <div className="difference-image">
-                <img src="/images/gallery/sustainble-materials.png" alt="Sustainable Materials" />
+                <img src="/static/images/gallery/sustainble-materials.png" alt="Sustainable Materials" />
               </div>
               <h4 className="difference-title">Sustainable Sourcing</h4>
               <p className="difference-text">Ethically sourced materials that respect the earth.</p>
@@ -198,7 +198,7 @@ function Corporate() {
 
             <div className="difference-item offset">
               <div className="difference-image">
-                <img src="/images/gallery/artisan-crafting.png" alt="Artisan Crafting" />
+                <img src="/static/images/gallery/artisan-crafting.png" alt="Artisan Crafting" />
               </div>
               <h4 className="difference-title">Handcrafted Quality</h4>
               <p className="difference-text">Every piece is unique, made by master artisans.</p>
@@ -206,7 +206,7 @@ function Corporate() {
 
             <div className="difference-item">
               <div className="difference-image">
-                <img src="/images/gallery/traditional-patterns.png" alt="Traditional Patterns" />
+                <img src="/static/images/gallery/traditional-patterns.png" alt="Traditional Patterns" />
               </div>
               <h4 className="difference-title">Cultural Heritage</h4>
               <p className="difference-text">Preserving traditional techniques for modern times.</p>
@@ -367,7 +367,7 @@ function Corporate() {
 
             {/* Testimonial Side */}
             <div className="testimonial-side">
-              <div className="testimonial-overlay" style={{ backgroundImage: 'url(/images/gallery/testimonial-bg.png)' }}>
+              <div className="testimonial-overlay" style={{ backgroundImage: 'url(/static/images/gallery/testimonial-bg.png)' }}>
                 <div className="testimonial-content">
                   <span className="quote-mark">"</span>
                   <p className="testimonial-text">
