@@ -1,0 +1,506 @@
+/* Media.css */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+/* =========================
+   CSS VARIABLES
+========================= */
+:root {
+    --media-primary: #652810;
+    --media-secondary: #EDD8B4;
+    --media-text-dark: #3d1a0a;
+    --media-text-light: #f5efe6;
+}
+
+/* =========================
+   BASE STYLES
+========================= */
+.media-page {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--media-secondary);
+    color: var(--media-primary);
+}
+
+.media-page h1,
+.media-page h2,
+.media-page h3 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+}
+
+/* =========================
+   HERO SECTION
+========================= */
+.media-hero {
+    position: relative;
+    min-height: 50vh;
+    background-color: var(--media-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 40px;
+}
+
+.media-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+.media-hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+}
+
+.media-hero h1 {
+    font-size: 3rem;
+    color: var(--media-secondary);
+    margin-bottom: 1rem;
+}
+
+.media-hero p {
+    font-size: 1.15rem;
+    color: rgba(237, 216, 180, 0.85);
+    line-height: 1.7;
+}
+
+/* =========================
+   SECTION HEADERS
+========================= */
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: var(--media-primary);
+    margin-bottom: 0.5rem;
+}
+
+.section-header.light h2 {
+    color: var(--media-secondary);
+}
+
+/* =========================
+   GALLERY SECTION
+========================= */
+.media-gallery {
+    padding: 80px 40px;
+    background-color: var(--media-secondary);
+}
+
+.gallery-filters {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    border: 2px solid var(--media-primary);
+    background: transparent;
+    color: var(--media-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--media-primary);
+    color: var(--media-secondary);
+}
+
+.gallery-masonry {
+    column-count: 3;
+    column-gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(101, 40, 16, 0);
+    transition: background 0.3s ease;
+}
+
+.gallery-item:hover::after {
+    background: rgba(101, 40, 16, 0.25);
+}
+
+/* =========================
+   TEXT TESTIMONIALS
+========================= */
+.media-testimonials {
+    padding: 100px 40px;
+    background-color: var(--media-primary);
+}
+
+.testimonials-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.testimonial-slide {
+    text-align: center;
+    padding: 0 40px;
+}
+
+.testimonial-quote {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--media-secondary);
+    margin-bottom: 2rem;
+}
+
+.testimonial-quote::before {
+    content: '"';
+    display: block;
+    font-size: 4rem;
+    color: rgba(237, 216, 180, 0.3);
+    margin-bottom: 1rem;
+}
+
+.testimonial-author {
+    color: rgba(237, 216, 180, 0.8);
+    font-size: 1rem;
+}
+
+.testimonial-author strong {
+    color: var(--media-secondary);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.testimonial-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 3rem;
+}
+
+.testimonial-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--media-secondary);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.testimonial-dot.active {
+    background: var(--media-secondary);
+}
+
+/* =========================
+   VIDEO TESTIMONIALS
+========================= */
+.media-videos {
+    padding: 80px 40px;
+    background-color: var(--media-secondary);
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.video-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 16/9;
+    background: var(--media-primary);
+}
+
+.video-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover img {
+    transform: scale(1.03);
+}
+
+.video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(101, 40, 16, 0.4);
+    transition: background 0.3s ease;
+}
+
+.video-card:hover .video-play-overlay {
+    background: rgba(101, 40, 16, 0.6);
+}
+
+.play-icon {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--media-secondary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.play-icon::after {
+    content: '';
+    border-left: 18px solid var(--media-secondary);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    margin-left: 5px;
+}
+
+.video-info {
+    text-align: center;
+    color: var(--media-secondary);
+}
+
+.video-info h4 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.video-info span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* =========================
+   CUSTOMER EXPERIENCES
+========================= */
+.media-experiences {
+    padding: 100px 40px;
+    background-color: var(--media-primary);
+}
+
+.experiences-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.experience-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+}
+
+.experience-card:nth-child(even) {
+    direction: rtl;
+}
+
+.experience-card:nth-child(even)>* {
+    direction: ltr;
+}
+
+.experience-image {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.experience-image img {
+    width: 100%;
+    display: block;
+}
+
+.experience-text {
+    color: var(--media-secondary);
+}
+
+.experience-text p {
+    font-family: 'Libre Baskerville', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.experience-text .author {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+/* =========================
+   LIGHTBOX & VIDEO MODAL
+========================= */
+.lightbox-overlay,
+.video-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox-overlay.active,
+.video-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content img,
+.video-modal-content video {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+}
+
+.lightbox-close,
+.video-modal-close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lightbox-close:hover,
+.video-modal-close:hover {
+    background: white;
+    color: var(--media-primary);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border: 2px solid white;
+    border-radius: 50%;
+    background: transparent;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-nav.prev {
+    left: 30px;
+}
+
+.lightbox-nav.next {
+    right: 30px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gallery-masonry {
+        column-count: 2;
+    }
+
+    .experiences-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-card {
+        grid-template-columns: 1fr 1.2fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .media-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .gallery-masonry {
+        column-count: 1;
+    }
+
+    .videos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-card {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .experience-card:nth-child(even) {
+        direction: ltr;
+    }
+
+    .testimonial-quote {
+        font-size: 1.3rem;
+    }
+
+    .media-gallery,
+    .media-testimonials,
+    .media-videos,
+    .media-experiences {
+        padding: 60px 20px;
+    }
+}

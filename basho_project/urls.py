@@ -24,6 +24,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('products.urls')),  # Products API URLs
     path('api/', include('workshops.urls')),  # Workshops API URLs
+    path('api/', include('studio.urls')),  # Studio API URLs
+    path('api/', include('media_content.urls')),  # Media API URLs
     path('', TemplateView.as_view(template_name='index.html'), name='home'),  # Serve React app
 ]
 

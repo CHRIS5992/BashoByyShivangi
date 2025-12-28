@@ -1,3 +1,6 @@
+/* Google Font Import for Fedora */
+@import url('https://fonts.googleapis.com/css2?family=Federo&display=swap');
+
 /* =========================
    BASE
 ========================= */
@@ -91,10 +94,8 @@
   height: 100vh;
 
   background-repeat: no-repeat;
-  background-size: contain;
-  background-position: left top;
-
-  background-color: #fbf4e6;
+  background-size: cover;
+  background-position: center calc(50% - 30px);
 
   display: flex;
   align-items: stretch;
@@ -112,20 +113,23 @@
 }
 
 .whatisbasho-text {
-  max-width: 520px;
+  max-width: 580px;
   font-family: "Noto Serif JP", serif;
 }
 
 .whatisbasho-text h2 {
-  font-size: 2.4rem;
-  letter-spacing: 0.14em;
-  margin-bottom: 24px;
-  font-weight: 700;
+  font-family: 'Federo', sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.18em;
+  margin-bottom: 28px;
+  font-weight: 400;
+  color: #3a2a1a;
 }
 
 .whatisbasho-text p {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   line-height: 1.9;
+  color: #4a3a2a;
 }
 
 /* =========================

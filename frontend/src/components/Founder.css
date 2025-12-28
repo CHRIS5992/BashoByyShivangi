@@ -1,29 +1,49 @@
 /* Founder.css */
 
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap');
+
 .founder-section {
-    background-color: #c85428;
-    /* Requested Rust/Terracotta */
-    color: #fff;
-    /* High contrast text */
+    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 80px 40px;
-    position: relative;
     z-index: 20;
-    /* Sit above sticky inspiration cards if they overlap at bottom */
+    margin-top: -80px;
+    /* Pull up to cover messy transition */
+
+    /* Background image applied via inline style in JSX */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/* Strong gradient overlay from left and right edges */
+.founder-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+            rgba(30, 15, 5, 0.92) 0%,
+            rgba(30, 15, 5, 0.75) 15%,
+            rgba(30, 15, 5, 0.60) 50%,
+            rgba(30, 15, 5, 0.75) 85%,
+            rgba(30, 15, 5, 0.92) 100%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .founder-container {
+    position: relative;
+    z-index: 2;
     max-width: 1600px;
     width: 100%;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 40% 60%;
-    /* Balanced split: Image significantly broad, text very spacious */
     gap: 30px;
-    /* Tighter gap as requested */
     align-items: center;
 }
 
@@ -52,7 +72,6 @@
     filter: sepia(0.1);
     border-radius: 12px;
     transform: scale(1.45) translateX(-80px);
-    /* Shifted way more to the left */
     transform-origin: center left;
 }
 
@@ -70,7 +89,6 @@
     font-size: 4rem;
     font-weight: 600;
     margin-bottom: 3.5rem;
-    /* Increased gap between heading and vision content */
     line-height: 1.1;
     color: #fbf4e6;
     letter-spacing: -0.02em;
@@ -84,18 +102,20 @@
     color: rgba(255, 255, 255, 0.95);
     font-weight: 400;
     text-shadow: 0 3px 12px rgba(0, 0, 0, 0.7);
-    /* Increased shadow intensity */
 }
 
 .founder-body p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
+}
+
+.founder-body p:last-child {
+    margin-bottom: 0;
 }
 
 /* Animation Classes */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
-    /* Subtle lift */
     transition: opacity 1.2s ease-out, transform 1.2s ease-out;
 }
 
@@ -113,18 +133,12 @@
     .founder-container {
         grid-template-columns: 1fr;
         text-align: left;
-        /* Revert layout for mobile readability usually, but keeping intent? 
-                           Let's stack but keep editorial feel. */
     }
 
     .founder-content {
         text-align: left;
-        /* Hard to read right-aligned huge text blocks on mobile */
         padding-left: 0;
-        order: -1;
-        /* Text first on mobile? Or Image? Usually image first for intro person */
         order: 1;
-        /* Keep image top */
     }
 
     .founder-pimage-wrapper {
@@ -132,6 +146,10 @@
     }
 
     .founder-heading {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+    }
+
+    .founder-body {
+        max-width: 100%;
     }
 }

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django_filters',  # Django filter backend
     'products',  # Basho Products App
     'workshops',  # Basho Workshops App
+    'studio',  # Basho Studio App
+    'media_content',  # Basho Media App
 ]
 
 MIDDLEWARE = [
