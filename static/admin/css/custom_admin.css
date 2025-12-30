@@ -1,0 +1,361 @@
+/* Custom Admin Panel Styling for Basho */
+
+/* Compact sidebar navigation */
+.sidebar-dark-primary .nav-sidebar > .nav-item,
+.nav-sidebar .nav-item {
+    margin-bottom: 2px !important;
+}
+
+.sidebar-dark-primary .nav-sidebar .nav-link,
+.nav-sidebar .nav-link {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+}
+
+.nav-treeview .nav-item {
+    padding-left: 10px !important;
+}
+
+.nav-treeview .nav-link {
+    padding: 4px 12px !important;
+    font-size: 12px !important;
+}
+
+.sidebar .nav-header {
+    padding: 6px 12px !important;
+    font-size: 11px !important;
+    margin-top: 5px !important;
+}
+
+/* Main content area background - soft earthy tone */
+.content-wrapper {
+    background: linear-gradient(135deg, #f8f5f0 0%, #faf7f2 100%) !important;
+    padding: 10px !important;
+}
+
+.content {
+    background: linear-gradient(135deg, #f8f5f0 0%, #faf7f2 100%) !important;
+    padding: 10px !important;
+}
+
+/* Change list background - slightly lighter */
+#changelist {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-radius: 8px !important;
+    padding: 20px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+/* Form background */
+.form-row, .module {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 6px !important;
+}
+
+/* Make buttons slightly bigger and more visible */
+.submit-row input[type="submit"],
+.submit-row input[type="button"],
+.submit-row a.deletelink,
+button[type="submit"],
+.button,
+input[type="submit"],
+input[type="button"],
+a.button {
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    border-radius: 4px !important;
+    min-height: 36px !important;
+    margin: 2px 4px !important;
+}
+
+/* Dashboard module links - compact layout */
+.module table {
+    font-size: 14px !important;
+}
+
+.module th,
+.module caption {
+    font-size: 15px !important;
+    padding: 6px 10px !important;
+}
+
+/* Dashboard buttons - FORCED SAME SIZE for both Add and Change */
+.module .addlink,
+.app-list .addlink,
+.module a.addlink,
+.module .changelink,
+.app-list .changelink,
+.module a.changelink {
+    padding: 6px 12px !important;
+    font-size: 12px !important;
+    border-radius: 3px !important;
+    margin: 2px !important;
+    display: inline-block !important;
+    text-decoration: none !important;
+    min-width: 60px !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    height: 26px !important;
+    box-sizing: border-box !important;
+    vertical-align: middle !important;
+    font-weight: normal !important;
+}
+
+/* Add button color - green */
+.module .addlink,
+.app-list .addlink,
+.module a.addlink {
+    background-color: #4CAF50 !important;
+    color: white !important;
+}
+
+.module .addlink:hover,
+.app-list .addlink:hover {
+    background-color: #45a049 !important;
+}
+
+/* Change button color - darker orange */
+.module .changelink,
+.app-list .changelink,
+.module a.changelink {
+    background-color: #F57C00 !important;
+    color: white !important;
+}
+
+.module .changelink:hover,
+.app-list .changelink:hover {
+    background-color: #E65100 !important;
+}
+
+/* Dashboard model names */
+.app-list td a {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #333 !important;
+}
+
+/* Compact dashboard spacing - no scroll */
+.module {
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+}
+
+.app-list {
+    margin-bottom: 8px !important;
+}
+
+.module h2,
+.module caption {
+    margin: 0 !important;
+    padding: 6px 10px !important;
+}
+
+/* Reduce padding in dashboard tables */
+.module table td,
+.module table th {
+    padding: 5px 8px !important;
+}
+
+/* Compact row height */
+.module table tr {
+    height: auto !important;
+}
+
+/* Dashboard cards - reduce spacing */
+.card {
+    margin-bottom: 10px !important;
+    padding: 10px !important;
+}
+
+/* Save buttons - green */
+.submit-row input[name="_save"],
+.submit-row input[name="_continue"],
+.submit-row input[name="_addanother"] {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+    min-width: 100px !important;
+    background-color: #4CAF50 !important;
+    border: none !important;
+    margin: 4px 6px !important;
+}
+
+.submit-row input[name="_save"]:hover,
+.submit-row input[name="_continue"]:hover,
+.submit-row input[name="_addanother"]:hover {
+    background-color: #45a049 !important;
+}
+
+/* Delete button - red but not too aggressive */
+.submit-row .deletelink,
+.deletelink-box a {
+    background-color: #f44336 !important;
+    padding: 10px 20px !important;
+    margin: 4px 6px !important;
+}
+
+.submit-row .deletelink:hover {
+    background-color: #d32f2f !important;
+}
+
+/* Action buttons in tables - smaller and cleaner */
+.actions button,
+.actions select {
+    padding: 6px 12px !important;
+    font-size: 13px !important;
+    margin: 4px !important;
+    background-color: #2196F3 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+}
+
+.actions button:hover {
+    background-color: #1976D2 !important;
+}
+
+/* Filter buttons - subtle */
+#changelist-filter a {
+    padding: 4px 8px !important;
+    margin: 2px 0 !important;
+    font-size: 13px !important;
+    display: block !important;
+}
+
+/* Search button */
+#changelist-search input[type="submit"] {
+    background-color: #2196F3 !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 16px !important;
+    margin-left: 8px !important;
+}
+
+/* Pagination - compact and clean */
+.paginator a, 
+.paginator span {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+    margin: 0 2px !important;
+    border-radius: 3px !important;
+}
+
+.paginator a {
+    background-color: #f5f5f5 !important;
+    color: #333 !important;
+}
+
+.paginator a:hover {
+    background-color: #2196F3 !important;
+    color: white !important;
+}
+
+.paginator .this-page {
+    background-color: #2196F3 !important;
+    color: white !important;
+    padding: 6px 10px !important;
+}
+
+/* Results table - keep it clean and visible */
+#result_list {
+    background: white !important;
+    border-radius: 6px !important;
+}
+
+/* Fieldsets */
+.module.aligned fieldset,
+fieldset.module {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid #e8e3db !important;
+    border-radius: 6px !important;
+    margin-bottom: 20px !important;
+}
+
+/* Ensure text is always readable */
+.module h2, .module caption, .inline-group h2 {
+    background: #8B6F47 !important;
+    color: white !important;
+    padding: 12px 15px !important;
+    border-radius: 6px 6px 0 0 !important;
+}
+
+/* Cards and modules */
+.card {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08) !important;
+}
+
+/* Search bar background */
+#toolbar {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border-radius: 6px !important;
+    padding: 15px !important;
+    margin-bottom: 15px !important;
+}
+
+/* Filter sidebar - keep it clean */
+#changelist-filter {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-radius: 6px !important;
+    padding: 15px !important;
+}
+
+/* Dashboard cards on index page */
+.app-list .section h2,
+.module h2 {
+    background: linear-gradient(135deg, #8B6F47 0%, #6d5636 100%) !important;
+    color: white !important;
+}
+
+/* Make pagination buttons bigger */
+.paginator a, .paginator span {
+    padding: 6px 10px !important;
+    font-size: 13px !important;
+    margin: 0 2px !important;
+    border-radius: 3px !important;
+}
+
+/* Ensure good contrast for all text */
+body {
+    color: #333 !important;
+}
+
+/* Related widget buttons - compact */
+.related-widget-wrapper-link {
+    padding: 4px 8px !important;
+    font-size: 12px !important;
+    margin: 2px !important;
+}
+
+/* Form labels - make sure they're visible */
+label, .form-row label {
+    color: #444 !important;
+    font-weight: 500 !important;
+}
+
+/* Help text */
+.help, .helptext {
+    color: #666 !important;
+}
+
+/* Success messages */
+.messagelist .success {
+    background: #d4edda !important;
+    border-color: #c3e6cb !important;
+    color: #155724 !important;
+}
+
+/* Warning messages */
+.messagelist .warning {
+    background: #fff3cd !important;
+    border-color: #ffeaa7 !important;
+    color: #856404 !important;
+}
+
+/* Error messages */
+.messagelist .error {
+    background: #f8d7da !important;
+    border-color: #f5c6cb !important;
+    color: #721c24 !important;
+}

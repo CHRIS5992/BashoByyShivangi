@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',  # Modern admin theme - MUST be before django.contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -158,3 +159,149 @@ COMPANY_NAME = 'Basho By Shivangi'
 COMPANY_EMAIL = 'bashobyshivangi@gmail.com'
 COMPANY_PHONE = '+91 XXXXX XXXXX'
 COMPANY_ADDRESS = 'Pottery Studio, India'
+
+
+# ====================
+# JAZZMIN ADMIN THEME CONFIGURATION
+# Modern, user-friendly admin interface
+# ====================
+JAZZMIN_SETTINGS = {
+    # Title on the login screen and navbar
+    "site_title": "Basho Admin",
+    "site_header": "Basho By Shivangi",
+    "site_brand": "Basho Admin Panel",
+    
+    # Logo to use for your site (navbar top left)
+    # "site_logo": "images/logo.png",  # Add your logo here
+    
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to Basho Admin Panel",
+    
+    # Copyright on the footer
+    "copyright": "Basho By Shivangi",
+    
+    # Use Google Font
+    "use_google_fonts_cdn": True,
+    
+    # Show/Hide the sidebar
+    "show_sidebar": True,
+    
+    # Navigation expanded by default
+    "navigation_expanded": True,
+    
+    # Hide these apps when searching
+    "hide_apps": [],
+    
+    # Hide these models when searching
+    "hide_models": [],
+    
+    # Order apps/models in the side menu
+    "order_with_respect_to": [
+        "products",
+        "workshops", 
+        "studio",
+        "media_content",
+        "auth"
+    ],
+    
+    # Custom icons for side menu apps/models (Font Awesome)
+    "icons": {
+        # Auth
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        
+        # Products app
+        "products.Product": "fas fa-shopping-bag",
+        "products.CustomOrder": "fas fa-clipboard-list",
+        "products.CartItem": "fas fa-shopping-cart",
+        
+        # Workshops app
+        "workshops.Workshop": "fas fa-hands",
+        "workshops.WorkshopSlot": "fas fa-calendar-alt",
+        "workshops.WorkshopRegistration": "fas fa-user-check",
+        
+        # Studio app
+        "studio.UpcomingExhibition": "fas fa-calendar-plus",
+        "studio.PastPopup": "fas fa-history",
+        "studio.EventGalleryImage": "fas fa-images",
+        
+        # Media app
+        "media_content.GalleryImage": "fas fa-image",
+        "media_content.TextTestimonial": "fas fa-quote-right",
+        "media_content.VideoTestimonial": "fas fa-video",
+        "media_content.CustomerExperience": "fas fa-book-open",
+    },
+    
+    # Icons for side menu links
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    
+    # Use modals for confirmation dialogs
+    "related_modal_active": False,
+    
+    # UI Tweaks
+    "custom_css": "admin/css/custom_admin.css",
+    "custom_js": None,
+    
+    # Show the UI customizer on the sidebar
+    "show_ui_builder": False,
+    
+    # Change the primary color
+    "changeform_format": "horizontal_tabs",
+    
+    # Theme colors - Earthy pottery tones for Basho
+    "theme": "flatly",  # Modern flat design
+    
+    # Button classes
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary", 
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    
+    # Additional CSS classes for the body tag
+    "body_small_text": False,
+    "footer_small_text": True,
+    
+    # Navbar small text
+    "navbar_small_text": False,
+    
+    # Sidebar small text
+    "sidebar_small_text": False,
+}
+
+# Jazzmin UI Tweaks (color customization)
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": True,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark navbar-brown",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-brown",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "flatly",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
+}
+
