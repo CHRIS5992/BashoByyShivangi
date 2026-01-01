@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './Media.css';
+import RotatingGallery from './RotatingGallery';
 
 const API_BASE_URL = '/api';
 
@@ -71,7 +72,7 @@ function Media() {
   return (
     <div className="media-page">
       {/* ================= HERO SECTION ================= */}
-      <section className="media-hero">
+      <section className="media-hero" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')" }}>
         <div className="media-hero-content">
           <h1>Stories & Moments</h1>
           <p>
@@ -87,49 +88,9 @@ function Media() {
           <h2>Photo Gallery</h2>
         </div>
 
-        <div className="gallery-filters">
-          <button
-            className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('all')}
-          >
-            All
-          </button>
-          <button
-            className={`filter-btn ${activeFilter === 'product' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('product')}
-          >
-            Products
-          </button>
-          <button
-            className={`filter-btn ${activeFilter === 'workshop' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('workshop')}
-          >
-            Workshops
-          </button>
-          <button
-            className={`filter-btn ${activeFilter === 'studio' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('studio')}
-          >
-            Studio & Events
-          </button>
-        </div>
-
-        <div className="gallery-masonry">
-          {filteredImages.map((image, index) => (
-            <div
-              key={image.id}
-              className="gallery-item"
-              onClick={() => openLightbox(image.image_url, index)}
-            >
-              <img src={image.image_url} alt={`Gallery ${index + 1}`} />
-            </div>
-          ))}
-        </div>
-
-        {filteredImages.length === 0 && (
-          <p style={{ textAlign: 'center', color: '#8a6b5a', fontStyle: 'italic' }}>
-            No images in this category yet.
-          </p>
+        {/* 3D Rotating Gallery Animation */}
+        {galleryImages.length > 0 && (
+          <RotatingGallery images={galleryImages} />
         )}
       </section>
 

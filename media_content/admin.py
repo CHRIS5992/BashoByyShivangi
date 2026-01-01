@@ -34,6 +34,8 @@ class GalleryImageAdmin(admin.ModelAdmin):
     
     list_per_page = 30
     
+    radio_fields = {'category': admin.HORIZONTAL}
+    
     fieldsets = (
         ('🖼️ Image Upload', {
             'fields': ('image_preview_large', 'image'),

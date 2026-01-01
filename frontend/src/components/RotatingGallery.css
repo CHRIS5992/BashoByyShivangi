@@ -1,0 +1,71 @@
+/* Rotating Gallery - 3D Carousel */
+.rotating-gallery-wrapper {
+  width: 100%;
+  height: 600px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  margin: 20px 0 60px 0;
+  padding: 40px 0 80px 0;
+}
+
+.rotating-gallery-inner {
+  --w: 180px;
+  --h: 240px;
+  --translateZ: calc((var(--w) + var(--h)) + 20px);
+  --rotateX: -12deg;
+  --perspective: 1200px;
+  
+  position: absolute;
+  width: var(--w);
+  height: var(--h);
+  transform-style: preserve-3d;
+  transform: perspective(var(--perspective)) rotateX(var(--rotateX));
+  animation: rotating 25s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
+  }
+  to {
+    transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(1turn);
+  }
+}
+
+.rotating-card {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+  inset: 0;
+  transform: rotateY(calc((360deg / var(--quantity)) * var(--index)))
+    translateZ(var(--translateZ));
+  box-shadow: 0 8px 30px rgba(68, 45, 28, 0.3);
+  border: 3px solid #8B2635;
+  transition: box-shadow 0.3s ease;
+}
+
+.rotating-card:hover {
+  box-shadow: 0 12px 40px rgba(139, 38, 53, 0.5);
+}
+
+.rotating-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rotating-gallery-wrapper {
+    height: 300px;
+  }
+  
+  .rotating-gallery-inner {
+    --w: 140px;
+    --h: 200px;
+  }
+}
