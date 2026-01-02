@@ -10,6 +10,9 @@ import Workshops from "./components/Workshops";
 import Studio from "./components/Studio";
 import Corporate from "./components/Corporate";
 import Media from "./components/Media";
+import Cart from "./components/Cart";
+import Checkout from "./components/Checkout";
+import { CartProvider } from "./context/CartContext";
 
 // Component to scroll to top on route change
 function ScrollToTop() {
@@ -25,21 +28,25 @@ function ScrollToTop() {
 function App() {
   return (
     <Router>
-      <div className="App">
-        <ScrollToTop />
-        <Navigation />
+      <CartProvider>
+        <div className="App">
+          <ScrollToTop />
+          <Navigation />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/workshops" element={<Workshops />} />
-          <Route path="/studio" element={<Studio />} />
-          <Route path="/corporate" element={<Corporate />} />
-          <Route path="/media" element={<Media />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/workshops" element={<Workshops />} />
+            <Route path="/studio" element={<Studio />} />
+            <Route path="/corporate" element={<Corporate />} />
+            <Route path="/media" element={<Media />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
+          </Routes>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </CartProvider>
     </Router>
   );
 }

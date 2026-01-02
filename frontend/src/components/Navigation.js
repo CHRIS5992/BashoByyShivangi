@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 function Navigation() {
   const location = useLocation();
   const currentPath = location.pathname;
+  const { getCartCount } = useCart();
+  const cartCount = getCartCount();
 
   return (
     <nav className="navbar">
@@ -49,6 +53,17 @@ function Navigation() {
           className={currentPath === "/media" ? "active" : ""}
         >
           Media
+        </Link>
+
+        <Link
+          to="/cart"
+          className={`cart-icon ${currentPath === "/cart" ? "active" : ""}`}
+          style={{ position: "relative" }}
+        >
+          <ShoppingCart size={24} color="#652810" strokeWidth={2} />
+          {cartCount > 0 && (
+            <span className="cart-badge">{cartCount}</span>
+          )}
         </Link>
       </div>
     </nav>
