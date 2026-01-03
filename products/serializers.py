@@ -3,7 +3,8 @@
 # Serializers convert Django models to JSON for the React frontend
 
 from rest_framework import serializers
-from .models import Product, CustomOrder
+from django.contrib.auth.models import User
+from .models import Product, CustomOrder, Order, OrderItem
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -95,3 +96,62 @@ class CustomOrderSerializer(serializers.ModelSerializer):
         if not re.match(r'^\+?[\d]{10,15}$', cleaned):
             raise serializers.ValidationError("Invalid phone number format")
         return value
+
+
+class OrderItemSerializer(serializers.ModelSerializer):
+    """Serializer for OrderItem model"""
+    product_name = serializers.CharField(source='product.name', read_only=True)
+    product_image = serializers.SerializerMethodField()
+    
+    class Meta:
+        model = OrderItem
+        fields = ['id', 'product', 'product_name', 'product_image', 'quantity', 'price_at_purchase', 'subtotal']
+        read_only_fields = ['id', 'subtotal', 'product_name', 'product_image']
+    
+    def get_product_image(self, obj):
+        """Return product image URL"""
+        if obj.product.image:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.product.image.url)
+        return obj.product.image_url or None
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    """Serializer for Order model - handles checkout"""
+    items = OrderItemSerializer(many=True)
+    user_firebase_uid = serializers.CharField(write_only=True, required=False, allow_blank=True)
+    
+    class Meta:
+        model = Order
+        fields = [
+            'id', 'order_number', 'user_firebase_uid',
+            'customer_name', 'customer_email', 'customer_phone',
+            'shipping_address', 'shipping_city', 'shipping_state', 'shipping_pincode',
+            'billing_address', 'status', 'payment_method', 'payment_status',
+            'subtotal', 'shipping_charge', 'tax_amount', 'discount_amount', 'total_amount',
+            'items', 'created_at', 'updated_at'
+        ]
+        read_only_fields = ['id', 'order_number', 'created_at', 'updated_at', 'status']
+    
+    def create(self, validated_data):
+        """Create order with items and link to user if firebase_uid provided"""
+        items_data = validated_data.pop('items')
+        firebase_uid = validated_data.pop('user_firebase_uid', None)
+        
+        # Link to user if firebase_uid provided
+        if firebase_uid:
+            try:
+                user = User.objects.get(username=firebase_uid)
+                validated_data['user'] = user
+            except User.DoesNotExist:
+                pass  # Continue without user link (guest checkout)
+        
+        # Create the order
+        order = Order.objects.create(**validated_data)
+        
+        # Create order items
+        for item_data in items_data:
+            OrderItem.objects.create(order=order, **item_data)
+        
+        return order

@@ -6,7 +6,10 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Product, CustomOrder, CartItem, Order, OrderItem
+from workshops.models import WorkshopRegistration
 
 
 # ====================
@@ -597,3 +600,62 @@ class OrderAdmin(admin.ModelAdmin):
         updated = queryset.update(payment_status=True, status='confirmed')
         self.message_user(request, f'💰 {updated} order(s) marked as PAID')
     mark_payment_received.short_description = "💰 Mark PAYMENT RECEIVED"
+
+
+# ====================
+# CUSTOM USER ADMIN
+# ====================
+class ProductOrderInline(admin.TabularInline):
+    """Inline to show user's product orders"""
+    model = Order
+    extra = 0
+    can_delete = False
+    fields = ('order_number', 'total_amount', 'status', 'payment_status', 'created_at')
+    readonly_fields = ('order_number', 'total_amount', 'status', 'payment_status', 'created_at')
+    verbose_name = 'Product Order'
+    verbose_name_plural = '🛒 Product Orders (Purchases)'
+
+
+class WorkshopRegistrationInline(admin.TabularInline):
+    """Inline to show user's workshop registrations"""
+    model = WorkshopRegistration
+    extra = 0
+    can_delete = False
+    fields = ('registration_number', 'workshop', 'total_amount', 'status', 'registered_at')
+    readonly_fields = ('registration_number', 'workshop', 'total_amount', 'status', 'registered_at')
+    verbose_name = 'Workshop Registration'
+    verbose_name_plural = '🎨 Workshop Registrations (Purchases)'
+
+
+# Unregister the default User admin
+admin.site.unregister(User)
+
+@admin.register(User)
+class CustomUserAdmin(BaseUserAdmin):
+    """Custom User admin with purchases"""
+    inlines = [ProductOrderInline, WorkshopRegistrationInline]
+    
+    list_display = ('username', 'email', 'first_name', 'last_name', 'is_staff', 'date_joined', 'purchase_count', 'total_spent')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'date_joined')
+    search_fields = ('username', 'email', 'first_name', 'last_name')
+    
+    def purchase_count(self, obj):
+        """Count of product orders + workshop registrations"""
+        from workshops.models import WorkshopRegistration
+        product_orders = obj.product_orders.count()
+        workshop_regs = obj.workshop_registrations.count()
+        total = product_orders + workshop_regs
+        return format_html('<strong>{}</strong> (🛒{} + 🎨{})', total, product_orders, workshop_regs)
+    purchase_count.short_description = 'Purchases'
+    
+    def total_spent(self, obj):
+        """Total amount spent on products + workshops"""
+        from django.db.models import Sum
+        from workshops.models import WorkshopRegistration
+        
+        product_total = obj.product_orders.filter(payment_status=True).aggregate(Sum('total_amount'))['total_amount__sum'] or 0
+        workshop_total = obj.workshop_registrations.aggregate(Sum('total_amount'))['total_amount__sum'] or 0
+        total = product_total + workshop_total
+        
+        return format_html('<strong>₹{}</strong>', f'{total:,.2f}')
+    total_spent.short_description = 'Total Spent'

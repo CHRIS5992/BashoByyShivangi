@@ -5,6 +5,7 @@
 
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import User
 
 
 # ====================
@@ -231,6 +232,11 @@ class Order(models.Model):
     
     # Order Identification
     order_number = models.CharField(max_length=50, unique=True, editable=False)
+    
+    # User Association (Optional - null if guest checkout)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, 
+                            null=True, blank=True, related_name='product_orders',
+                            help_text="Linked user if logged in during checkout")
     
     # Customer Information
     customer_name = models.CharField(max_length=200)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.contrib.auth.models import User
 
 class Workshop(models.Model):
     """Model for pottery workshops"""
@@ -82,6 +83,11 @@ class WorkshopRegistration(models.Model):
     
     workshop = models.ForeignKey(Workshop, on_delete=models.CASCADE, related_name='registrations')
     slot = models.ForeignKey(WorkshopSlot, on_delete=models.CASCADE, related_name='registrations', null=True, blank=True)
+    
+    # User Association (Optional - null if guest registration)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, 
+                            null=True, blank=True, related_name='workshop_registrations',
+                            help_text="Linked user if logged in during registration")
     
     # Registration Number
     registration_number = models.CharField(max_length=50, unique=True, editable=False, default='WS-TEMP')

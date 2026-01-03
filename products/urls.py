@@ -12,10 +12,14 @@ app_name = 'products'
 router = DefaultRouter()
 router.register(r'products', views.ProductViewSet, basename='product')
 router.register(r'custom-orders', views.CustomOrderViewSet, basename='customorder')
+router.register(r'orders', views.OrderViewSet, basename='order')
 
 urlpatterns = [
     # REST API endpoints
     path('', include(router.urls)),
+    
+    # User creation endpoint
+    path('create-user/', views.create_user, name='create_user'),
     
     # Shipping calculator
     path('calculate-shipping/', views.calculate_shipping, name='calculate_shipping'),

@@ -369,7 +369,7 @@ class WorkshopRegistrationAdmin(admin.ModelAdmin):
                 obj.slot.date.strftime('%b %d, %Y'),
                 obj.slot.start_time.strftime('%I:%M %p')
             )
-        return format_html('<em style="color: #999;">No slot assigned</em>')
+        return format_html('<em style="color: #999;">{}</em>', 'No slot assigned')
     slot_info.short_description = 'Slot'
     
     def participants_count(self, obj):
@@ -385,7 +385,10 @@ class WorkshopRegistrationAdmin(admin.ModelAdmin):
             'cancelled': ('❌ Cancelled', '#F44336', '#FFEBEE'),
             'completed': ('🎉 Completed', '#2196F3', '#E3F2FD'),
         }
-        label, border_color, bg_color = status_config.get(obj.status, ('Unknown', '#999', '#f5f5f5'))
+        config = status_config.get(obj.status, ('Unknown', '#999', '#f5f5f5'))
+        label = config[0]
+        border_color = config[1]
+        bg_color = config[2]
         return format_html(
             '<span style="background: {}; border-left: 3px solid {}; padding: 6px 12px; border-radius: 4px; font-weight: 600; display: inline-block; min-width: 110px;">{}</span>',
             bg_color, border_color, label

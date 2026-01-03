@@ -4,11 +4,13 @@
 # Your friend needs to complete these view functions
 
 from rest_framework import viewsets, status
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view, action, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
-from .models import Product, CustomOrder
-from .serializers import ProductSerializer, CustomOrderSerializer
+from django.contrib.auth.models import User
+from .models import Product, CustomOrder, Order, OrderItem
+from .serializers import ProductSerializer, CustomOrderSerializer, OrderSerializer
 
 
 # ====================
@@ -166,6 +168,39 @@ Basho By Shivangi Team
 
 
 # ====================
+# ORDER API VIEWSET
+# Purpose: Handle product orders (checkout)
+# URL: /api/orders/
+# ====================
+class OrderViewSet(viewsets.ModelViewSet):
+    """
+    API ViewSet for Order model
+    Handles product orders from checkout
+    """
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+    
+    def create(self, request, *args, **kwargs):
+        """
+        Create new order from checkout
+        Links to user if firebase_uid provided, otherwise guest checkout
+        """
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        order = serializer.save()
+        
+        # TODO: Send email notifications
+        # TODO: Integrate with payment gateway
+        
+        return Response({
+            'success': True,
+            'order_number': order.order_number,
+            'message': 'Order placed successfully!',
+            'data': serializer.data
+        }, status=status.HTTP_201_CREATED)
+
+
+# ====================
 # SHIPPING CALCULATOR API
 # Purpose: Calculate shipping cost
 # URL: /api/calculate-shipping/
@@ -210,3 +245,69 @@ def calculate_shipping(request):
         return Response({
             'error': 'Invalid weight value'
         }, status=status.HTTP_400_BAD_REQUEST)
+
+
+# ====================
+# CREATE USER API
+# Purpose: Create Django user from Firebase authentication
+# URL: /api/create-user/
+# Method: POST
+# ====================
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def create_user(request):
+    """
+    Create or update Django user from Firebase authentication
+    
+    Request body: {
+        "username": "firebase_uid",
+        "email": "user@example.com",
+        "first_name": "John",
+        "last_name": "Doe"
+    }
+    """
+    try:
+        username = request.data.get('username')  # Firebase UID
+        email = request.data.get('email')
+        first_name = request.data.get('first_name', '')
+        last_name = request.data.get('last_name', '')
+        
+        if not username or not email:
+            return Response({
+                'error': 'Username and email are required'
+            }, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Create or update user
+        user, created = User.objects.get_or_create(
+            username=username,
+            defaults={
+                'email': email,
+                'first_name': first_name,
+                'last_name': last_name
+            }
+        )
+        
+        # Update if user already exists
+        if not created:
+            user.email = email
+            user.first_name = first_name
+            user.last_name = last_name
+            user.save()
+        
+        return Response({
+            'success': True,
+            'created': created,
+            'message': 'User created' if created else 'User updated',
+            'user': {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'first_name': user.first_name,
+                'last_name': user.last_name
+            }
+        }, status=status.HTTP_201_CREATED if created else status.HTTP_200_OK)
+        
+    except Exception as e:
+        return Response({
+            'error': str(e)
+        }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

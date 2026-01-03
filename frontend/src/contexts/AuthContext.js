@@ -10,11 +10,44 @@ import {
     updateProfile
 } from 'firebase/auth';
 import { auth, isFirebaseConfigured } from '../firebase';
+import axios from 'axios';
 
 const AuthContext = createContext({});
 
 export const useAuth = () => {
     return useContext(AuthContext);
+};
+
+// Helper function to save/update user in Django backend
+const saveUserToDjango = async (firebaseUser) => {
+    try {
+        console.log('🔄 Attempting to save user to Django...', {
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: firebaseUser.displayName
+        });
+
+        const userData = {
+            username: firebaseUser.uid, // Use Firebase UID as username
+            email: firebaseUser.email,
+            first_name: firebaseUser.displayName ? firebaseUser.displayName.split(' ')[0] : '',
+            last_name: firebaseUser.displayName ? firebaseUser.displayName.split(' ').slice(1).join(' ') : ''
+        };
+
+        console.log('📤 Sending user data to /api/create-user/:', userData);
+
+        const response = await axios.post('/api/create-user/', userData);
+        
+        console.log('✅ User saved to Django database:', response.data);
+    } catch (error) {
+        // Log detailed error information
+        console.error('❌ Error saving user to Django:', {
+            message: error.message,
+            response: error.response?.data,
+            status: error.response?.status,
+            fullError: error
+        });
+    }
 };
 
 export const AuthProvider = ({ children }) => {
@@ -33,6 +66,9 @@ export const AuthProvider = ({ children }) => {
                 await updateProfile(userCredential.user, { displayName });
             }
 
+            // Save user to Django backend
+            await saveUserToDjango(userCredential.user);
+
             return userCredential;
         } catch (err) {
             setError(err.message);
@@ -44,7 +80,12 @@ export const AuthProvider = ({ children }) => {
     const login = async (email, password) => {
         try {
             setError(null);
-            return await signInWithEmailAndPassword(auth, email, password);
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            
+            // Sync user to Django database
+            await saveUserToDjango(userCredential.user);
+            
+            return userCredential;
         } catch (err) {
             setError(err.message);
             throw err;
@@ -56,7 +97,12 @@ export const AuthProvider = ({ children }) => {
         try {
             setError(null);
             const provider = new GoogleAuthProvider();
-            return await signInWithPopup(auth, provider);
+            const result = await signInWithPopup(auth, provider);
+            
+            // Save Google user to Django database
+            await saveUserToDjango(result.user);
+            
+            return result;
         } catch (err) {
             setError(err.message);
             throw err;

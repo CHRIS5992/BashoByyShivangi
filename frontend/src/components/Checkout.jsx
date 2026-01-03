@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 import './Cart.css';
 import './Checkout.css';
 import './Checkout.css';
@@ -8,6 +9,7 @@ import './Checkout.css';
 function Checkout() {
   const navigate = useNavigate();
   const { cart, getCartTotal } = useCart();
+  const { currentUser } = useAuth();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -82,17 +84,62 @@ function Checkout() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     
     if (validateForm()) {
-      // TODO: Integrate with Razorpay
-      console.log('Proceeding to payment with data:', formData);
-      console.log('Cart:', cart);
-      console.log('Total:', getCartTotal());
-      
-      // Placeholder for Razorpay integration
-      alert('Payment integration will be added here');
+      try {
+        // Prepare order data
+        const orderData = {
+          customer_name: `${formData.firstName} ${formData.lastName}`,
+          customer_email: formData.email,
+          customer_phone: formData.phone,
+          shipping_address: formData.address,
+          shipping_city: formData.city,
+          shipping_state: formData.state,
+          shipping_pincode: formData.pincode,
+          billing_address: '', // Same as shipping for now
+          payment_method: 'cod', // Default to cash on delivery
+          payment_status: false,
+          subtotal: getCartTotal(),
+          shipping_charge: 0, // TODO: Calculate shipping
+          tax_amount: 0, // TODO: Calculate tax
+          discount_amount: 0,
+          total_amount: getCartTotal(),
+          items: cart.map(item => ({
+            product: item.product.id,
+            quantity: item.quantity,
+            price_at_purchase: item.product.price
+          }))
+        };
+
+        // Add user firebase UID if logged in
+        if (currentUser) {
+          orderData.user_firebase_uid = currentUser.uid;
+        }
+
+        // Submit order to backend
+        const response = await fetch('/api/orders/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(orderData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert(`Order placed successfully! Order number: ${result.order_number}`);
+          // TODO: Clear cart and redirect to order confirmation page
+          navigate('/');
+        } else {
+          alert('Failed to place order. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error placing order:', error);
+        alert('An error occurred while placing your order. Please try again.');
+      }
     }
   };
 
