@@ -216,6 +216,13 @@ const Workshops = () => {
     });
     const [success, setSuccess] = useState(false);
 
+    // Helper function to format time without seconds
+    const formatTime = (timeString) => {
+      if (!timeString) return '';
+      // timeString is in format "HH:MM:SS", extract only "HH:MM"
+      return timeString.substring(0, 5);
+    };
+
     // Fetch available slots when component mounts
     useEffect(() => {
       const fetchSlots = async () => {
@@ -367,7 +374,7 @@ const Workshops = () => {
                         year: 'numeric', 
                         month: 'short', 
                         day: 'numeric' 
-                      })} - {slot.start_time} to {slot.end_time} ({slot.available_spots} spots left)
+                      })} - {formatTime(slot.start_time)} to {formatTime(slot.end_time)} ({slot.available_spots} spots left)
                     </option>
                   ))}
                 </select>

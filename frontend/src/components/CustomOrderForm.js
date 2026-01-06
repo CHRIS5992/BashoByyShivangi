@@ -11,6 +11,7 @@ const CustomOrderForm = () => {
     budget: '',
     gst_number: ''
   });
+  const [referenceImage, setReferenceImage] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -21,13 +22,35 @@ const CustomOrderForm = () => {
     });
   };
 
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setReferenceImage(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
     setMessage('');
 
     try {
-      const response = await axios.post('http://localhost:8000/api/custom-orders/', formData);
+      const formDataToSend = new FormData();
+      
+      // Append all text fields
+      Object.keys(formData).forEach(key => {
+        formDataToSend.append(key, formData[key]);
+      });
+      
+      // Append image if selected
+      if (referenceImage) {
+        formDataToSend.append('reference_images', referenceImage);
+      }
+
+      const response = await axios.post('http://localhost:8000/api/custom-orders/', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       
       setMessage(`Success! Your order number is ${response.data.order_number}. We'll contact you within 24 hours.`);
       
@@ -41,6 +64,10 @@ const CustomOrderForm = () => {
         budget: '',
         gst_number: ''
       });
+      setReferenceImage(null);
+      // Reset file input
+      const fileInput = document.querySelector('input[type="file"]');
+      if (fileInput) fileInput.value = '';
     } catch (error) {
       setMessage('Error submitting order. Please try again or contact us directly.');
       console.error('Order submission error:', error);
@@ -187,6 +214,30 @@ const CustomOrderForm = () => {
                 onChange={handleChange}
                 placeholder="Enter GST number if applicable"
               />
+            </div>
+
+            <div className="form-group">
+              <label>Reference Image (Optional)</label>
+              <input 
+                type="file" 
+                accept="image/*"
+                onChange={handleImageChange}
+                style={{
+                  padding: '0.8rem',
+                  fontSize: '0.95rem'
+                }}
+              />
+              <span className="form-helper">Upload a reference image or design inspiration (JPG, PNG)</span>
+              {referenceImage && (
+                <div style={{
+                  marginTop: '0.5rem',
+                  color: '#652810',
+                  fontSize: '0.9rem',
+                  fontWeight: 500
+                }}>
+                  ✓ Selected: {referenceImage.name}
+                </div>
+              )}
             </div>
 
             <button 

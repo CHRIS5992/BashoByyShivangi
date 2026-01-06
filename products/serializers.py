@@ -64,6 +64,7 @@ class CustomOrderSerializer(serializers.ModelSerializer):
     Serializer for CustomOrder model
     Handles custom order form submissions from React
     """
+    reference_images = serializers.ImageField(required=False, allow_null=True)
     
     class Meta:
         model = CustomOrder

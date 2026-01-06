@@ -85,7 +85,7 @@ function Cart() {
                       </p>
                       <p className="workshop-slot-info">
                         <Clock size={16} color="#652810" strokeWidth={2} />
-                        {item.slotStartTime} - {item.slotEndTime}
+                        {item.slotStartTime?.substring(0, 5)} - {item.slotEndTime?.substring(0, 5)}
                       </p>
                       <p className="workshop-slot-info">
                         <User size={16} color="#652810" strokeWidth={2} />
