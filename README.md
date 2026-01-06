@@ -59,7 +59,6 @@ E-commerce platform for handcrafted ceramic products and pottery workshops.
    - Website: http://127.0.0.1:8000/
    - Admin Panel: http://127.0.0.1:8000/admin/
 
-## API Endpoints
 
 ### Products
 - `GET /api/products/` - List all products
