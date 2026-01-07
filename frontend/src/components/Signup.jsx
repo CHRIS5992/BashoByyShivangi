@@ -14,7 +14,7 @@ function Signup() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signup, googleSignIn } = useAuth();
+  const { signup, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -58,7 +58,7 @@ function Signup() {
     try {
       setError('');
       setLoading(true);
-      await googleSignIn();
+      await loginWithGoogle();
       navigate('/');
     } catch (err) {
       setError('Failed to sign in with Google: ' + err.message);

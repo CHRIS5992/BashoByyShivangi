@@ -268,3 +268,232 @@ const ProductCare = () => {
 };
 
 export default ProductCare;
+            background: 'linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%)',
+            padding: '2rem',
+            borderRadius: '16px',
+            border: '2px solid #d4e9ff',
+            boxShadow: '0 6px 24px rgba(33, 150, 243, 0.1)',
+            transition: 'all 0.3s ease',
+            position: 'relative',
+            overflow: 'hidden'
+          }} onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)';
+            e.currentTarget.style.boxShadow = '0 12px 36px rgba(33, 150, 243, 0.15)';
+          }} onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 6px 24px rgba(33, 150, 243, 0.1)';
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '-20px',
+              right: '-20px',
+              width: '100px',
+              height: '100px',
+              background: 'linear-gradient(135deg, #2196F3 0%, #64B5F6 100%)',
+              borderRadius: '50%',
+              opacity: 0.1
+            }}></div>
+            <h3 style={{
+              color: '#2196F3',
+              fontSize: '1.5rem',
+              marginBottom: '1.5rem',
+              fontWeight: 600,
+              borderBottom: '3px solid #64B5F6',
+              paddingBottom: '0.8rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <span style={{fontSize: '1.8rem'}}>✨</span>
+              Care Instructions
+            </h3>
+            <div style={{marginBottom: '1.5rem'}}>
+              <h4 style={{color: '#2196F3', fontSize: '1.1rem', marginBottom: '0.7rem', fontWeight: 600}}>For Tableware:</h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                lineHeight: '1.8',
+                color: '#4a3a2a'
+              }}>
+                <li style={{marginBottom: '0.6rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#2196F3', fontWeight: 'bold'}}>•</span>
+                  Food safe
+                </li>
+                <li style={{marginBottom: '0.6rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#2196F3', fontWeight: 'bold'}}>•</span>
+                  Lead free
+                </li>
+                <li style={{marginBottom: '0.6rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#2196F3', fontWeight: 'bold'}}>•</span>
+                  Microwave and oven friendly
+                </li>
+                <li style={{marginBottom: '0.6rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#2196F3', fontWeight: 'bold'}}>•</span>
+                  Dishwasher friendly
+                </li>
+                <li style={{marginBottom: '0.6rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#2196F3', fontWeight: 'bold'}}>•</span>
+                  Handwash gently with soap or detergent to extend its longevity
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 style={{color: '#2196F3', fontSize: '1.1rem', marginBottom: '0.7rem', fontWeight: 600}}>For Lights and Artifacts:</h4>
+              <ul style={{
+                listStyle: 'none',
+                padding: 0,
+                lineHeight: '1.8',
+                color: '#4a3a2a'
+              }}>
+                <li style={{marginBottom: '0.6rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                  <span style={{position: 'absolute', left: 0, color: '#2196F3', fontWeight: 'bold'}}>•</span>
+                  Clean with damp cloth followed by dry cloth
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="fade-in" style={{
+            background: 'linear-gradient(135deg, #fff4e6 0%, #ffffff 100%)',
+            padding: '2rem',
+            borderRadius: '16px',
+            border: '2px solid #ffe0b2',
+            boxShadow: '0 6px 24px rgba(255, 152, 0, 0.1)',
+            transition: 'all 0.3s ease',
+            position: 'relative',
+            overflow: 'hidden'
+          }} onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)';
+            e.currentTarget.style.boxShadow = '0 12px 36px rgba(255, 152, 0, 0.15)';
+          }} onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 6px 24px rgba(255, 152, 0, 0.1)';
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '-20px',
+              right: '-20px',
+              width: '100px',
+              height: '100px',
+              background: 'linear-gradient(135deg, #FF9800 0%, #FFB74D 100%)',
+              borderRadius: '50%',
+              opacity: 0.1
+            }}></div>
+            <h3 style={{
+              color: '#FF9800',
+              fontSize: '1.5rem',
+              marginBottom: '1.2rem',
+              fontWeight: 600,
+              borderBottom: '3px solid #FFB74D',
+              paddingBottom: '0.8rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <span style={{fontSize: '1.8rem'}}>📦</span>
+              Shipping
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              lineHeight: '1.9',
+              color: '#4a3a2a'
+            }}>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#FF9800', fontWeight: 'bold'}}>•</span>
+                All items are carefully wrapped and packaged with eco-friendly materials to ensure safe delivery
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#FF9800', fontWeight: 'bold'}}>•</span>
+                Shipping within India typically takes 5-7 business days
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#FF9800', fontWeight: 'bold'}}>•</span>
+                Shipping charges are calculated based on weight at ₹50/kg
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#FF9800', fontWeight: 'bold'}}>•</span>
+                Custom orders require 3-4 weeks for production before shipping
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#FF9800', fontWeight: 'bold'}}>•</span>
+                Free shipping on orders above ₹3,000
+              </li>
+            </ul>
+          </div>
+
+          <div className="fade-in" style={{
+            background: 'linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%)',
+            padding: '2rem',
+            borderRadius: '16px',
+            border: '2px solid #e1bee7',
+            boxShadow: '0 6px 24px rgba(156, 39, 176, 0.1)',
+            transition: 'all 0.3s ease',
+            position: 'relative',
+            overflow: 'hidden'
+          }} onMouseEnter={(e) => {
+            e.currentTarget.style.transform = 'translateY(-8px)';
+            e.currentTarget.style.boxShadow = '0 12px 36px rgba(156, 39, 176, 0.15)';
+          }} onMouseLeave={(e) => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = '0 6px 24px rgba(156, 39, 176, 0.1)';
+          }}>
+            <div style={{
+              position: 'absolute',
+              top: '-20px',
+              right: '-20px',
+              width: '100px',
+              height: '100px',
+              background: 'linear-gradient(135deg, #9C27B0 0%, #BA68C8 100%)',
+              borderRadius: '50%',
+              opacity: 0.1
+            }}></div>
+            <h3 style={{
+              color: '#9C27B0',
+              fontSize: '1.5rem',
+              marginBottom: '1.2rem',
+              fontWeight: 600,
+              borderBottom: '3px solid #BA68C8',
+              paddingBottom: '0.8rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <span style={{fontSize: '1.8rem'}}>🔄</span>
+              Returns & Exchange
+            </h3>
+            <ul style={{
+              listStyle: 'none',
+              padding: 0,
+              lineHeight: '1.9',
+              color: '#4a3a2a'
+            }}>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#9C27B0', fontWeight: 'bold'}}>•</span>
+                We want you to love your purchase. If you receive a damaged or defective item, we offer full refund or replacement
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#9C27B0', fontWeight: 'bold'}}>•</span>
+                Please report any damage within 48 hours of delivery with photos
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#9C27B0', fontWeight: 'bold'}}>•</span>
+                Due to the handmade nature of our products, slight variations in color and size are normal and not considered defects
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#9C27B0', fontWeight: 'bold'}}>•</span>
+                Custom orders cannot be returned or exchanged once production has begun
+              </li>
+              <li style={{marginBottom: '0.9rem', paddingLeft: '1.5rem', position: 'relative'}}>
+                <span style={{position: 'absolute', left: 0, color: '#9C27B0', fontWeight: 'bold'}}>•</span>
+                Contact our customer service team for any concerns or questions
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ProductCare;

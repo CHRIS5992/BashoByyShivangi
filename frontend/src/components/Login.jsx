@@ -9,7 +9,7 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, googleSignIn } = useAuth();
+  const { login, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
 
   const handleEmailLogin = async (e) => {
@@ -36,7 +36,7 @@ function Login() {
     try {
       setError('');
       setLoading(true);
-      await googleSignIn();
+      await loginWithGoogle();
       navigate('/');
     } catch (err) {
       setError('Failed to sign in with Google: ' + err.message);
