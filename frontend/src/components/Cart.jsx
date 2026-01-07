@@ -35,8 +35,12 @@ function Cart() {
   return (
     <div className="cart-page">
       {/* Hero Section */}
-      <section className="cart-hero">
-        <div className="hero-overlay"></div>
+      <section className="cart-hero" style={{ 
+        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        position: 'relative'
+      }}>
         <div className="hero-content">
           <h1 className="hero-title">
             <span className="japanese-accent">買い物</span>

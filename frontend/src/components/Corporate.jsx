@@ -60,15 +60,6 @@ function Corporate() {
         <p>Elevate Your Corporate Culture with Artisanal Excellence</p>
       </header>
 
-      {/* DESCRIPTION SECTION - Clean centered text */}
-      <section className="workshops-description-section">
-        <div className="workshops-description-center">
-          <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 500, lineHeight: 1.7, maxWidth: '800px', margin: '0 auto' }}>
-            Bring the warmth of artisanal heritage to your team and clients through curated experiences, sustainable gifts, and meaningful collaborations. We bridge traditional craftsmanship with modern business needs to create connections that last.
-          </p>
-        </div>
-      </section>
-
       {/* Combined Quote and Services Section */}
       <section className="intro-quote" style={{ backgroundImage: 'url(/static/images/gallery/corporate-why.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay', backgroundColor: 'rgba(237, 216, 180, 0.87)', filter: 'contrast(1.05)', paddingBottom: '5rem' }}>
         <div className="quote-container" style={{ filter: 'contrast(0.952)' }}>
@@ -180,7 +171,7 @@ function Corporate() {
         <div className="container-new">
           <div className="difference-header">
             <h2 className="section-title-new">The Artisanal Difference</h2>
-            <button className="view-impact" style={{background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', font: 'inherit'}}>View Our Impact →</button>
+            <button onClick={(e) => e.preventDefault()} className="view-impact" style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'inherit', textDecoration: 'none' }}>View Our Impact →</button>
           </div>
 
           <div className="difference-grid">
@@ -266,7 +257,16 @@ function Corporate() {
           <ellipse cx="44" cy="22" rx="8" ry="4" stroke="#C85428" strokeWidth="2" opacity="0.19" fill="none"/>
         </svg>
         
-        <div className="container-new">
+        {/* DESCRIPTION SECTION - Above inquiry form */}
+        <section className="workshops-description-section" style={{ paddingTop: '2rem', paddingBottom: '2rem', background: '#F5EFE7', margin: '0' }}>
+          <div className="workshops-description-center">
+            <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 400, lineHeight: 1.8, maxWidth: '800px', margin: '0 auto', fontFamily: "'Cormorant Garamond', 'Noto Serif JP', Georgia, serif", fontStyle: 'italic', letterSpacing: '0.3px' }}>
+              Bring the warmth of artisanal heritage to your team and clients through curated experiences, sustainable gifts, and meaningful collaborations. We bridge traditional craftsmanship with modern business needs to create connections that last.
+            </p>
+          </div>
+        </section>
+        
+        <div className="container-new" style={{ marginTop: '4rem' }}>
           <div className="inquiry-card">
             {/* Form Side */}
             <div className="form-side">

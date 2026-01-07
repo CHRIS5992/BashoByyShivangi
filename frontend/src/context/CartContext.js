@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
 
 const CartContext = createContext();
 
@@ -12,10 +13,12 @@ export const useCart = () => {
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+  const { currentUser } = useAuth();
 
-  // Load cart from localStorage on mount
+  // Load cart from localStorage on mount or when user changes
   useEffect(() => {
-    const savedCart = localStorage.getItem('basho_cart');
+    const cartKey = currentUser ? `basho_cart_${currentUser.uid}` : 'basho_cart_guest';
+    const savedCart = localStorage.getItem(cartKey);
     if (savedCart) {
       try {
         setCart(JSON.parse(savedCart));
@@ -23,13 +26,22 @@ export const CartProvider = ({ children }) => {
         console.error('Error loading cart from localStorage:', error);
         setCart([]);
       }
+    } else {
+      // If user just logged in/out, clear the cart state
+      setCart([]);
     }
-  }, []);
+  }, [currentUser]); // Reload cart when user changes
 
   // Save cart to localStorage whenever it changes
   useEffect(() => {
-    localStorage.setItem('basho_cart', JSON.stringify(cart));
-  }, [cart]);
+    const cartKey = currentUser ? `basho_cart_${currentUser.uid}` : 'basho_cart_guest';
+    if (cart.length > 0) {
+      localStorage.setItem(cartKey, JSON.stringify(cart));
+    } else {
+      // Remove empty cart from localStorage
+      localStorage.removeItem(cartKey);
+    }
+  }, [cart, currentUser]);
 
   const addToCart = (item) => {
     setCart(prevCart => {

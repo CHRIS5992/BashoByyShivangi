@@ -92,40 +92,78 @@ const CustomOrderForm = () => {
             Have a specific vision? We create custom pottery pieces tailored to your needs—from personalized dinnerware to unique art installations.
           </p>
           
-          <div className="info-box">
-            <h4>What We Offer</h4>
-            <ul style={{listStyle: 'none', padding: 0}}>
-              <li>✓ Custom tableware sets for homes and restaurants</li>
-              <li>✓ Personalized gifts with names or messages</li>
-              <li>✓ Corporate branding on pottery</li>
-              <li>✓ Large-scale art installations</li>
-              <li>✓ Wedding and event pottery</li>
+          <div className="info-box" style={{
+            background: 'linear-gradient(135deg, #FAF8F5 0%, #F5EFE7 100%)',
+            padding: '2rem',
+            borderRadius: '12px',
+            border: '1px solid rgba(101, 40, 16, 0.08)',
+            marginTop: '2rem'
+          }}>
+            <h4 style={{color: '#652810', marginBottom: '1rem', fontSize: '1.15rem'}}>What We Offer</h4>
+            <ul style={{listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: '0.7rem'}}>
+              <li style={{color: '#5A3A2A', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <span style={{color: '#8E5022', fontSize: '1.2rem'}}>✓</span> Custom tableware sets for homes and restaurants
+              </li>
+              <li style={{color: '#5A3A2A', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <span style={{color: '#8E5022', fontSize: '1.2rem'}}>✓</span> Personalized gifts with names or messages
+              </li>
+              <li style={{color: '#5A3A2A', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <span style={{color: '#8E5022', fontSize: '1.2rem'}}>✓</span> Corporate branding on pottery
+              </li>
+              <li style={{color: '#5A3A2A', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <span style={{color: '#8E5022', fontSize: '1.2rem'}}>✓</span> Large-scale art installations
+              </li>
+              <li style={{color: '#5A3A2A', display: 'flex', alignItems: 'center', gap: '0.5rem'}}>
+                <span style={{color: '#8E5022', fontSize: '1.2rem'}}>✓</span> Wedding and event pottery
+              </li>
             </ul>
           </div>
         </div>
 
-        <div className="form-container">
+        <div className="form-container" style={{
+          maxWidth: '750px',
+          margin: '3rem auto 0',
+          background: 'linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 100%)',
+          padding: '2.5rem',
+          borderRadius: '16px',
+          boxShadow: '0 8px 32px rgba(101, 40, 16, 0.08)',
+          border: '1px solid rgba(101, 40, 16, 0.06)'
+        }}>
           <form onSubmit={handleSubmit} className="fade-in">
-            <h3>Request a Custom Order</h3>
+            <h3 style={{
+              color: '#442D1C',
+              fontSize: '1.8rem',
+              marginBottom: '1.8rem',
+              textAlign: 'center',
+              fontWeight: 600,
+              letterSpacing: '-0.5px'
+            }}>Request a Custom Order</h3>
             
             {message && (
               <div className="form-message" style={{
                 padding: '1rem 1.2rem',
-                marginBottom: '1.5rem',
-                backgroundColor: message.includes('Success') ? '#d4edda' : '#f8d7da',
+                marginBottom: '1.8rem',
+                backgroundColor: message.includes('Success') ? 'rgba(212, 237, 218, 0.4)' : 'rgba(248, 215, 218, 0.4)',
                 color: message.includes('Success') ? '#155724' : '#721c24',
-                borderRadius: '8px',
+                borderRadius: '10px',
                 textAlign: 'center',
-                border: `2px solid ${message.includes('Success') ? '#c3e6cb' : '#f5c6cb'}`,
-                fontWeight: 500
+                border: `2px solid ${message.includes('Success') ? 'rgba(195, 230, 203, 0.6)' : 'rgba(245, 198, 203, 0.6)'}`,
+                fontWeight: 500,
+                backdropFilter: 'blur(10px)'
               }}>
                 {message}
               </div>
             )}
 
             <div className="form-row">
-              <div className="form-group">
-                <label>Your Name *</label>
+              <div className="form-group" style={{marginBottom: '1.5rem'}}>
+                <label style={{
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  color: '#442D1C',
+                  fontWeight: 600,
+                  fontSize: '0.95rem'
+                }}>Your Name *</label>
                 <input 
                   type="text" 
                   name="name" 
@@ -133,10 +171,29 @@ const CustomOrderForm = () => {
                   onChange={handleChange}
                   required 
                   placeholder="Enter your name"
+                  style={{
+                    width: '100%',
+                    padding: '0.85rem 1rem',
+                    border: '2px solid #EBE4DB',
+                    borderRadius: '10px',
+                    background: '#FFFFFF',
+                    fontSize: '1rem',
+                    color: '#442D1C',
+                    transition: 'all 0.3s ease',
+                    outline: 'none'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                  onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
                 />
               </div>
-              <div className="form-group">
-                <label>Email *</label>
+              <div className="form-group" style={{marginBottom: '1.5rem'}}>
+                <label style={{
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  color: '#442D1C',
+                  fontWeight: 600,
+                  fontSize: '0.95rem'
+                }}>Email *</label>
                 <input 
                   type="email" 
                   name="email"
@@ -144,13 +201,32 @@ const CustomOrderForm = () => {
                   onChange={handleChange}
                   required 
                   placeholder="your@email.com"
+                  style={{
+                    width: '100%',
+                    padding: '0.85rem 1rem',
+                    border: '2px solid #EBE4DB',
+                    borderRadius: '10px',
+                    background: '#FFFFFF',
+                    fontSize: '1rem',
+                    color: '#442D1C',
+                    transition: 'all 0.3s ease',
+                    outline: 'none'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                  onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
                 />
               </div>
             </div>
 
             <div className="form-row">
-              <div className="form-group">
-                <label>Phone Number *</label>
+              <div className="form-group" style={{marginBottom: '1.5rem'}}>
+                <label style={{
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  color: '#442D1C',
+                  fontWeight: 600,
+                  fontSize: '0.95rem'
+                }}>Phone Number *</label>
                 <input 
                   type="tel" 
                   name="phone"
@@ -158,15 +234,48 @@ const CustomOrderForm = () => {
                   onChange={handleChange}
                   required 
                   placeholder="+91 XXXXX XXXXX"
+                  style={{
+                    width: '100%',
+                    padding: '0.85rem 1rem',
+                    border: '2px solid #EBE4DB',
+                    borderRadius: '10px',
+                    background: '#FFFFFF',
+                    fontSize: '1rem',
+                    color: '#442D1C',
+                    transition: 'all 0.3s ease',
+                    outline: 'none'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                  onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
                 />
               </div>
-              <div className="form-group">
-                <label>Project Type *</label>
+              <div className="form-group" style={{marginBottom: '1.5rem'}}>
+                <label style={{
+                  display: 'block',
+                  marginBottom: '0.5rem',
+                  color: '#442D1C',
+                  fontWeight: 600,
+                  fontSize: '0.95rem'
+                }}>Project Type *</label>
                 <select 
                   name="project_type"
                   value={formData.project_type}
                   onChange={handleChange}
                   required
+                  style={{
+                    width: '100%',
+                    padding: '0.85rem 1rem',
+                    border: '2px solid #EBE4DB',
+                    borderRadius: '10px',
+                    background: '#FFFFFF',
+                    fontSize: '1rem',
+                    color: '#442D1C',
+                    transition: 'all 0.3s ease',
+                    outline: 'none',
+                    cursor: 'pointer'
+                  }}
+                  onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                  onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
                 >
                   <option value="">Select type</option>
                   <option value="tableware">Tableware Set</option>
@@ -178,24 +287,72 @@ const CustomOrderForm = () => {
               </div>
             </div>
 
-            <div className="form-group">
-              <label>Describe Your Vision *</label>
+            <div className="form-group" style={{marginBottom: '1.5rem'}}>
+              <label style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#442D1C',
+                fontWeight: 600,
+                fontSize: '0.95rem'
+              }}>Describe Your Vision *</label>
               <textarea 
                 name="description"
                 value={formData.description}
                 onChange={handleChange}
                 required 
                 placeholder="Tell us about your custom pottery idea, including size, colors, quantity, and any specific requirements..."
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1rem',
+                  border: '2px solid #EBE4DB',
+                  borderRadius: '10px',
+                  background: '#FFFFFF',
+                  fontSize: '1rem',
+                  color: '#442D1C',
+                  transition: 'all 0.3s ease',
+                  outline: 'none',
+                  minHeight: '140px',
+                  resize: 'vertical',
+                  lineHeight: '1.6',
+                  fontFamily: 'inherit'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
               />
-              <span className="form-helper">Be as detailed as possible</span>
+              <span className="form-helper" style={{
+                fontSize: '0.85rem',
+                color: '#7A6A5A',
+                marginTop: '0.4rem',
+                display: 'block'
+              }}>Be as detailed as possible</span>
             </div>
 
-            <div className="form-group">
-              <label>Budget Range (Optional)</label>
+            <div className="form-group" style={{marginBottom: '1.5rem'}}>
+              <label style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#442D1C',
+                fontWeight: 600,
+                fontSize: '0.95rem'
+              }}>Budget Range (Optional)</label>
               <select 
                 name="budget"
                 value={formData.budget}
                 onChange={handleChange}
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1rem',
+                  border: '2px solid #EBE4DB',
+                  borderRadius: '10px',
+                  background: '#FFFFFF',
+                  fontSize: '1rem',
+                  color: '#442D1C',
+                  transition: 'all 0.3s ease',
+                  outline: 'none',
+                  cursor: 'pointer'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
               >
                 <option value="">Select range</option>
                 <option value="5000-10000">₹5,000 - ₹10,000</option>
@@ -205,37 +362,80 @@ const CustomOrderForm = () => {
               </select>
             </div>
 
-            <div className="form-group">
-              <label>GST Number (Optional - for invoice)</label>
+            <div className="form-group" style={{marginBottom: '1.5rem'}}>
+              <label style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#442D1C',
+                fontWeight: 600,
+                fontSize: '0.95rem'
+              }}>GST Number (Optional - for invoice)</label>
               <input 
                 type="text" 
                 name="gst_number"
                 value={formData.gst_number}
                 onChange={handleChange}
                 placeholder="Enter GST number if applicable"
+                style={{
+                  width: '100%',
+                  padding: '0.85rem 1rem',
+                  border: '2px solid #EBE4DB',
+                  borderRadius: '10px',
+                  background: '#FFFFFF',
+                  fontSize: '1rem',
+                  color: '#442D1C',
+                  transition: 'all 0.3s ease',
+                  outline: 'none'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#A67C52'}
+                onBlur={(e) => e.target.style.borderColor = '#EBE4DB'}
               />
             </div>
 
-            <div className="form-group">
-              <label>Reference Image (Optional)</label>
+            <div className="form-group" style={{marginBottom: '2rem'}}>
+              <label style={{
+                display: 'block',
+                marginBottom: '0.5rem',
+                color: '#442D1C',
+                fontWeight: 600,
+                fontSize: '0.95rem'
+              }}>Reference Image (Optional)</label>
               <input 
                 type="file" 
                 accept="image/*"
                 onChange={handleImageChange}
                 style={{
-                  padding: '0.8rem',
-                  fontSize: '0.95rem'
+                  width: '100%',
+                  padding: '0.85rem 1rem',
+                  border: '2px solid #EBE4DB',
+                  borderRadius: '10px',
+                  background: '#FFFFFF',
+                  fontSize: '0.95rem',
+                  color: '#442D1C',
+                  cursor: 'pointer'
                 }}
               />
-              <span className="form-helper">Upload a reference image or design inspiration (JPG, PNG)</span>
+              <span className="form-helper" style={{
+                fontSize: '0.85rem',
+                color: '#7A6A5A',
+                marginTop: '0.4rem',
+                display: 'block'
+              }}>Upload a reference image or design inspiration (JPG, PNG)</span>
               {referenceImage && (
                 <div style={{
-                  marginTop: '0.5rem',
+                  marginTop: '0.7rem',
+                  padding: '0.6rem 1rem',
+                  background: 'rgba(142, 80, 34, 0.08)',
+                  borderRadius: '8px',
                   color: '#652810',
                   fontSize: '0.9rem',
-                  fontWeight: 500
+                  fontWeight: 500,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
                 }}>
-                  ✓ Selected: {referenceImage.name}
+                  <span style={{color: '#8E5022', fontSize: '1.1rem'}}>✓</span>
+                  Selected: {referenceImage.name}
                 </div>
               )}
             </div>
@@ -249,14 +449,31 @@ const CustomOrderForm = () => {
                 padding: '1rem 2rem',
                 fontSize: '1.05rem',
                 fontWeight: 600,
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #652810 0%, #8E5022 100%)',
+                borderRadius: '10px',
+                background: submitting 
+                  ? 'linear-gradient(135deg, #9B7D5E 0%, #A67C52 100%)' 
+                  : 'linear-gradient(135deg, #8E5022 0%, #A67C52 100%)',
                 border: 'none',
                 color: 'white',
                 cursor: submitting ? 'not-allowed' : 'pointer',
                 transition: 'all 0.3s ease',
-                boxShadow: '0 4px 12px rgba(101, 40, 16, 0.2)',
-                opacity: submitting ? 0.7 : 1
+                boxShadow: submitting 
+                  ? '0 2px 8px rgba(142, 80, 34, 0.15)' 
+                  : '0 4px 16px rgba(142, 80, 34, 0.25)',
+                transform: submitting ? 'scale(0.98)' : 'scale(1)',
+                letterSpacing: '0.3px'
+              }}
+              onMouseEnter={(e) => {
+                if (!submitting) {
+                  e.target.style.transform = 'translateY(-2px)';
+                  e.target.style.boxShadow = '0 6px 20px rgba(142, 80, 34, 0.35)';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!submitting) {
+                  e.target.style.transform = 'scale(1)';
+                  e.target.style.boxShadow = '0 4px 16px rgba(142, 80, 34, 0.25)';
+                }
               }}
             >
               {submitting ? 'Submitting...' : 'Submit Custom Order Request'}

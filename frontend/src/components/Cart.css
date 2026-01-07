@@ -4,22 +4,32 @@
 .cart-hero,
 .checkout-hero {
   position: relative;
-  height: 35vh;
-  min-height: 300px;
+  height: 40vh;
+  min-height: 350px;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #442D1C 0%, #652810 50%, #8E5022 100%);
+  background-color: #6B4423;
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+  text-align: center;
+  color: white;
   overflow: hidden;
 }
 
-.hero-overlay {
+.cart-hero::before,
+.checkout-hero::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(90deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.3) 100%);
+  background: rgba(68, 45, 28, 0.4);
+  pointer-events: none;
 }
 
 .hero-content {
@@ -33,6 +43,11 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: -1px;
+  animation: fadeInDown 0.8s ease-out;
 }
 
 .japanese-accent {
@@ -44,15 +59,37 @@
 
 .main-title {
   font-size: 3.5rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 2px;
 }
 
 .hero-subtitle {
   margin-top: 12px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   opacity: 0.95;
   font-weight: 300;
+  animation: fadeIn 1s ease-out 0.2s backwards;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* Empty Cart */

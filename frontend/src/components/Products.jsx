@@ -204,7 +204,7 @@ function Products() {
       {/* DESCRIPTION SECTION - Clean centered text */}
       <section className="workshops-description-section">
         <div className="workshops-description-center">
-          <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 500, lineHeight: 1.7, maxWidth: '800px', margin: '0 auto' }}>
+          <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 400, lineHeight: 1.8, maxWidth: '800px', margin: '0 auto', fontFamily: "'Cormorant Garamond', 'Noto Serif JP', Georgia, serif", fontStyle: 'italic', letterSpacing: '0.3px' }}>
             Explore our curated collections of handcrafted pottery, where each piece embodies the philosophy of wabi-sabi — finding beauty in imperfection and celebrating the natural character of clay. From functional everyday items to decorative statement pieces, our collections bring mindful artistry into your space.
           </p>
         </div>
