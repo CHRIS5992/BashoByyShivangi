@@ -1,7 +1,8 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { ShoppingCart, User, LogOut } from "lucide-react";
+import { ShoppingCart, User, LogOut, Menu, X } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../contexts/AuthContext";
+import { useState } from "react";
 
 function Navigation() {
   const location = useLocation();
@@ -10,31 +11,47 @@ function Navigation() {
   const { getCartCount } = useCart();
   const { currentUser, logout } = useAuth();
   const cartCount = getCartCount();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
       await logout();
       navigate('/');
+      setMobileMenuOpen(false);
     } catch (error) {
       console.error('Failed to log out:', error);
     }
   };
 
+  const handleNavClick = () => {
+    setMobileMenuOpen(false);
+  };
+
   return (
     <nav className="navbar">
       {/* Logo */}
-      <Link to="/" className="logo" style={{ cursor: "pointer", textDecoration: "none" }}>
+      <Link to="/" className="logo" style={{ cursor: "pointer", textDecoration: "none" }} onClick={handleNavClick}>
         <img
           src="https://i.postimg.cc/nLh2w8mP/transbashologo.png"
           alt="Basho Logo"
         />
       </Link>
 
+      {/* Mobile Menu Toggle */}
+      <button 
+        className="mobile-menu-toggle" 
+        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        {mobileMenuOpen ? <X size={28} color="#652810" /> : <Menu size={28} color="#652810" />}
+      </button>
+
       {/* Navigation Links */}
-      <div className="nav-links">
+      <div className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
         <Link
           to="/products"
           className={currentPath === "/products" ? "active" : ""}
+          onClick={handleNavClick}
         >
           Collections
         </Link>
@@ -42,6 +59,7 @@ function Navigation() {
         <Link
           to="/workshops"
           className={currentPath === "/workshops" ? "active" : ""}
+          onClick={handleNavClick}
         >
           Workshops
         </Link>
@@ -49,6 +67,7 @@ function Navigation() {
         <Link
           to="/studio"
           className={currentPath === "/studio" ? "active" : ""}
+          onClick={handleNavClick}
         >
           Studio
         </Link>
@@ -56,6 +75,7 @@ function Navigation() {
         <Link
           to="/corporate"
           className={currentPath === "/corporate" ? "active" : ""}
+          onClick={handleNavClick}
         >
           Corporate
         </Link>
@@ -63,6 +83,7 @@ function Navigation() {
         <Link
           to="/media"
           className={currentPath === "/media" ? "active" : ""}
+          onClick={handleNavClick}
         >
           Media
         </Link>
@@ -71,6 +92,7 @@ function Navigation() {
           to="/cart"
           className={`cart-icon ${currentPath === "/cart" ? "active" : ""}`}
           style={{ position: "relative" }}
+          onClick={handleNavClick}
         >
           <ShoppingCart size={24} color="#652810" strokeWidth={2} />
           {cartCount > 0 && (
@@ -91,6 +113,7 @@ function Navigation() {
           <Link
             to="/login"
             className={`login-link ${currentPath === "/login" ? "active" : ""}`}
+            onClick={handleNavClick}
           >
             <User size={24} color="#652810" strokeWidth={2} />
           </Link>

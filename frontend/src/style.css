@@ -1039,6 +1039,71 @@ p {
     }
 }
 
+/* ========== MOBILE RESPONSIVE (FOOTER) ========== */
+@media (max-width: 768px) {
+    .main-footer {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-col-explore,
+    .footer-col-connect {
+        margin-right: 0;
+    }
+
+    .footer-col-image {
+        order: 5;
+        margin-top: 1rem;
+    }
+
+    .footer-col-image-right {
+        justify-content: center;
+        margin-left: 0;
+        order: 4;
+    }
+
+    .footer-handmade-image {
+        width: 180px;
+    }
+
+    .footer-top-right-image {
+        max-width: 150px;
+        height: auto;
+    }
+
+    .footer-logo {
+        max-width: 150px;
+        height: auto;
+    }
+
+    .footer-tagline,
+    .footer-address {
+        font-size: 0.85rem;
+    }
+
+    .footer-section-heading {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .footer-nav-link {
+        font-size: 0.9rem;
+    }
+
+    .connect-link {
+        font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+        text-align: center;
+        font-size: 0.85rem;
+    }
+}
+
 @media (max-width: 480px) {
     :root {
         --spacing-lg: 3rem;

@@ -32,11 +32,11 @@ const ProductCare = () => {
 
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '2rem',
           maxWidth: '1200px',
           margin: '0 auto'
-        }}>
+        }} className="product-care-grid">
           <div className="fade-in" style={{
             background: 'linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%)',
             padding: '2rem',
