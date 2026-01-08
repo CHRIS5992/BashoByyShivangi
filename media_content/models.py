@@ -71,6 +71,7 @@ class VideoTestimonial(models.Model):
 class CustomerExperience(models.Model):
     """Journal-style customer experience entries"""
     image = models.ImageField(upload_to='media/experiences/')
+    title = models.CharField(max_length=200, help_text="Experience title/heading")
     paragraph = models.TextField(help_text="Short narrative paragraph")
     customer_name = models.CharField(max_length=100, blank=True)
     context = models.CharField(max_length=200, blank=True, help_text="Optional context (e.g., 'Weekend workshop attendee')")

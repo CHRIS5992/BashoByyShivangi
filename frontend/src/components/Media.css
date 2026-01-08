@@ -38,10 +38,10 @@
     min-height: 350px;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
-    background-color: #6B4423;
+    background-image: linear-gradient(120deg, rgba(22, 9, 5, 0.62) 0%, rgba(36, 17, 10, 0.52) 45%, rgba(62, 32, 18, 0.48) 100%);
     background-size: cover;
     background-position: center;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
     text-align: center;
     color: white;
     overflow: hidden;
@@ -58,7 +58,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(68, 45, 28, 0.4);
+    background: rgba(24, 11, 6, 0.32);
     pointer-events: none;
 }
 
@@ -127,8 +127,45 @@
    GALLERY SECTION
 ========================= */
 .media-gallery {
-    padding: 80px 40px;
+    padding: 0;
     background-color: var(--media-secondary);
+}
+
+.dome-gallery-wrapper {
+    position: relative;
+    width: 100%;
+    height: min(80vh, 900px);
+    min-height: 560px;
+    max-width: none;
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    border-radius: 0;
+    overflow: visible;
+    background: transparent;
+    box-shadow: none;
+}
+
+.dome-header {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+    text-align: center;
+    background: #ffffff;
+    border: none;
+    border-radius: 0 0 28px 28px;
+    padding: 12px 48px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dome-header h2 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--media-primary);
+    font-weight: 600;
 }
 
 .gallery-filters {
@@ -199,8 +236,55 @@
    TEXT TESTIMONIALS
 ========================= */
 .media-testimonials {
-    padding: 100px 40px;
-    background-color: var(--media-primary);
+    padding: 60px 40px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.media-testimonials::before {
+    /* Remove vignette */
+    display: none;
+}
+
+.testimonial-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.testimonial-left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    margin-left: 70px;
+}
+
+.testimonial-left .testimonial-subtext {
+    color: #6b4a39;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-left: 50px;
+}
+
+.testimonial-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+    .testimonial-layout {
+        grid-template-columns: 1fr;
+    }
+    .testimonial-right {
+        justify-content: center;
+        margin-top: 16px;
+    }
 }
 
 .testimonials-carousel {
@@ -349,6 +433,102 @@
 }
 
 /* =========================
+   CUSTOMER EXPERIENCES (Testimonial Style)
+========================= */
+.customer-experiences-section {
+  padding: 100px 40px;
+  background-color: #f5f5f5;
+  width: 100%;
+}
+
+.experiences-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.experiences-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-bottom: 12px;
+}
+
+.experiences-header p {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.1rem;
+  color: #666;
+  font-style: italic;
+}
+
+.experiences-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.experience-testimonial-card {
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.experience-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.experience-quote {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+.experience-author-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.experience-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #DFD0C6;
+}
+
+.experience-author-name {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2c2c2c;
+  margin-bottom: 2px;
+}
+
+.experience-author-role {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* =========================
    CUSTOMER EXPERIENCES
 ========================= */
 .media-experiences {
@@ -362,6 +542,14 @@
     gap: 50px;
     max-width: 1100px;
     margin: 0 auto;
+}
+
+/* Remove left/right side overlays (used by other sections) when on media page */
+.media-page .infinite-scroll-container::before,
+.media-page .infinite-scroll-container::after,
+.media-page .carousel-fade {
+    display: none !important;
+    background: none !important;
 }
 
 .experience-card {

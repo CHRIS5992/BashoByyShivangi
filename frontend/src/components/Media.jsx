@@ -1,18 +1,23 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './Media.css';
-import RotatingGallery from './RotatingGallery';
+import DomeGallery from './DomeGallery';
+import ImageCarousel from './ImageCarousel';
+import ImageCarouselClassic from './ImageCarouselClassic';
+import TextTestimonialStack from './TextTestimonialStack';
+import HeadingSplit from './HeadingSplit';
+import VideoTestimonialsHero from './VideoTestimonialsHero';
 
 const API_BASE_URL = '/api';
 
 function Media() {
   const [galleryImages, setGalleryImages] = useState([]);
-  const [textTestimonials, setTextTestimonials] = useState([]);
-  const [videoTestimonials, setVideoTestimonials] = useState([]);
+  const [workshopGalleryImages, setWorkshopGalleryImages] = useState([]);
+  const [studioGalleryImages, setStudioGalleryImages] = useState([]);
   const [experiences, setExperiences] = useState([]);
+  const [videoTestimonials, setVideoTestimonials] = useState([]);
 
   const [activeFilter] = useState('all');
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
   const [lightboxImage, setLightboxImage] = useState(null);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const [videoModal, setVideoModal] = useState(null);
@@ -20,17 +25,23 @@ function Media() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [galleryRes, textRes, videoRes, expRes] = await Promise.all([
-          axios.get(`${API_BASE_URL}/media/gallery/`),
-          axios.get(`${API_BASE_URL}/media/testimonials/text/`),
-          axios.get(`${API_BASE_URL}/media/testimonials/video/`),
-          axios.get(`${API_BASE_URL}/media/experiences/`)
+        const [galleryRes, workshopRes, studioRes, expRes, videoRes] = await Promise.all([
+          // Fetch 'product' category for the product gallery section
+          axios.get(`${API_BASE_URL}/media/gallery/`, { params: { category: 'product' } }),
+          // Fetch 'workshop' category for workshop moments
+          axios.get(`${API_BASE_URL}/media/gallery/`, { params: { category: 'workshop' } }),
+          // Fetch 'studio' category for studio & events
+          axios.get(`${API_BASE_URL}/media/gallery/`, { params: { category: 'studio' } }),
+          axios.get(`${API_BASE_URL}/media/experiences/`),
+          // Video testimonials
+          axios.get(`${API_BASE_URL}/media/testimonials/video/`)
         ]);
 
         setGalleryImages(galleryRes.data.results || galleryRes.data);
-        setTextTestimonials(textRes.data.results || textRes.data);
-        setVideoTestimonials(videoRes.data.results || videoRes.data);
+        setWorkshopGalleryImages(workshopRes.data.results || workshopRes.data);
+        setStudioGalleryImages(studioRes.data.results || studioRes.data);
         setExperiences(expRes.data.results || expRes.data);
+        setVideoTestimonials(videoRes.data.results || videoRes.data);
       } catch (error) {
         console.error('Error fetching media data:', error);
       }
@@ -67,7 +78,12 @@ function Media() {
   return (
     <div className="media-page">
       {/* ================= HERO SECTION ================= */}
-      <section className="media-hero" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')" }}>
+      <section
+        className="media-hero"
+        style={{
+          backgroundImage: "linear-gradient(120deg, rgba(22, 9, 5, 0.62) 0%, rgba(36, 17, 10, 0.52) 45%, rgba(62, 32, 18, 0.48) 100%), url('/images/gallery/pattern-brown.jpg.png')"
+        }}
+      >
         <div className="media-hero-content">
           <h1>Stories & Moments</h1>
           <p>
@@ -79,106 +95,101 @@ function Media() {
 
       {/* ================= PHOTO GALLERY ================= */}
       <section className="media-gallery">
-        <div className="section-header">
-          <h2>Photo Gallery</h2>
-        </div>
-
-        {/* 3D Rotating Gallery Animation */}
+        {/* 3D Dome Gallery */}
         {galleryImages.length > 0 && (
-          <RotatingGallery images={galleryImages} />
+          <div className="dome-gallery-wrapper">
+            <div className="section-header dome-header">
+              <h2>Photo Gallery</h2>
+            </div>
+            <DomeGallery
+              images={galleryImages.map(img => ({
+                src: img.image_url,
+                alt: img.caption || img.title || 'Gallery image'
+              }))}
+              fit={0.48}
+              padFactor={0.02}
+              maxVerticalRotationDeg={4}
+              dragSensitivity={24}
+              minRadius={1500}
+              grayscale={false}
+              imageBorderRadius="18px"
+              openedImageBorderRadius="22px"
+              openedImageWidth="320px"
+              openedImageHeight="420px"
+            />
+          </div>
         )}
       </section>
 
-      {/* ================= TEXT TESTIMONIALS ================= */}
-      {textTestimonials.length > 0 && (
-        <section className="media-testimonials">
-          <div className="section-header light">
-            <h2>What People Say</h2>
-          </div>
-
-          <div className="testimonials-carousel">
-            <div className="testimonial-slide">
-              <p className="testimonial-quote">
-                {textTestimonials[testimonialIndex]?.quote}
-              </p>
-              <div className="testimonial-author">
-                <strong>{textTestimonials[testimonialIndex]?.customer_name}</strong>
-                {textTestimonials[testimonialIndex]?.location && (
-                  <span>{textTestimonials[testimonialIndex].location}</span>
-                )}
-              </div>
-            </div>
-
-            {textTestimonials.length > 1 && (
-              <div className="testimonial-nav">
-                {textTestimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`testimonial-dot ${index === testimonialIndex ? 'active' : ''}`}
-                    onClick={() => setTestimonialIndex(index)}
-                    aria-label={`Go to testimonial ${index + 1}`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </section>
+      {/* ================= WORKSHOP MOMENTS CAROUSEL ================= */}
+      {workshopGalleryImages.length > 0 && (
+        <ImageCarousel
+          images={workshopGalleryImages.map(img => ({
+            src: img.image_url,
+            alt: img.caption || 'Workshop moment',
+            caption: img.caption
+          }))}
+          title="Workshop Moments"
+          colorTheme="light"
+        />
       )}
 
-      {/* ================= VIDEO TESTIMONIALS ================= */}
-      {videoTestimonials.length > 0 && (
-        <section className="media-videos">
-          <div className="section-header">
-            <h2>Video Stories</h2>
-          </div>
+      {/* ================= STUDIO & EVENTS CAROUSEL ================= */}
+      {studioGalleryImages.length > 0 && (
+        <ImageCarouselClassic
+          images={studioGalleryImages.map(img => ({
+            src: img.image_url,
+            alt: img.caption || 'Studio event',
+            caption: img.caption
+          }))}
+          title="Studio & Events"
+          colorTheme="dark"
+        />
+      )}
 
-          <div className="videos-grid">
-            {videoTestimonials.map(video => (
-              <div
-                key={video.id}
-                className="video-card"
-                onClick={() => setVideoModal(video)}
-              >
-                {video.thumbnail_url ? (
-                  <img src={video.thumbnail_url} alt={video.customer_name} />
-                ) : (
-                  <div style={{ background: 'var(--media-primary)' }} />
-                )}
-                <div className="video-play-overlay">
-                  <div className="play-icon" />
-                  <div className="video-info">
-                    <h4>{video.customer_name}</h4>
-                    {video.location && <span>{video.location}</span>}
-                  </div>
-                </div>
-              </div>
-            ))}
+      <section className="media-testimonials" style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/textbg.jpg)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center top',
+        backgroundRepeat: 'no-repeat'
+      }}>
+        <div className="testimonial-layout">
+          <div className="testimonial-left">
+            <HeadingSplit text="Testimonials" />
+            <p className="testimonial-subtext">What people are saying about their experiences.</p>
           </div>
-        </section>
+          <div className="testimonial-right">
+            <TextTestimonialStack />
+          </div>
+        </div>
+      </section>
+
+      {/* ================= VIDEO TESTIMONIALS (Hero style) ================= */}
+      {videoTestimonials.length > 0 && (
+        <VideoTestimonialsHero videos={videoTestimonials} onPlay={setVideoModal} />
       )}
 
       {/* ================= CUSTOMER EXPERIENCES ================= */}
       {experiences.length > 0 && (
-        <section className="media-experiences">
-          <div className="section-header light">
-            <h2>Customer Experiences</h2>
+        <section className="customer-experiences-section">
+          <div className="experiences-header">
+            <h2>Proven track of satisfied clients</h2>
+            <p>We cherish relations to blossom and last</p>
           </div>
 
-          <div className="experiences-grid">
+          <div className="experiences-masonry">
             {experiences.map(exp => (
-              <div key={exp.id} className="experience-card">
-                <div className="experience-image">
-                  <img src={exp.image_url} alt={exp.customer_name || 'Customer experience'} />
-                </div>
-                <div className="experience-text">
-                  <p>"{exp.paragraph}"</p>
-                  {(exp.customer_name || exp.context) && (
-                    <span className="author">
-                      {exp.customer_name}
-                      {exp.customer_name && exp.context && ' — '}
-                      {exp.context}
-                    </span>
+              <div key={exp.id} className="experience-testimonial-card">
+                {exp.title && <h3 className="experience-title">{exp.title}</h3>}
+                <p className="experience-quote">"{exp.paragraph}"</p>
+                <div className="experience-author-info">
+                  {exp.image_url && (
+                    <img src={exp.image_url} alt={exp.customer_name || 'Customer'} className="experience-avatar" />
                   )}
+                  <div>
+                    <div className="experience-author-name">{exp.customer_name || 'Anonymous'}</div>
+                    {exp.context && <div className="experience-author-role">{exp.context}</div>}
+                  </div>
                 </div>
               </div>
             ))}

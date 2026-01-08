@@ -1,0 +1,240 @@
+/* =============================================
+   IMAGE CAROUSEL - Horizontal Scrolling
+   Clean & Professional Style
+   ============================================= */
+
+.carousel-section {
+  padding: 80px 0;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* Light theme (Workshop Moments) - Cream background */
+.carousel-light {
+  background: linear-gradient(135deg, #EDD8B4 0%, #F5E6D3 100%);
+}
+
+.carousel-light .carousel-header h2 {
+  color: #3d1a0a;
+}
+
+/* Dark theme (Studio & Events) - Dark background */
+.carousel-dark {
+  background: linear-gradient(135deg, #442D1C 0%, #3d2616 100%);
+}
+
+.carousel-dark .carousel-header h2 {
+  color: #EDD8B4;
+}
+
+/* Header styling */
+.carousel-header {
+  text-align: center;
+  margin-bottom: 50px;
+  padding: 0 40px;
+}
+
+.carousel-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Noto Serif JP', 'Noto Serif', serif;
+  letter-spacing: -0.5px;
+}
+
+/* Main carousel container */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* Carousel track - horizontal scrolling */
+.carousel-track {
+  display: flex;
+  gap: 30px;
+  animation: scroll 40s linear infinite;
+  padding: 0 40px;
+  will-change: transform;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 15px));
+  }
+}
+
+/* Pause animation on hover */
+.carousel-container:hover .carousel-track {
+  animation-play-state: paused;
+}
+
+/* Individual carousel items */
+.carousel-item {
+  flex: 0 0 420px;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  aspect-ratio: 16 / 10;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Caption overlay */
+.carousel-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-family: 'Noto Serif JP', 'Noto Serif', serif;
+  z-index: 2;
+}
+
+.carousel-item:hover .carousel-overlay {
+  opacity: 1;
+}
+
+/* Fade gradient overlays for seamless effect */
+.carousel-fade {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.carousel-fade-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.carousel-light .carousel-fade-left {
+  background: linear-gradient(to right, rgba(237, 216, 180, 0.9), transparent);
+}
+
+.carousel-dark .carousel-fade-left {
+  background: linear-gradient(to right, rgba(68, 45, 28, 0.9), transparent);
+}
+
+.carousel-fade-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.carousel-light .carousel-fade-right {
+  background: linear-gradient(to left, rgba(237, 216, 180, 0.9), transparent);
+}
+
+.carousel-dark .carousel-fade-right {
+  background: linear-gradient(to left, rgba(68, 45, 28, 0.9), transparent);
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .carousel-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .carousel-track {
+    gap: 25px;
+    padding: 0 30px;
+  }
+
+  .carousel-item {
+    flex: 0 0 340px;
+  }
+
+  .carousel-fade {
+    width: 120px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-section {
+    padding: 60px 0;
+  }
+
+  .carousel-header {
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  .carousel-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-track {
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  .carousel-item {
+    flex: 0 0 300px;
+  }
+
+  .carousel-fade {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-section {
+    padding: 40px 0;
+  }
+
+  .carousel-header {
+    margin-bottom: 20px;
+  }
+
+  .carousel-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .carousel-track {
+    gap: 15px;
+    padding: 0 15px;
+  }
+
+  .carousel-item {
+    flex: 0 0 240px;
+  }
+
+  .carousel-fade {
+    width: 80px;
+  }
+
+  .carousel-overlay {
+    padding: 15px;
+    font-size: 0.85rem;
+  }
+}

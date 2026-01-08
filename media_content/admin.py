@@ -319,9 +319,9 @@ class CustomerExperienceAdmin(admin.ModelAdmin):
     
     list_display = [
         'image_preview',
+        'title',
         'customer_name',
         'context',
-        'paragraph_preview',
         'order',
         'is_active'
     ]
@@ -344,8 +344,8 @@ class CustomerExperienceAdmin(admin.ModelAdmin):
             'description': 'Who is sharing this experience (optional)'
         }),
         ('📝 Experience Story', {
-            'fields': ('paragraph',),
-            'description': 'The customer\'s story or experience'
+            'fields': ('title', 'paragraph'),
+            'description': 'The customer\'s story heading and content'
         }),
         ('🖼️ Image', {
             'fields': ('image_preview_large', 'image'),

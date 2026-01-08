@@ -1,0 +1,78 @@
+.text-testimonial-stack {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 420px;
+}
+
+/* Override CardSwap absolute positioning within this section */
+.text-testimonial-stack .card-swap-container {
+  position: relative;
+  transform: none;
+  right: auto;
+  bottom: auto;
+}
+
+.testimonial-card {
+  background: #5a3826; /* deep brown */
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  box-shadow: 0 20px 55px rgba(0,0,0,0.25);
+  overflow: hidden;
+}
+
+.testimonial-card-inner {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 28px 22px;
+}
+
+.quote-mark {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 56px;
+  line-height: 1;
+  color: rgba(255,255,255,0.15);
+}
+
+.quote-text {
+  margin: 10px 0 18px;
+  font-size: 1.25rem;
+  line-height: 1.65;
+  color: #ffffff;
+}
+
+.author-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.author-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.author-name {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 1.15rem;
+}
+
+.author-location {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.85);
+}

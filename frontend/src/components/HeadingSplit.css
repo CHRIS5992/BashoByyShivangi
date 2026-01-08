@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap');
+
+.heading-split {
+  margin: 0;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #3d1a0a;
+  font-weight: 800;
+}
+
+.split-wrapper {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.split-char {
+  display: inline-block;
+  will-change: transform, opacity;
+}
