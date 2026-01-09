@@ -22,7 +22,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('products.urls')),  # Products API URLs
+    path('api/products/', include('products.urls')),  # Products API URLs
     path('api/', include('workshops.urls')),  # Workshops API URLs
     path('api/', include('studio.urls')),  # Studio API URLs
     path('api/', include('media_content.urls')),  # Media API URLs

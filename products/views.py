@@ -368,6 +368,9 @@ def verify_payment(request):
     try:
         import razorpay
         from django.conf import settings
+        import logging
+        
+        logger = logging.getLogger(__name__)
         
         # Initialize Razorpay client
         client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
@@ -419,12 +422,36 @@ def verify_payment(request):
                 order.internal_notes = f"Razorpay Payment\nOrder ID: {razorpay_order_id}\nPayment ID: {razorpay_payment_id}"
                 order.save()
                 
+                # Send email confirmations asynchronously using Celery
+                email_sent = False
+                admin_email_sent = False
+                
+                try:
+                    from .tasks import send_product_order_confirmation_email, send_product_order_admin_notification
+                    
+                    # Queue customer confirmation email
+                    send_product_order_confirmation_email.delay(order.id)
+                    email_sent = True
+                    logger.info(f"Customer confirmation email queued for order {order.order_number}")
+                except Exception as email_error:
+                    logger.error(f"Error queueing customer email for order {order.order_number}: {str(email_error)}")
+                
+                try:
+                    # Queue admin notification email
+                    send_product_order_admin_notification.delay(order.id)
+                    admin_email_sent = True
+                    logger.info(f"Admin notification email queued for order {order.order_number}")
+                except Exception as email_error:
+                    logger.error(f"Error queueing admin email for order {order.order_number}: {str(email_error)}")
+                
                 return Response({
                     'success': True,
                     'message': 'Payment verified and order created successfully',
                     'order_number': order.order_number,
                     'order_id': order.id,
-                    'payment_id': razorpay_payment_id
+                    'payment_id': razorpay_payment_id,
+                    'email_queued': email_sent,
+                    'admin_notified': admin_email_sent
                 }, status=status.HTTP_201_CREATED)
             else:
                 return Response({
@@ -437,4 +464,7 @@ def verify_payment(request):
         return Response({
             'error': f'Payment verification failed: {str(e)}'
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
 

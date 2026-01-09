@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Order Confirmation - Basho By Shivangi</title>
+    <style>
+        /* Reset styles */
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f5f1ed; margin: 0; padding: 0; font-family: 'Georgia', 'Garamond', serif;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f5f1ed;">
+        <tr>
+            <td align="center" style="padding: 40px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="600"
+                    style="max-width: 600px; background-color: #ffffff; box-shadow: 0 4px 20px rgba(101, 40, 16, 0.1);">
+
+                    <!-- Header with Pottery Image -->
+                    <tr>
+                        <td align="center" style="background-color: #2a1810; padding: 0;">
+                            <img src="cid:header_image" alt="Order Confirmation" width="600"
+                                style="display: block; width: 100%; max-width: 600px; height: auto; border: 0;">
+                        </td>
+                    </tr>
+
+                    <!-- Order Confirmation Content -->
+                    <tr>
+                        <td style="background-color: #7d3f2a; padding: 40px 30px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #f5f1ed; font-size: 24px; font-weight: 600; padding-bottom: 20px; text-align: center;">
+                                        Order Confirmed! 🎉
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="color: #f5f1ed; font-size: 15px; line-height: 1.8; text-align: center; padding: 0 10px;">
+                                        <p style="margin: 0 0 15px 0;">
+                                            Dear <strong>{{ customer_name }}</strong>,
+                                        </p>
+                                        <p style="margin: 0 0 15px 0;">
+                                            Thank you for your purchase! Your order has been confirmed and we're excited
+                                            to create these beautiful pieces for you.
+                                        </p>
+                                        <p style="margin: 0;">
+                                            Your support means the world to us and helps keep the art of ceramics alive.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Order Information -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #ffffff;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #2a1810; font-size: 18px; font-weight: 600; padding-bottom: 20px; border-bottom: 2px solid #7d3f2a;">
+                                        Order Details
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 20px;">
+                                        <table border="0" cellpadding="8" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td
+                                                    style="color: #5a3825; font-size: 14px; font-weight: 600; width: 40%;">
+                                                    Order Number:</td>
+                                                <td style="color: #2a1810; font-size: 14px; font-weight: 600;">{{
+                                                    order_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color: #5a3825; font-size: 14px; font-weight: 600;">Order
+                                                    Date:</td>
+                                                <td style="color: #2a1810; font-size: 14px;">{{ order_date }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color: #5a3825; font-size: 14px; font-weight: 600;">Payment
+                                                    Status:</td>
+                                                <td style="color: #28a745; font-size: 14px; font-weight: 600;">✓ Paid
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color: #5a3825; font-size: 14px; font-weight: 600;">Payment
+                                                    Method:</td>
+                                                <td style="color: #2a1810; font-size: 14px;">{{ payment_method }}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Order Items -->
+                    <tr>
+                        <td style="padding: 0 30px 30px 30px; background-color: #ffffff;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #2a1810; font-size: 18px; font-weight: 600; padding-bottom: 15px; border-bottom: 2px solid #7d3f2a;">
+                                        Items Ordered
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 15px;">
+                                        <table border="0" cellpadding="10" cellspacing="0" width="100%"
+                                            style="border: 1px solid #e8dfd8;">
+                                            <tr style="background-color: #faf8f6;">
+                                                <td
+                                                    style="color: #5a3825; font-size: 13px; font-weight: 600; width: 50%;">
+                                                    Product</td>
+                                                <td
+                                                    style="color: #5a3825; font-size: 13px; font-weight: 600; width: 15%; text-align: center;">
+                                                    Qty</td>
+                                                <td
+                                                    style="color: #5a3825; font-size: 13px; font-weight: 600; width: 20%; text-align: right;">
+                                                    Price</td>
+                                                <td
+                                                    style="color: #5a3825; font-size: 13px; font-weight: 600; width: 15%; text-align: right;">
+                                                    Total</td>
+                                            </tr>
+                                            {% for item in order_items %}
+                                            <tr style="border-top: 1px solid #e8dfd8;">
+                                                <td style="color: #2a1810; font-size: 14px; padding: 10px;">{{
+                                                    item.product_name }}</td>
+                                                <td
+                                                    style="color: #2a1810; font-size: 14px; padding: 10px; text-align: center;">
+                                                    {{ item.quantity }}</td>
+                                                <td
+                                                    style="color: #2a1810; font-size: 14px; padding: 10px; text-align: right;">
+                                                    ₹{{ item.product_price }}</td>
+                                                <td
+                                                    style="color: #2a1810; font-size: 14px; padding: 10px; text-align: right; font-weight: 600;">
+                                                    ₹{{ item.total_price }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Order Summary -->
+                    <tr>
+                        <td style="padding: 0 30px 30px 30px; background-color: #ffffff;">
+                            <table border="0" cellpadding="8" cellspacing="0" width="100%"
+                                style="border-top: 2px solid #e8dfd8; padding-top: 15px;">
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; text-align: right; width: 70%;">
+                                        Subtotal:</td>
+                                    <td style="color: #2a1810; font-size: 14px; text-align: right; width: 30%;">₹{{
+                                        subtotal }}</td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; text-align: right;">Shipping:</td>
+                                    <td style="color: #2a1810; font-size: 14px; text-align: right;">₹{{ shipping_charge
+                                        }}</td>
+                                </tr>
+                                {% if tax_amount > 0 %}
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; text-align: right;">Tax:</td>
+                                    <td style="color: #2a1810; font-size: 14px; text-align: right;">₹{{ tax_amount }}
+                                    </td>
+                                </tr>
+                                {% endif %}
+                                {% if discount_amount > 0 %}
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; text-align: right;">Discount:</td>
+                                    <td style="color: #28a745; font-size: 14px; text-align: right;">-₹{{ discount_amount
+                                        }}</td>
+                                </tr>
+                                {% endif %}
+                                <tr style="border-top: 2px solid #7d3f2a;">
+                                    <td
+                                        style="color: #2a1810; font-size: 16px; font-weight: 600; text-align: right; padding-top: 15px;">
+                                        Total Paid:</td>
+                                    <td
+                                        style="color: #7d3f2a; font-size: 18px; font-weight: 600; text-align: right; padding-top: 15px;">
+                                        ₹{{ total_amount }}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Shipping Address -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #faf8f6;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #2a1810; font-size: 18px; font-weight: 600; padding-bottom: 15px;">
+                                        Shipping Address
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; line-height: 1.6;">
+                                        <strong>{{ customer_name }}</strong><br>
+                                        {{ shipping_address }}<br>
+                                        {{ shipping_city }}, {{ shipping_state }} {{ shipping_pincode }}<br>
+                                        Phone: {{ customer_phone }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- What's Next Section -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #ffffff; border-top: 1px solid #e8dfd8;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #2a1810; font-size: 18px; font-weight: 600; padding-bottom: 15px;">
+                                        What Happens Next?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; line-height: 1.6;">
+                                        <p style="margin: 0 0 10px 0;">✓ We'll carefully handcraft your order with love
+                                            and attention to detail</p>
+                                        <p style="margin: 0 0 10px 0;">✓ Your items will be securely packaged to ensure
+                                            safe delivery</p>
+                                        <p style="margin: 0 0 10px 0;">✓ You'll receive a shipping notification with
+                                            tracking details once dispatched</p>
+                                        <p style="margin: 0;">✓ Estimated delivery: <strong>5-7 business days</strong>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Contact Section -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #faf8f6; border-top: 1px solid #e8dfd8;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center" style="color: #5a3825; font-size: 14px; line-height: 1.6;">
+                                        <p style="margin: 0 0 10px 0;">If you have any questions about your order:</p>
+                                        <p style="margin: 0;">
+                                            <strong>Email:</strong> <a href="mailto:{{ company_email }}"
+                                                style="color: #7d3f2a; text-decoration: none;">{{ company_email
+                                                }}</a><br />
+                                            <strong>Phone:</strong> {{ company_phone }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center"
+                            style="padding: 30px; background: linear-gradient(135deg, #2a1810 0%, #4a2818 100%);">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center"
+                                        style="color: #f5f1ed; font-size: 16px; font-weight: 600; padding-bottom: 10px; letter-spacing: 1px;">
+                                        With heartfelt appreciation,
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"
+                                        style="color: #f5f1ed; font-size: 20px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                                        BASHO BY SHIVANGI
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"
+                                        style="color: #c8a882; font-size: 12px; padding-top: 15px; font-style: italic;">
+                                        Handcrafted with love • One-of-a-kind ceramic art
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
