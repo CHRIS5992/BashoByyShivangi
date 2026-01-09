@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Thank You for Your Order - Basho By Shivangi</title>
+    <style>
+        /* Reset styles */
+        body,
+        table,
+        td,
+        a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        table,
+        td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+
+        body {
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
+        }
+
+        a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+    </style>
+</head>
+
+<body style="background-color: #f5f1ed; margin: 0; padding: 0; font-family: 'Georgia', 'Garamond', serif;">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f5f1ed;">
+        <tr>
+            <td align="center" style="padding: 40px 10px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="600"
+                    style="max-width: 600px; background-color: #ffffff; box-shadow: 0 4px 20px rgba(101, 40, 16, 0.1);">
+
+                    <!-- Header with Pottery Image -->
+                    <tr>
+                        <td align="center" style="background-color: #2a1810; padding: 0;">
+                            <img src="cid:header_image" alt="Thank You For Your Order" width="600"
+                                style="display: block; width: 100%; max-width: 600px; height: auto; border: 0;">
+                        </td>
+                    </tr>
+
+                    <!-- Order Confirmation Content -->
+                    <tr>
+                        <td style="background-color: #7d3f2a; padding: 40px 30px;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #f5f1ed; font-size: 20px; font-weight: 600; padding-bottom: 20px; text-align: center;">
+                                        Your Custom Order Request Has Been Received
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        style="color: #f5f1ed; font-size: 15px; line-height: 1.8; text-align: center; padding: 0 10px;">
+                                        <p style="margin: 0 0 15px 0;">
+                                            Dear <strong>{{ customer_name }}</strong>,
+                                        </p>
+                                        <p style="margin: 0 0 15px 0;">
+                                            We're delighted to have you as part of our community of ceramic art lovers.
+                                            Each piece we create is thoughtfully handcrafted with care, making it
+                                            one-of-a-kind—just like you.
+                                        </p>
+                                        <p style="margin: 0;">
+                                            Your support means the world to us and helps keep the art of ceramics alive.
+                                            We can't wait to bring your vision to life.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Order Details -->
+                    <tr>
+                        <td style="padding: 40px 30px; background-color: #ffffff;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #2a1810; font-size: 18px; font-weight: 600; padding-bottom: 20px; border-bottom: 2px solid #7d3f2a;">
+                                        Your Order Details
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding-top: 20px;">
+                                        <table border="0" cellpadding="8" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td
+                                                    style="color: #5a3825; font-size: 14px; font-weight: 600; width: 40%;">
+                                                    Order Number:</td>
+                                                <td style="color: #2a1810; font-size: 14px;">{{ order_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color: #5a3825; font-size: 14px; font-weight: 600;">Project
+                                                    Type:</td>
+                                                <td style="color: #2a1810; font-size: 14px;">{{ project_type }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="color: #5a3825; font-size: 14px; font-weight: 600;">Status:
+                                                </td>
+                                                <td style="color: #7d3f2a; font-size: 14px; font-weight: 600;">Received
+                                                    - Under Review</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- What's Next Section -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #faf8f6;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td
+                                        style="color: #2a1810; font-size: 18px; font-weight: 600; padding-bottom: 15px;">
+                                        What Happens Next?
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="color: #5a3825; font-size: 14px; line-height: 1.6;">
+                                        <p style="margin: 0 0 10px 0;">✓ We will review your custom order request within
+                                            <strong>24 hours</strong>
+                                        </p>
+                                        <p style="margin: 0 0 10px 0;">✓ Our artisan will contact you to discuss your
+                                            vision and requirements</p>
+                                        <p style="margin: 0;">✓ You'll receive a detailed quote and timeline for your
+                                            custom piece</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Contact Section -->
+                    <tr>
+                        <td style="padding: 30px; background-color: #ffffff; border-top: 1px solid #e8dfd8;">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center" style="color: #5a3825; font-size: 14px; line-height: 1.6;">
+                                        <p style="margin: 0 0 10px 0;">If you have any immediate questions, please
+                                            contact us at:</p>
+                                        <p style="margin: 0;">
+                                            <strong>Email:</strong> <a href="mailto:{{ company_email }}"
+                                                style="color: #7d3f2a; text-decoration: none;">{{ company_email
+                                                }}</a><br />
+                                            <strong>Phone:</strong> {{ company_phone }}
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center"
+                            style="padding: 30px; background: linear-gradient(135deg, #2a1810 0%, #4a2818 100%);">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td align="center"
+                                        style="color: #f5f1ed; font-size: 16px; font-weight: 600; padding-bottom: 10px; letter-spacing: 1px;">
+                                        With heartfelt appreciation,
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"
+                                        style="color: #f5f1ed; font-size: 20px; font-weight: 300; letter-spacing: 3px; text-transform: uppercase;">
+                                        BASHO BY SHIVANGI
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="center"
+                                        style="color: #c8a882; font-size: 12px; padding-top: 15px; font-style: italic;">
+                                        Handcrafted with love • One-of-a-kind ceramic art
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

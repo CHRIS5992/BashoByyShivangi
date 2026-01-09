@@ -91,73 +91,40 @@ class CustomOrderViewSet(viewsets.ModelViewSet):
     
     def create(self, request, *args, **kwargs):
         """
-        Create new custom order and send email notifications
+        Create new custom order and send email notifications asynchronously
         """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         custom_order = serializer.save()
         
-        # Send email notification to admin
+        # Trigger asynchronous email tasks
         try:
-            from django.core.mail import send_mail
-            from django.conf import settings
+            from .tasks import send_custom_order_admin_email, send_custom_order_customer_email
             
-            # Email to admin
-            admin_subject = f'New Custom Order: {custom_order.order_number}'
-            admin_message = f'''
-New Custom Order Received
-
-Order Number: {custom_order.order_number}
-Customer: {custom_order.name}
-Email: {custom_order.email}
-Phone: {custom_order.phone}
-Project Type: {custom_order.get_project_type_display()}
-Budget: {custom_order.get_budget_display() if custom_order.budget else 'Not specified'}
-
-Description:
-{custom_order.description}
-
-Login to admin panel to review: http://127.0.0.1:8000/admin/products/customorder/{custom_order.id}/
-            '''
-            
-            send_mail(
-                subject=admin_subject,
-                message=admin_message,
-                from_email=settings.COMPANY_EMAIL,
-                recipient_list=[settings.COMPANY_EMAIL],
-                fail_silently=True,  # Don't crash if email fails
+            # Send admin email in background
+            send_custom_order_admin_email.delay(
+                order_id=custom_order.id,
+                order_number=custom_order.order_number,
+                name=custom_order.name,
+                email=custom_order.email,
+                phone=custom_order.phone,
+                project_type_display=custom_order.get_project_type_display(),
+                budget_display=custom_order.get_budget_display() if custom_order.budget else None,
+                description=custom_order.description
             )
             
-            # Email confirmation to customer
-            customer_subject = f'Order Confirmation - {custom_order.order_number}'
-            customer_message = f'''
-Dear {custom_order.name},
-
-Thank you for your custom order request at Basho By Shivangi!
-
-Order Number: {custom_order.order_number}
-Project Type: {custom_order.get_project_type_display()}
-
-We have received your request and will contact you within 24 hours to discuss your project in detail.
-
-If you have any immediate questions, please contact us at:
-Email: {settings.COMPANY_EMAIL}
-Phone: {settings.COMPANY_PHONE}
-
-Best regards,
-Basho By Shivangi Team
-            '''
-            
-            send_mail(
-                subject=customer_subject,
-                message=customer_message,
-                from_email=settings.COMPANY_EMAIL,
-                recipient_list=[custom_order.email],
-                fail_silently=True,
+            # Send customer confirmation email in background
+            send_custom_order_customer_email.delay(
+                order_number=custom_order.order_number,
+                name=custom_order.name,
+                email=custom_order.email,
+                project_type_display=custom_order.get_project_type_display()
             )
+            
         except Exception as e:
             # Log the error but don't fail the request
-            print(f"Email sending failed: {str(e)}")
+            # Emails will still be attempted by Celery
+            print(f"Failed to queue email tasks: {str(e)}")
         
         return Response({
             'success': True,
