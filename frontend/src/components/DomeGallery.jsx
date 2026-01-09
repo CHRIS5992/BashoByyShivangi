@@ -34,7 +34,7 @@ const DEFAULTS = {
   maxVerticalRotationDeg: 5,
   dragSensitivity: 20,
   enlargeTransitionMs: 300,
-  segments: 35
+  segments: 50  
 };
 
 const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
@@ -109,7 +109,7 @@ export default function DomeGallery({
   images = DEFAULT_IMAGES,
   fit = 1,
   fitBasis = 'auto',
-  minRadius = 1000,
+  minRadius = 3000,
   maxRadius = Infinity,
   padFactor = 0.25,
   overlayBlurColor = '#fff5f532',

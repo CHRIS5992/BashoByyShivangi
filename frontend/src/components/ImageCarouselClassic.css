@@ -46,10 +46,11 @@
 
 .classic-carousel-header h2 {
   font-size: 2.4rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: -0.5px;
   margin: 0;
-  font-family: 'Noto Serif JP', 'Noto Serif', serif;
+  font-family: 'Sedgwick Ave Display', cursive;
+  text-transform: capitalize;
 }
 
 .classic-carousel-container {

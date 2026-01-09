@@ -1,7 +1,10 @@
 /* Media.css */
 
 /* Google Fonts Import */
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Italianno&family=Federo&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sedgwick+Ave+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Style+Script&display=swap');
 
 /* =========================
    CSS VARIABLES
@@ -69,12 +72,18 @@
 }
 
 .media-hero h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: 5.2rem;
+    font-weight: 501;
     margin-bottom: 20px;
     letter-spacing: -1px;
     color: white;
     animation: fadeInDown 0.8s ease-out;
+    font-family: 'Style Script', cursive;
+}
+
+/* Ensure hero paragraph keeps original serif font (do not change) */
+.media-hero p {
+    font-family: 'Libre Baskerville', serif;
 }
 
 .media-hero p {
@@ -82,6 +91,8 @@
     opacity: 0.95;
     color: white;
     animation: fadeIn 1s ease-out 0.2s backwards;
+    margin: 0;
+    font-family: 'Libre Baskerville', serif;
 }
 
 /* Animations */
@@ -123,6 +134,19 @@
     color: var(--media-secondary);
 }
 
+/* Section headers on media page: keep default centered styles */
+.media-page .section-header {
+    text-align: center;
+}
+
+.media-page .section-header h2 {
+    font-family: 'Libre Baskerville', serif;
+    color: var(--media-primary);
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+}
+
 /* =========================
    GALLERY SECTION
 ========================= */
@@ -150,22 +174,24 @@
 .dome-header {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 30px;
+    transform: none;
     z-index: 25;
-    text-align: center;
+    text-align: left;
     background: #ffffff;
     border: none;
     border-radius: 0 0 28px 28px;
-    padding: 12px 48px;
+    padding: 8px 20px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dome-header h2 {
-    font-size: 1.4rem;
+    font-size: 3rem !important;
     margin: 0;
     color: var(--media-primary);
-    font-weight: 600;
+    font-weight: 600 !important;
+    font-family: 'Bonheur Royale', cursive !important;
+    letter-spacing: 0.02em;
 }
 
 .gallery-filters {
@@ -482,13 +508,13 @@
   box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
-.experience-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: #2c2c2c;
-  margin-bottom: 16px;
-  line-height: 1.4;
+.experience-testimonial-card .experience-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem;
+    color: #2c2c2c;
+    margin-bottom: 16px;
+    line-height: 1.2;
 }
 
 .experience-quote {

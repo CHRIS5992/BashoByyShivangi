@@ -415,7 +415,7 @@ const Workshops = () => {
     <div className="workshops-page">
       {/* HEADER - 1/3 screen with pattern and Japanese text */}
       <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')" }}>
-        <h1>
+        <h1 className="funnel-title">
           <span className="japanese-accent">ワークショップ</span>
           Pottery Workshops & Experiences
         </h1>

@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
 /* ================================
-   BASHO - Japanese-Inspired Pottery
-   Main Stylesheet
-   ================================ */
+    BASHO - Japanese-Inspired Pottery
+    Main Stylesheet
+    ================================ */
 
 /* ========== CSS VARIABLES ========== */
 :root {
@@ -58,6 +60,11 @@ body {
     color: var(--clay-dark);
     line-height: 1.7;
     overflow-x: hidden;
+}
+
+/* Funnel Display utility class for prominent headings */
+.funnel-title {
+    font-family: 'Funnel Display', serif;
 }
 
 img {

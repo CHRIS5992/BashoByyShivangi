@@ -56,7 +56,7 @@ class CustomerExperienceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = CustomerExperience
-        fields = ['id', 'image_url', 'paragraph', 'customer_name', 'context']
+        fields = ['id', 'image_url', 'title', 'paragraph', 'customer_name', 'context']
     
     def get_image_url(self, obj):
         if obj.image:

@@ -9,13 +9,20 @@ export default function VideoTestimonialsHero({ videos = [], onPlay }) {
 
   const currentThumb = useMemo(() => {
     if (!current) return null;
-    return current.thumbnail_url || `${process.env.PUBLIC_URL}/images/gallery/testimonial-bg.png`;
+    return current.thumbnail_url || `${process.env.PUBLIC_URL}/images/gallery/vdbg.png`;
   }, [current]);
 
   if (!len) return null;
 
   return (
-    <section className="video-hero-section">
+    <section
+      className="video-hero-section"
+      style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/vdbg.png)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+      }}
+    >
       {/* Left name bars */}
       <div className="video-hero-side left">
         <div className="name-bar">
@@ -29,7 +36,7 @@ export default function VideoTestimonialsHero({ videos = [], onPlay }) {
 
       {/* Center featured card */}
       <div className="video-hero-center">
-        <div className="center-card" style={{ backgroundImage: `url(${currentThumb})` }}>
+        <div className="center-card" style={{ backgroundImage: currentThumb ? `url(${currentThumb})` : undefined }}>
           <button
             className="play-button"
             aria-label="Play video"

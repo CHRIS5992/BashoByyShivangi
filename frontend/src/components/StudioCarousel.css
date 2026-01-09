@@ -1,0 +1,126 @@
+/* =============================================
+   STUDIO CAROUSEL - Clean & Simple
+   ============================================= */
+
+.studio-carousel-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #442D1C 0%, #3d2616 100%);
+  overflow: hidden;
+}
+
+/* Header */
+.studio-carousel-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.studio-carousel-header h2 {
+  font-size: 3.2rem;
+  font-weight: 400;
+  margin: 0;
+  font-family: 'Sedgwick Ave Display', cursive;
+  letter-spacing: 0.06em;
+  color: #EDD8B4;
+  text-transform: capitalize;
+}
+
+/* Carousel Container - Cream Background Card */
+.studio-carousel-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #EDD8B4;
+  border-radius: 16px;
+  padding: 30px 60px;
+  overflow: hidden;
+}
+
+/* Carousel Track - Horizontal Scrolling */
+.studio-carousel-track {
+  display: flex;
+  gap: 20px;
+  animation: studioScroll 50s linear infinite;
+  will-change: transform;
+}
+
+/* Smooth Scroll Animation */
+@keyframes studioScroll {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Pause on hover */
+.studio-carousel-container:hover .studio-carousel-track {
+  animation-play-state: paused;
+}
+
+/* Individual Carousel Items */
+.studio-carousel-item {
+  flex: 0 0 480px;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5e6d3;
+}
+
+.studio-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.studio-carousel-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .studio-carousel-container {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .studio-carousel-section {
+    padding: 40px 0;
+  }
+
+  .studio-carousel-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .studio-carousel-container {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .studio-carousel-item {
+    flex: 0 0 280px;
+    height: 200px;
+  }
+
+  .studio-carousel-track {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .studio-carousel-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .studio-carousel-container {
+    padding: 12px;
+  }
+
+  .studio-carousel-item {
+    flex: 0 0 220px;
+    height: 160px;
+  }
+}

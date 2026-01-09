@@ -1,0 +1,126 @@
+/* =============================================
+   WORKSHOP CAROUSEL - Clean & Simple
+   ============================================= */
+
+.workshop-carousel-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #EDD8B4 0%, #F5E6D3 100%);
+  overflow: hidden;
+}
+
+/* Header */
+.workshop-carousel-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 0 20px;
+}
+
+.workshop-carousel-header h2 {
+  font-size: 3.2rem;
+  font-weight: 400;
+  margin: 0;
+  font-family: 'Sedgwick Ave Display', cursive;
+  letter-spacing: 0.06em;
+  color: #3D1A0A;
+  text-transform: capitalize;
+}
+
+/* Carousel Container - Brown Background Card */
+.workshop-carousel-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #3D1A0A;
+  border-radius: 16px;
+  padding: 30px 60px;
+  overflow: hidden;
+}
+
+/* Carousel Track - Horizontal Scrolling */
+.workshop-carousel-track {
+  display: flex;
+  gap: 20px;
+  animation: smoothScroll 50s linear infinite;
+  will-change: transform;
+}
+
+/* Smooth Scroll Animation */
+@keyframes smoothScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause on hover */
+.workshop-carousel-container:hover .workshop-carousel-track {
+  animation-play-state: paused;
+}
+
+/* Individual Carousel Items */
+.workshop-carousel-item {
+  flex: 0 0 480px;
+  height: 320px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #2a1508;
+}
+
+.workshop-carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.workshop-carousel-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .workshop-carousel-container {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .workshop-carousel-section {
+    padding: 40px 0;
+  }
+
+  .workshop-carousel-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .workshop-carousel-container {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .workshop-carousel-item {
+    flex: 0 0 280px;
+    height: 200px;
+  }
+
+  .workshop-carousel-track {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .workshop-carousel-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .workshop-carousel-container {
+    padding: 12px;
+  }
+
+  .workshop-carousel-item {
+    flex: 0 0 220px;
+    height: 160px;
+  }
+}

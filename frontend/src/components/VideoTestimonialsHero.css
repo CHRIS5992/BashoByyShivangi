@@ -4,7 +4,7 @@
   align-items: center;
   gap: 0;
   padding: 80px 40px 40px;
-  background: #DFD0C6;
+  background: #DFD0C6; /* fallback color; section background image set from JSX to avoid webpack resolution */
   max-width: 100%;
   margin: 0 auto;
 }
@@ -103,12 +103,8 @@
 }
 
 .center-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 30%, rgba(0,0,0,0) 60%);
-  pointer-events: none;
-  z-index: 1;
+  /* removed gradient overlay so background image shows plainly */
+  content: none;
 }
 
 .play-button {

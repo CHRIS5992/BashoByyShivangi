@@ -35,11 +35,33 @@
 }
 
 .carousel-header h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
+  font-size: 2.6rem;
+  font-weight: 400;
   margin: 0;
-  font-family: 'Noto Serif JP', 'Noto Serif', serif;
+  font-family: 'Sedgwick Ave Display', cursive;
   letter-spacing: -0.5px;
+  text-transform: capitalize;
+}
+
+/* Workshop-specific header: centered with Sedgwick Ave Display */
+.carousel-section.carousel-light .carousel-header.workshop-header {
+  text-align: center;
+  padding-left: 40px;
+}
+
+.carousel-section.carousel-light .carousel-header.workshop-header h2 {
+  font-family: 'Sedgwick Ave Display', cursive;
+  text-transform: capitalize;
+  letter-spacing: 0.06em;
+  color: #3d1a0a;
+  font-size: 2.9rem;
+  font-weight: 400;
+  line-height: 1.06;
+}
+
+/* Adjust text color for Workshop Moments heading */
+.carousel-header.workshop-header h2 {
+  color: #3D1A0A;
 }
 
 /* Main carousel container */
@@ -49,6 +71,139 @@
   position: relative;
   padding: 20px 0;
 }
+
+/* Card wrapper for Workshop Moments */
+.carousel-card {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* Workshop variations */
+.workshop-card {
+  /* use same color as Workshop Moments heading */
+  background: var(--media-primary);
+  padding: 15px 18px;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.12);
+  max-width: 1400px;
+}
+
+.workshop-card .carousel-container {
+  padding: 0; /* card controls spacing */
+}
+
+.workshop-card .carousel-track {
+  padding: 0 16px;
+  gap: 20px;
+}
+
+.workshop-card .carousel-item {
+  flex: 0 0 200px;
+  border-radius: 14px;
+  cursor: default; /* not clickable */
+}
+
+/* Make workshop card fully static and simple */
+.workshop-card {
+  box-shadow: none; /* remove shadow for simplicity */
+  background: #3D1A0A !important; /* user-requested card color */
+  /* reduce bottom padding so card doesn't leave empty brown area below images */
+  padding: 12px 18px 0 18px !important;
+  max-width: 1400px !important;
+}
+
+/* Ensure workshop heading uses user-requested brown color (override previous white) */
+.carousel-section.workshop-section .carousel-header h2 {
+  color: #3D1A0A !important;
+}
+
+/* Disable hover transform and scaling for workshop items */
+.workshop-card .carousel-item:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove caption overlay entirely for workshop card (simple card) */
+.workshop-card .carousel-overlay {
+  display: none !important;
+}
+
+/* Remove any workshop-specific overlay background from other css */
+.workshop-card .workshop-card-overlay {
+  display: none !important;
+}
+
+/* Remove pseudo-element used to show "Click for more details" */
+.workshop-card::after,
+.workshop-card:hover::after {
+  display: none !important;
+  opacity: 0 !important;
+  content: none !important;
+}
+
+/* Hide left/right fade overlays for workshop section */
+.carousel-section.workshop-section .carousel-fade {
+  display: none !important;
+}
+
+/* Remove extra vertical whitespace for a compact card */
+.carousel-section.workshop-section {
+  padding-top: 24px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* Ensure carousel container inside the workshop card doesn't add extra space */
+.workshop-card .carousel-container {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Make the workshop card size tightly fit the carousel and round the edges */
+.workshop-card {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  display: block !important;
+}
+
+/* Ensure carousel track doesn't add vertical space and centers items */
+.workshop-card .carousel-track {
+  padding: 0 !important;
+  align-items: center !important;
+}
+
+/* Let items size to their images; remove aspect-ratio for workshop variant */
+.workshop-card .carousel-item {
+  flex: 0 0 auto !important;
+  aspect-ratio: auto !important;
+  height: auto !important;
+  box-shadow: none !important;
+}
+
+/* Remove inline-image whitespace and ensure images fill their items */
+.workshop-card .carousel-item img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  vertical-align: top !important;
+  object-fit: contain !important;
+}
+
+/* Ensure images don't have hover transformations */
+.workshop-card .carousel-item img {
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Make items non-interactive */
+.workshop-card .carousel-item {
+  cursor: default;
+  pointer-events: none;
+}
+
 
 /* Carousel track - horizontal scrolling */
 .carousel-track {
@@ -174,6 +329,10 @@
     flex: 0 0 340px;
   }
 
+  .workshop-card .carousel-item {
+    flex: 0 0 420px;
+  }
+
   .carousel-fade {
     width: 120px;
   }
@@ -189,6 +348,16 @@
     padding: 0 20px;
   }
 
+  /* Center workshop header on smaller screens */
+  .carousel-header.workshop-header {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .carousel-section.carousel-light .carousel-header.workshop-header h2 {
+    font-size: 2.2rem;
+  }
+
   .carousel-header h2 {
     font-size: 1.8rem;
   }
@@ -200,6 +369,14 @@
 
   .carousel-item {
     flex: 0 0 300px;
+  }
+
+  .workshop-card .carousel-item {
+    flex: 0 0 340px;
+  }
+
+  .workshop-card {
+    padding: 20px;
   }
 
   .carousel-fade {
@@ -227,6 +404,14 @@
 
   .carousel-item {
     flex: 0 0 240px;
+  }
+
+  .workshop-card .carousel-item {
+    flex: 0 0 240px;
+  }
+
+  .workshop-card {
+    padding: 12px;
   }
 
   .carousel-fade {

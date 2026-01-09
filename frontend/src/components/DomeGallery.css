@@ -4,6 +4,8 @@
   height: 100%;
   --radius: 520px;
   --viewer-pad: 72px;
+  --overlay-blur-color: #3b2f2f;
+  --dome-bg-color: #3b2f2f;
   --circ: calc(var(--radius) * 3.14);
   --rot-y: calc((360deg / var(--segments-x)) / 2);
   --rot-x: calc((360deg / var(--segments-y)) / 2);
@@ -34,7 +36,7 @@ main.sphere-main {
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
-  background: transparent;
+  background: var(--dome-bg-color, #3b2f2f);
 }
 
 .stage {

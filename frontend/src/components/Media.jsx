@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import './Media.css';
 import DomeGallery from './DomeGallery';
-import ImageCarousel from './ImageCarousel';
-import ImageCarouselClassic from './ImageCarouselClassic';
+import WorkshopCarousel from './WorkshopCarousel';
+import StudioCarousel from './StudioCarousel';
 import TextTestimonialStack from './TextTestimonialStack';
 import HeadingSplit from './HeadingSplit';
 import VideoTestimonialsHero from './VideoTestimonialsHero';
@@ -81,7 +81,10 @@ function Media() {
       <section
         className="media-hero"
         style={{
-          backgroundImage: "linear-gradient(120deg, rgba(22, 9, 5, 0.62) 0%, rgba(36, 17, 10, 0.52) 45%, rgba(62, 32, 18, 0.48) 100%), url('/images/gallery/pattern-brown.jpg.png')"
+          backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.08) 100%), url(${process.env.PUBLIC_URL}/images/gallery/str.jpg)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center center',
+          backgroundRepeat: 'no-repeat'
         }}
       >
         <div className="media-hero-content">
@@ -93,13 +96,13 @@ function Media() {
         </div>
       </section>
 
-      {/* ================= PHOTO GALLERY ================= */}
+      {/* ================= PRODUCT GALLERY ================= */}
       <section className="media-gallery">
         {/* 3D Dome Gallery */}
         {galleryImages.length > 0 && (
           <div className="dome-gallery-wrapper">
             <div className="section-header dome-header">
-              <h2>Photo Gallery</h2>
+              <h2>Product Gallery</h2>
             </div>
             <DomeGallery
               images={galleryImages.map(img => ({
@@ -123,27 +126,37 @@ function Media() {
 
       {/* ================= WORKSHOP MOMENTS CAROUSEL ================= */}
       {workshopGalleryImages.length > 0 && (
-        <ImageCarousel
+        <WorkshopCarousel
           images={workshopGalleryImages.map(img => ({
             src: img.image_url,
             alt: img.caption || 'Workshop moment',
             caption: img.caption
           }))}
           title="Workshop Moments"
-          colorTheme="light"
+          style={{
+            backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/wrkev.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
         />
       )}
 
       {/* ================= STUDIO & EVENTS CAROUSEL ================= */}
       {studioGalleryImages.length > 0 && (
-        <ImageCarouselClassic
+        <StudioCarousel
           images={studioGalleryImages.map(img => ({
             src: img.image_url,
             alt: img.caption || 'Studio event',
             caption: img.caption
           }))}
           title="Studio & Events"
-          colorTheme="dark"
+          style={{
+            backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/stdev.png)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
         />
       )}
 
@@ -180,7 +193,7 @@ function Media() {
           <div className="experiences-masonry">
             {experiences.map(exp => (
               <div key={exp.id} className="experience-testimonial-card">
-                {exp.title && <h3 className="experience-title">{exp.title}</h3>}
+                <div className="experience-title">{(exp.title && exp.title.trim()) ? exp.title : 'Customer Story'}</div>
                 <p className="experience-quote">"{exp.paragraph}"</p>
                 <div className="experience-author-info">
                   {exp.image_url && (
