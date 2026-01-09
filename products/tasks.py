@@ -338,3 +338,342 @@ BASHO BY SHIVANGI
         # Retry the task if it fails
         raise self.retry(exc=exc)
 
+
+# ====================
+# PRODUCT ORDER EMAIL TASKS
+# ====================
+
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def send_product_order_confirmation_email(self, order_id):
+    """
+    Send order confirmation email to customer after successful payment
+    
+    Args:
+        order_id: Order database ID
+    """
+    try:
+        from .models import Order
+        
+        # Get order from database
+        try:
+            order = Order.objects.get(id=order_id)
+        except Order.DoesNotExist:
+            return f"Order {order_id} not found"
+        
+        # Prepare context data for email template
+        context = {
+            'customer_name': order.customer_name,
+            'order_number': order.order_number,
+            'order_date': order.created_at.strftime('%B %d, %Y at %I:%M %p'),
+            'payment_method': order.get_payment_method_display(),
+            'subtotal': f"{order.subtotal:,.2f}",
+            'shipping_charge': f"{order.shipping_charge:,.2f}",
+            'tax_amount': f"{order.tax_amount:,.2f}",
+            'discount_amount': f"{order.discount_amount:,.2f}",
+            'total_amount': f"{order.total_amount:,.2f}",
+            'shipping_address': order.shipping_address,
+            'shipping_city': order.shipping_city,
+            'shipping_state': order.shipping_state,
+            'shipping_pincode': order.shipping_pincode,
+            'customer_phone': order.customer_phone,
+            'company_email': settings.COMPANY_EMAIL,
+            'company_phone': settings.COMPANY_PHONE,
+            'order_items': [],
+        }
+        
+        # Add order items to context
+        for item in order.items.all():
+            context['order_items'].append({
+                'product_name': item.product_name,
+                'quantity': item.quantity,
+                'product_price': f"{item.product_price:,.2f}",
+                'total_price': f"{item.get_total_price():,.2f}",
+            })
+        
+        # Render HTML email template
+        html_content = render_to_string('emails/order_confirmation.html', context)
+        
+        # Create plain text version (fallback)
+        text_content = f"""
+Dear {order.customer_name},
+
+Thank you for your order!
+
+Order Number: {order.order_number}
+Order Date: {context['order_date']}
+Payment Status: Paid
+Total Amount: ₹{context['total_amount']}
+
+We'll process your order and send you tracking details soon.
+
+Thank you for supporting Basho By Shivangi!
+
+Best regards,
+Basho By Shivangi Team
+        """.strip()
+        
+        # Create email message
+        subject = f"Order Confirmation #{order.order_number} - Basho By Shivangi"
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=text_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[order.customer_email]
+        )
+        
+        # Attach HTML version
+        msg.attach_alternative(html_content, "text/html")
+        
+        # Attach header image inline
+        import os
+        from email.mime.image import MIMEImage
+        
+        header_image_path = os.path.join(settings.BASE_DIR, 'email_header.jpg')
+        if os.path.exists(header_image_path):
+            with open(header_image_path, 'rb') as img_file:
+                img = MIMEImage(img_file.read())
+                img.add_header('Content-ID', '<header_image>')
+                img.add_header('Content-Disposition', 'inline', filename='header.jpg')
+                msg.attach(img)
+        
+        # Send email
+        msg.send(fail_silently=False)
+        
+        return f"Order confirmation email sent to {order.customer_email} for order {order.order_number}"
+        
+    except Exception as exc:
+        # Retry the task if it fails
+        raise self.retry(exc=exc)
+
+
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def send_product_order_admin_notification(self, order_id):
+    """
+    Send notification email to admin when new product order is placed
+    
+    Args:
+        order_id: Order database ID
+    """
+    try:
+        from .models import Order
+        
+        # Get order from database
+        try:
+            order = Order.objects.get(id=order_id)
+        except Order.DoesNotExist:
+            return f"Order {order_id} not found"
+        
+        # Prepare email content
+        subject = f"New Order Received - {order.order_number}"
+        
+        text_content = f"""
+New order received!
+
+Order Number: {order.order_number}
+Customer: {order.customer_name}
+Email: {order.customer_email}
+Phone: {order.customer_phone}
+Total Amount: ₹{order.total_amount:,.2f}
+Payment Status: {'Paid' if order.payment_status else 'Pending'}
+
+Items:
+"""
+        
+        for item in order.items.all():
+            text_content += f"- {item.product_name} x {item.quantity} = ₹{item.get_total_price():,.2f}\n"
+        
+        text_content += f"""
+Shipping Address:
+{order.shipping_address}
+{order.shipping_city}, {order.shipping_state} {order.shipping_pincode}
+
+View in admin: http://127.0.0.1:8000/admin/products/order/{order.id}/
+
+Please process this order in the admin panel.
+        """.strip()
+        
+        # Create and send email
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=text_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.COMPANY_EMAIL]
+        )
+        
+        msg.send(fail_silently=False)
+        
+        return f"Admin notification sent for order {order.order_number}"
+        
+    except Exception as exc:
+        # Retry the task if it fails
+        raise self.retry(exc=exc)
+
+
+# ====================
+# WORKSHOP REGISTRATION EMAIL TASKS
+# ====================
+
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def send_workshop_confirmation_email(self, registration_id):
+    """
+    Send workshop registration confirmation email to customer
+    
+    Args:
+        registration_id: WorkshopRegistration database ID
+    """
+    try:
+        from workshops.models import WorkshopRegistration
+        
+        # Get registration from database
+        try:
+            registration = WorkshopRegistration.objects.get(id=registration_id)
+        except WorkshopRegistration.DoesNotExist:
+            return f"Workshop registration {registration_id} not found"
+        
+        # Prepare context data for email template
+        context = {
+            'customer_name': registration.full_name,
+            'registration_number': registration.registration_number,
+            'workshop_name': registration.workshop.name,
+            'workshop_type': registration.workshop.get_workshop_type_display(),
+            'difficulty_level': registration.workshop.get_difficulty_level_display(),
+            'duration': registration.workshop.duration_hours,
+            'number_of_participants': registration.number_of_participants,
+            'total_amount': f"{registration.total_amount:,.2f}",
+            'status': registration.get_status_display(),
+            'special_requests': registration.special_requests,
+            'company_email': settings.COMPANY_EMAIL,
+            'company_phone': settings.COMPANY_PHONE,
+        }
+        
+        # Add slot information if available
+        if registration.slot:
+            context['slot_date'] = registration.slot.date.strftime('%B %d, %Y')
+            context['slot_time'] = f"{registration.slot.start_time.strftime('%I:%M %p')} - {registration.slot.end_time.strftime('%I:%M %p')}"
+        
+        # Render HTML email template
+        html_content = render_to_string('emails/workshop_confirmation.html', context)
+        
+        # Create plain text version (fallback)
+        text_content = f"""
+Dear {registration.full_name},
+
+Thank you for registering for our pottery workshop!
+
+Registration Number: {registration.registration_number}
+Workshop: {registration.workshop.name}
+Participants: {registration.number_of_participants}
+Total Amount: ₹{registration.total_amount:,.2f}
+
+We're excited to have you join us for a creative and enriching experience.
+
+If you have any questions, please contact us:
+Email: {settings.COMPANY_EMAIL}
+Phone: {settings.COMPANY_PHONE}
+
+See you soon!
+Team Basho By Shivangi
+        """.strip()
+        
+        # Create email message
+        subject = f"Workshop Registration Confirmed - {registration.registration_number}"
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=text_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[registration.email]
+        )
+        
+        # Attach HTML version
+        msg.attach_alternative(html_content, "text/html")
+        
+        # Attach header image inline
+        import os
+        from email.mime.image import MIMEImage
+        
+        header_image_path = os.path.join(settings.BASE_DIR, 'email_header.jpg')
+        if os.path.exists(header_image_path):
+            with open(header_image_path, 'rb') as img_file:
+                img = MIMEImage(img_file.read())
+                img.add_header('Content-ID', '<header_image>')
+                img.add_header('Content-Disposition', 'inline', filename='header.jpg')
+                msg.attach(img)
+        
+        # Send email
+        msg.send(fail_silently=False)
+        
+        return f"Workshop confirmation email sent to {registration.email} for {registration.registration_number}"
+        
+    except Exception as exc:
+        # Retry the task if it fails
+        raise self.retry(exc=exc)
+
+
+@shared_task(bind=True, max_retries=3, default_retry_delay=60)
+def send_workshop_admin_notification(self, registration_id):
+    """
+    Send notification email to admin when new workshop registration is created
+    
+    Args:
+        registration_id: WorkshopRegistration database ID
+    """
+    try:
+        from workshops.models import WorkshopRegistration
+        
+        # Get registration from database
+        try:
+            registration = WorkshopRegistration.objects.get(id=registration_id)
+        except WorkshopRegistration.DoesNotExist:
+            return f"Workshop registration {registration_id} not found"
+        
+        # Prepare email content
+        subject = f"New Workshop Registration - {registration.registration_number}"
+        
+        text_content = f"""
+New workshop registration received!
+
+Registration Number: {registration.registration_number}
+Workshop: {registration.workshop.name}
+Customer: {registration.full_name}
+Email: {registration.email}
+Phone: {registration.phone}
+Participants: {registration.number_of_participants}
+Total Amount: ₹{registration.total_amount:,.2f}
+Status: {registration.get_status_display()}
+"""
+        
+        if registration.slot:
+            text_content += f"""
+Scheduled Slot:
+Date: {registration.slot.date.strftime('%B %d, %Y')}
+Time: {registration.slot.start_time.strftime('%I:%M %p')} - {registration.slot.end_time.strftime('%I:%M %p')}
+"""
+        
+        if registration.special_requests:
+            text_content += f"""
+Special Requests:
+{registration.special_requests}
+"""
+        
+        text_content += f"""
+View in admin: http://127.0.0.1:8000/admin/workshops/workshopregistration/{registration.id}/
+
+Please confirm the registration and prepare for the workshop.
+        """.strip()
+        
+        # Create and send email
+        msg = EmailMultiAlternatives(
+            subject=subject,
+            body=text_content,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=[settings.COMPANY_EMAIL]
+        )
+        
+        msg.send(fail_silently=False)
+        
+        return f"Admin notification sent for workshop registration {registration.registration_number}"
+        
+    except Exception as exc:
+        # Retry the task if it fails
+        raise self.retry(exc=exc)
+

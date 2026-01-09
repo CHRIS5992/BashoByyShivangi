@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Workshop Registration Confirmation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f1ed;
+            color: #2c2c2c;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        h1 {
+            color: #8B4513;
+            font-size: 28px;
+            margin: 0 0 20px 0;
+            text-align: center;
+        }
+
+        .greeting {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #2c2c2c;
+        }
+
+        .confirmation-box {
+            background-color: #f9f6f1;
+            border-left: 4px solid #8B4513;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .workshop-details {
+            background-color: #fff;
+            border: 1px solid #e0d8cc;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .detail-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0ebe3;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #8B4513;
+            width: 180px;
+            flex-shrink: 0;
+        }
+
+        .detail-value {
+            color: #2c2c2c;
+            flex-grow: 1;
+        }
+
+        .workshop-info-box {
+            background-color: #f0ebe3;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .info-section {
+            margin: 20px 0;
+        }
+
+        .info-section h3 {
+            color: #8B4513;
+            font-size: 18px;
+            margin: 0 0 15px 0;
+        }
+
+        .info-section p {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #8B4513;
+            color: #ffffff !important;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .cta-button:hover {
+            background-color: #A0522D;
+        }
+
+        .footer {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #D2B48C;
+            text-decoration: none;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #e0d8cc;
+            margin: 30px 0;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .content {
+                padding: 20px 15px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+            }
+
+            .detail-label {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="header">
+            <img src="cid:header_image" alt="Basho By Shivangi">
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h1>🎨 Workshop Registration Confirmed!</h1>
+
+            <p class="greeting">Dear {{ customer_name }},</p>
+
+            <div class="confirmation-box">
+                <p style="margin: 0; font-size: 16px; line-height: 1.6;">
+                    Thank you for registering for our pottery workshop! We're thrilled to have you join us for a
+                    creative and enriching experience.
+                </p>
+            </div>
+
+            <!-- Workshop Details -->
+            <div class="workshop-details">
+                <h2 style="margin: 0 0 20px 0; color: #8B4513; font-size: 20px;">Workshop Details</h2>
+
+                <div class="detail-row">
+                    <span class="detail-label">Registration Number:</span>
+                    <span class="detail-value"><strong>{{ registration_number }}</strong></span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Workshop:</span>
+                    <span class="detail-value"><strong>{{ workshop_name }}</strong></span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Workshop Type:</span>
+                    <span class="detail-value">{{ workshop_type }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Difficulty Level:</span>
+                    <span class="detail-value">{{ difficulty_level }}</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Duration:</span>
+                    <span class="detail-value">{{ duration }} hours</span>
+                </div>
+
+                {% if slot_date %}
+                <div class="detail-row">
+                    <span class="detail-label">Date:</span>
+                    <span class="detail-value"><strong>{{ slot_date }}</strong></span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Time:</span>
+                    <span class="detail-value"><strong>{{ slot_time }}</strong></span>
+                </div>
+                {% endif %}
+
+                <div class="detail-row">
+                    <span class="detail-label">Participants:</span>
+                    <span class="detail-value">{{ number_of_participants }} person(s)</span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Total Amount:</span>
+                    <span class="detail-value"><strong style="font-size: 18px; color: #8B4513;">₹{{ total_amount
+                            }}</strong></span>
+                </div>
+
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value"><span style="color: #228B22; font-weight: 600;">{{ status
+                            }}</span></span>
+                </div>
+            </div>
+
+            <!-- What to Bring -->
+            <div class="info-section">
+                <h3>📝 What to Bring</h3>
+                <div class="workshop-info-box">
+                    <p>✓ Comfortable clothing (pottery can be messy!)</p>
+                    <p>✓ An apron or clothes you don't mind getting dirty</p>
+                    <p>✓ Your creativity and enthusiasm!</p>
+                    <p>✓ We provide all materials, tools, and refreshments</p>
+                </div>
+            </div>
+
+            <!-- What to Expect -->
+            <div class="info-section">
+                <h3>✨ What to Expect</h3>
+                <div class="workshop-info-box">
+                    <p>• Hands-on pottery experience guided by expert artisans</p>
+                    <p>• Learn traditional pottery techniques</p>
+                    <p>• Create your own unique ceramic piece</p>
+                    <p>• Take home your creation (once it's been fired and glazed)</p>
+                    <p>• Enjoy tea and refreshments in our beautiful studio space</p>
+                </div>
+            </div>
+
+            {% if special_requests %}
+            <div class="info-section">
+                <h3>📌 Your Special Requests</h3>
+                <div class="workshop-info-box">
+                    <p>{{ special_requests }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="divider"></div>
+
+            <!-- Contact Information -->
+            <div class="info-section">
+                <h3>📞 Need to Contact Us?</h3>
+                <p>If you have any questions or need to reschedule, please don't hesitate to reach out:</p>
+                <p>📧 Email: <a href="mailto:{{ company_email }}" style="color: #8B4513;">{{ company_email }}</a></p>
+                <p>📱 Phone: {{ company_phone }}</p>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <p style="font-size: 16px; color: #8B4513; font-style: italic;">
+                    We can't wait to see you at the workshop!
+                </p>
+                <p style="margin-top: 20px;">
+                    With heartfelt appreciation,<br>
+                    <strong>Team Basho By Shivangi</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p style="margin: 0 0 10px 0; font-size: 16px; font-weight: 600;">BASHO BY SHIVANGI</p>
+            <p style="margin: 5px 0;">Crafting Timeless Pottery with Heart</p>
+            <p style="margin: 15px 0 5px 0;">
+                <a href="mailto:{{ company_email }}">{{ company_email }}</a> | {{ company_phone }}
+            </p>
+            <p style="margin: 15px 0; font-size: 12px; color: #999;">
+                This is an automated confirmation email. Please do not reply directly to this email.
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
