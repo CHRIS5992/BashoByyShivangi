@@ -68,7 +68,12 @@ function Signup() {
   };
 
   return (
-    <div className="login-page">
+    <div 
+      className="login-page"
+      style={{
+        backgroundImage: `url(/static/images/gallery/login-bg.png)`
+      }}
+    >
       <div className="login-container">
         <div className="login-card">
           <div className="login-header">
