@@ -81,7 +81,7 @@ function Media() {
       <section
         className="media-hero"
         style={{
-          backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.08) 100%), url(/images/gallery/str.jpg)`,
+          backgroundImage: `linear-gradient(90deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.08) 100%), url(static/images/gallery/str.jpg)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center center',
           backgroundRepeat: 'no-repeat'
@@ -134,7 +134,7 @@ function Media() {
           }))}
           title="Workshop Moments"
           style={{
-            backgroundImage: `url(/images/gallery/wrkev.png)`,
+            backgroundImage: `url(/static/images/gallery/wrkev.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -152,7 +152,7 @@ function Media() {
           }))}
           title="Studio & Events"
           style={{
-            backgroundImage: `url(/images/gallery/stdev.png)`,
+            backgroundImage: `url(/static/images/gallery/stdev.png)`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -161,7 +161,7 @@ function Media() {
       )}
 
       <section className="media-testimonials" style={{
-        backgroundImage: `url(/images/gallery/textbg.jpg)`,
+        backgroundImage: `url(/static/images/gallery/textbg.jpg)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center top',
         backgroundRepeat: 'no-repeat'

@@ -36,7 +36,7 @@ function Cart() {
     <div className="cart-page">
       {/* Hero Section */}
       <section className="cart-hero" style={{
-        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%), url('/images/gallery/cartheader.jpg')",
+        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%), url('/static/images/gallery/cartheader.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative'

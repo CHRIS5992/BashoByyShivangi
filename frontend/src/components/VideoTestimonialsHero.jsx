@@ -9,7 +9,7 @@ export default function VideoTestimonialsHero({ videos = [], onPlay }) {
 
   const currentThumb = useMemo(() => {
     if (!current) return null;
-    return current.thumbnail_url || `${process.env.PUBLIC_URL}/images/gallery/vdbg.png`;
+    return current.thumbnail_url || '/static/images/gallery/vdbg.png';
   }, [current]);
 
   if (!len) return null;
@@ -18,7 +18,7 @@ export default function VideoTestimonialsHero({ videos = [], onPlay }) {
     <section
       className="video-hero-section"
       style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/gallery/vdbg.png)`,
+        backgroundImage: `url(/static/images/gallery/vdbg.png)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center'
       }}

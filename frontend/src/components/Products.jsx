@@ -117,7 +117,7 @@ function Products() {
   return (
     <div className="products-page">
       {/* HEADER - 1/3 screen with pattern and Japanese text */}
-      <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/images/gallery/CollectionHeaderbg.png')" }}>
+      <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/CollectionHeaderbg.png')" }}>
         <h1 className="funnel-title">
           <span className="japanese-accent">陶器</span>
           Collections
@@ -218,7 +218,9 @@ function Products() {
       </section>
 
       {/* Custom Order Form */}
-      <CustomOrderForm />
+      <div className="custom-order-background-wrapper">
+        <CustomOrderForm />
+      </div>
 
       {/* Product Care */}
       <ProductCare />

@@ -297,7 +297,7 @@ function Checkout() {
     <div className="checkout-page">
       {/* Hero Section */}
       <section className="checkout-hero" style={{
-        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%), url('/images/gallery/checkout.jpg')",
+        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%), url('/static/images/gallery/checkout.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative'
