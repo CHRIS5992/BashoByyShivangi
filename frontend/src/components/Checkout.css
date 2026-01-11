@@ -1,28 +1,64 @@
 /* Modern Glassmorphism Checkout Form */
 
+/* ========== SCOPED CHECKOUT HERO STYLES ========== */
+.checkout-hero {
+  padding: 80px 0 !important;
+}
+
+.checkout-hero .main-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #FFFFFF !important;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 12px rgba(255, 0, 0, 0.4);
+}
+
+.checkout-hero .japanese-accent {
+  display: block;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #FF4444;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.1em;
+}
+
+.checkout-hero .hero-subtitle {
+  color: #FCF9F5;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+}
+
+/* ================================================= */
+
 .checkout-form-section {
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-  background: rgba(237, 216, 180, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-radius: 24px;
+  background: #FFFFFF;
+  border-radius: 16px;
   padding: 3rem 3.5rem;
-  border: 1px solid rgba(142, 80, 34, 0.3);
-  box-shadow: 0 8px 32px rgba(68, 45, 28, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(101, 40, 16, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
 }
 
 .checkout-form-section h2 {
-  color: #2d2d2d;
+  color: #652810;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 800;
   text-align: center;
-  letter-spacing: 0.05rem;
-  margin-bottom: 1.5rem;
+  letter-spacing: 0;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
   padding-bottom: 0.8rem;
-  border-bottom: 2px solid rgba(101, 40, 16, 0.2);
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.5);
+  border-bottom: 2px solid rgba(101, 40, 16, 0.1);
+  text-transform: capitalize;
 }
 
 .checkout-form {
@@ -51,42 +87,47 @@
 }
 
 .form-group label {
-  color: #3d3d3d;
-  font-size: 0.92rem;
+  color: #652810;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.9rem;
   font-weight: 600;
-  letter-spacing: 0.02rem;
+  letter-spacing: 0.01rem;
   margin-left: 0.2rem;
 }
 
 .form-group input,
 .form-group textarea {
-  border: none;
+  border: 1px solid rgba(101, 40, 16, 0.15);
   padding: 1.1rem 1.2rem;
-  border-radius: 1rem;
-  background: #f0f0f0;
-  box-shadow: 20px 20px 60px #c0c0c0, -20px -20px 60px #ffffff;
+  border-radius: 8px;
+  background: #FCFAF7;
+  box-shadow: none;
   transition: 0.3s;
-  color: #2d2d2d;
-  font-family: 'Poppins', sans-serif;
-  font-size: 0.9rem;
+  color: #442D1C;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
 }
 
 .form-group input:hover,
 .form-group textarea:hover {
-  background: #f0f0f0;
+  background: #FCFAF7;
+  border-color: rgba(101, 40, 16, 0.3);
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
   color: rgba(61, 61, 61, 0.5);
+  font-family: 'Work Sans', sans-serif;
+  opacity: 0.5;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-  outline-color: #f0f0f0;
-  background: #f0f0f0;
-  box-shadow: inset 20px 20px 60px #d1d1d1, inset -20px -20px 60px #ffffff;
-  transition: 0.3s;
+  outline: none;
+  background: #FFFFFF;
+  border-color: #652810;
+  box-shadow: none;
 }
 
 .form-group input:-webkit-autofill,
@@ -130,37 +171,24 @@
   margin-top: 1.5rem;
   cursor: pointer;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #652810 0%, #8E5022 100%);
+  background: #652810;
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   color: white;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.05rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(101, 40, 16, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
   position: relative;
   overflow: hidden;
-}
-
-.pay-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  text-transform: capitalize;
 }
 
 .pay-btn:hover {
+  background-color: #7A3518;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(101, 40, 16, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.pay-btn:hover::before {
-  left: 100%;
+  box-shadow: 0 8px 20px rgba(101, 40, 16, 0.3);
 }
 
 .pay-btn:active {

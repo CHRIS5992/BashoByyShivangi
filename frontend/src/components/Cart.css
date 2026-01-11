@@ -42,32 +42,38 @@
 .hero-title {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  font-size: 3.5rem;
-  font-weight: 700;
+  gap: 10px;
   margin-bottom: 20px;
-  letter-spacing: -1px;
   animation: fadeInDown 0.8s ease-out;
 }
 
-.japanese-accent {
-  font-size: 1.5rem;
-  font-weight: 300;
-  opacity: 0.9;
-  letter-spacing: 4px;
+.cart-hero .japanese-accent {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #FF4444;
+  letter-spacing: 6px;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.6);
 }
 
-.main-title {
-  font-size: 3.5rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+.cart-hero .main-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
 }
 
-.hero-subtitle {
+.cart-hero .hero-subtitle {
   margin-top: 12px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  color: #FFFFFF !important;
   opacity: 0.95;
-  font-weight: 300;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.1em;
   animation: fadeIn 1s ease-out 0.2s backwards;
 }
 
@@ -77,6 +83,7 @@
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -87,6 +94,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -150,12 +158,13 @@
   align-items: start;
 }
 
-/* Cart Items Section */
+/* Cart Items Section - Porcelain Cards */
 .cart-items {
-  background: white;
+  background: #FFFFFF;
   border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 36px;
+  border: 1px solid rgba(101, 40, 16, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
 }
 
 .cart-header {
@@ -168,8 +177,10 @@
 }
 
 .cart-header h2 {
-  font-size: 1.8rem;
-  color: #442D1C;
+  font-size: 1.6rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  color: #652810;
 }
 
 .btn-text {
@@ -218,8 +229,10 @@
 }
 
 .item-details h3 {
-  font-size: 1.1rem;
-  color: #333;
+  font-size: 1.15rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  color: #652810;
   margin-bottom: 8px;
 }
 
@@ -239,7 +252,9 @@
 }
 
 .item-price {
-  color: #666;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  color: #555;
   font-size: 0.95rem;
 }
 
@@ -248,25 +263,27 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background-color: #f8f8f8;
-  padding: 8px 12px;
-  border-radius: 8px;
+  background-color: #FAFAF8;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(101, 40, 16, 0.06);
 }
 
 .quantity-fixed {
   min-width: 80px;
   text-align: center;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 600;
   color: #652810;
   font-size: 0.9rem;
 }
 
 .quantity-btn {
-  background-color: white;
-  border: 1px solid #ddd;
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  background-color: #F5F1EB;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -277,15 +294,15 @@
 
 .quantity-btn:hover {
   background-color: #652810;
-  border-color: #652810;
   color: white;
 }
 
 .quantity {
   min-width: 30px;
   text-align: center;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 600;
-  color: #333;
+  color: #442D1C;
 }
 
 /* Item Total */
@@ -297,9 +314,10 @@
 }
 
 .total-price {
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: #442D1C;
+  font-size: 1.2rem;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 700;
+  color: #652810;
 }
 
 .remove-btn {
@@ -320,21 +338,24 @@
   color: #d32f2f;
 }
 
-/* Cart Summary */
+/* Cart Summary - Porcelain Card */
 .cart-summary,
 .checkout-summary {
-  background: white;
+  background: #FFFFFF;
   border-radius: 12px;
-  padding: 32px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 36px;
+  border: 1px solid rgba(101, 40, 16, 0.08);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 100px;
 }
 
 .cart-summary h2,
 .checkout-summary h2 {
-  font-size: 1.5rem;
-  color: #442D1C;
+  font-size: 1.4rem;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 700;
+  color: #652810;
   margin-bottom: 24px;
 }
 
@@ -343,13 +364,15 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  color: #666;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  color: #555;
 }
 
 .summary-row.total {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #442D1C;
+  color: #652810;
   padding: 20px 0 0 0;
 }
 
@@ -367,18 +390,19 @@
   background-color: #652810;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  border-radius: 12px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .checkout-btn:hover,
 .pay-btn:hover {
-  background-color: #8E5022;
+  background-color: #7A3518;
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(101, 40, 16, 0.3);
+  box-shadow: 0 8px 20px rgba(101, 40, 16, 0.3);
 }
 
 .continue-shopping-btn {
@@ -387,17 +411,18 @@
   margin-top: 12px;
   background-color: transparent;
   color: #652810;
-  border: 2px solid #652810;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  border: 1px solid rgba(101, 40, 16, 0.25);
+  border-radius: 12px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .continue-shopping-btn:hover {
-  background-color: #652810;
-  color: white;
+  background-color: rgba(101, 40, 16, 0.05);
+  border-color: #652810;
 }
 
 /* Checkout Form */
@@ -535,6 +560,7 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+
   .cart-container,
   .checkout-container {
     grid-template-columns: 1fr;
@@ -547,6 +573,7 @@
 }
 
 @media (max-width: 768px) {
+
   .cart-content,
   .checkout-content {
     padding: 40px 20px;

@@ -21,8 +21,8 @@ function Cart() {
           <ShoppingBag size={80} color="#652810" strokeWidth={1.5} />
           <h2>Your Cart is Empty</h2>
           <p>Add some beautiful pottery pieces to your cart</p>
-          <button 
-            className="btn-primary" 
+          <button
+            className="btn-primary"
             onClick={() => navigate('/products')}
           >
             Browse Collections
@@ -35,8 +35,8 @@ function Cart() {
   return (
     <div className="cart-page">
       {/* Hero Section */}
-      <section className="cart-hero" style={{ 
-        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')",
+      <section className="cart-hero" style={{
+        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%), url('/images/gallery/cartheader.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative'
@@ -57,8 +57,8 @@ function Cart() {
           <div className="cart-items">
             <div className="cart-header">
               <h2>Cart Items ({cart.length})</h2>
-              <button 
-                className="btn-text" 
+              <button
+                className="btn-text"
                 onClick={clearCart}
               >
                 Clear All
@@ -68,21 +68,21 @@ function Cart() {
             {cart.map((item) => (
               <div key={item.cartKey} className="cart-item">
                 <div className="item-image">
-                  <img 
-                    src={item.image_url_full || item.image || '/static/images/products/placeholder.svg'} 
+                  <img
+                    src={item.image_url_full || item.image || '/static/images/products/placeholder.svg'}
                     alt={item.name}
                   />
                 </div>
-                
+
                 <div className="item-details">
                   <h3>{item.name}</h3>
                   {item.type === 'workshop' && (
                     <div className="workshop-details">
                       <p className="workshop-slot-info">
                         <CalendarHeart size={16} color="#652810" strokeWidth={2} />
-                        {new Date(item.slotDate).toLocaleDateString('en-IN', { 
-                          weekday: 'short', 
-                          month: 'short', 
+                        {new Date(item.slotDate).toLocaleDateString('en-IN', {
+                          weekday: 'short',
+                          month: 'short',
                           day: 'numeric',
                           year: 'numeric'
                         })}
@@ -107,14 +107,14 @@ function Cart() {
                 <div className="item-quantity">
                   {item.type !== 'workshop' && (
                     <>
-                      <button 
+                      <button
                         onClick={() => updateQuantity(item.cartKey, item.quantity - 1)}
                         className="quantity-btn"
                       >
                         <Minus size={16} />
                       </button>
                       <span className="quantity">{item.quantity}</span>
-                      <button 
+                      <button
                         onClick={() => updateQuantity(item.cartKey, item.quantity + 1)}
                         className="quantity-btn"
                       >
@@ -131,7 +131,7 @@ function Cart() {
                   <p className="total-price">
                     ₹{(parseFloat(item.price) * item.quantity).toLocaleString('en-IN')}
                   </p>
-                  <button 
+                  <button
                     onClick={() => removeFromCart(item.cartKey)}
                     className="remove-btn"
                     title="Remove from cart"
@@ -146,12 +146,12 @@ function Cart() {
           {/* Cart Summary */}
           <div className="cart-summary">
             <h2>Order Summary</h2>
-            
+
             <div className="summary-row">
               <span>Subtotal</span>
               <span>₹{getCartTotal().toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
-            
+
             <div className="summary-row">
               <span>Shipping</span>
               <span>Calculated at checkout</span>
@@ -164,14 +164,14 @@ function Cart() {
               <span>₹{getCartTotal().toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
             </div>
 
-            <button 
+            <button
               className="checkout-btn"
               onClick={handleCheckout}
             >
               Proceed to Checkout
             </button>
 
-            <button 
+            <button
               className="continue-shopping-btn"
               onClick={() => navigate('/products')}
             >

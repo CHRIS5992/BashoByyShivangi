@@ -47,6 +47,12 @@
   position: relative;
   z-index: 1;
   animation: fadeInDown 0.8s ease-out;
+  text-shadow:
+    /* Soft blurred shadow all around - lift effect */
+    0 0 8px rgba(0, 0, 0, 0.9),
+    0 0 15px rgba(0, 0, 0, 0.7),
+    0 0 30px rgba(0, 0, 0, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.8);
 }
 
 .workshops-header p {
@@ -56,6 +62,12 @@
   position: relative;
   z-index: 1;
   animation: fadeIn 1s ease-out 0.2s backwards;
+  text-shadow:
+    /* Soft blurred shadow all around - lift effect */
+    0 0 6px rgba(0, 0, 0, 0.9),
+    0 0 12px rgba(0, 0, 0, 0.7),
+    0 0 25px rgba(0, 0, 0, 0.5),
+    0 3px 10px rgba(0, 0, 0, 0.8);
 }
 
 /* DESCRIPTION SECTION - Clean and centered */
@@ -95,6 +107,7 @@
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -106,6 +119,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -152,6 +166,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -163,6 +178,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -249,7 +265,7 @@
   border-radius: 50px;
   overflow: hidden;
   box-shadow: 20px 20px 60px #bebebe,
-              -20px -20px 60px #ffffff;
+    -20px -20px 60px #ffffff;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
@@ -266,21 +282,19 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(to bottom, 
-    rgba(0, 0, 0, 0.1) 0%,
-    rgba(0, 0, 0, 0.3) 40%,
-    rgba(68, 45, 28, 0.85) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0.3) 40%,
+      rgba(68, 45, 28, 0.85) 100%);
   transition: background 0.5s ease;
   z-index: 1;
 }
 
 .workshop-card:hover .workshop-card-overlay {
-  background: linear-gradient(to bottom, 
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(0, 0, 0, 0.4) 40%,
-    rgba(68, 45, 28, 0.92) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.2) 0%,
+      rgba(0, 0, 0, 0.4) 40%,
+      rgba(68, 45, 28, 0.92) 100%);
 }
 
 .workshop-card::after {
@@ -309,7 +323,7 @@
 
 .workshop-card:hover {
   box-shadow: 25px 25px 70px #bebebe,
-              -25px -25px 70px #ffffff;
+    -25px -25px 70px #ffffff;
 }
 
 .workshop-placeholder-bg {
@@ -876,11 +890,11 @@
   .modal-content {
     grid-template-columns: 1fr;
   }
-  
+
   .modal-image {
     height: 320px;
   }
-  
+
   .workshops-grid {
     grid-template-columns: 1fr;
     padding: 0 20px;
@@ -891,24 +905,24 @@
   .workshops-header h1 {
     font-size: 2.5rem;
   }
-  
+
   .workshops-header p {
     font-size: 1.1rem;
   }
-  
+
   .workshops-filter {
     flex-direction: column;
     padding: 30px 20px;
   }
-  
+
   .workshops-filter button {
     width: 100%;
   }
-  
+
   .modal-content {
     padding: 30px 20px;
   }
-  
+
   .registration-form {
     padding: 30px 20px;
   }
@@ -920,6 +934,7 @@
     height: auto;
     padding: 30px 10px;
   }
+
   .workshops-collage-left,
   .workshops-collage-right {
     width: 100%;
@@ -927,16 +942,19 @@
     gap: 8px;
     justify-content: center;
   }
+
   .workshops-collage-left img,
   .workshops-collage-right img {
     width: 23%;
     height: 80px;
   }
+
   .workshops-description-center {
     width: 100%;
     padding: 16px 0;
   }
 }
+
 /* =============================================
    PAST CREATIONS SECTION - Infinite Scroll
    ============================================= */
@@ -1009,6 +1027,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-50%);
   }

@@ -33,7 +33,7 @@ function Checkout() {
     script.src = 'https://checkout.razorpay.com/v1/checkout.js';
     script.async = true;
     document.body.appendChild(script);
-    
+
     return () => {
       document.body.removeChild(script);
     };
@@ -49,7 +49,7 @@ function Checkout() {
   const calculateShipping = async () => {
     try {
       setIsCalculatingShipping(true);
-      
+
       // Prepare items array with product IDs and quantities
       const items = cart.map(item => ({
         product_id: item.id,
@@ -68,7 +68,7 @@ function Checkout() {
       });
 
       const data = await response.json();
-      
+
       if (response.ok) {
         setShippingCost(data.shipping_charge);
       } else {
@@ -147,7 +147,7 @@ function Checkout() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -157,11 +157,11 @@ function Checkout() {
     }
 
     setIsProcessing(true);
-    
+
     try {
       const totalAmount = getCartTotal() + shippingCost;
       const customerName = `${formData.firstName} ${formData.lastName}`;
-      
+
       // Step 1: Create Razorpay order
       const orderResponse = await fetch('/api/products/create-razorpay-order/', {
         method: 'POST',
@@ -208,7 +208,7 @@ function Checkout() {
           color: '#8B4513'
         },
         modal: {
-          ondismiss: function() {
+          ondismiss: function () {
             setIsProcessing(false);
             alert('Payment cancelled');
           }
@@ -217,7 +217,7 @@ function Checkout() {
 
       const razorpay = new window.Razorpay(options);
       razorpay.open();
-      
+
     } catch (error) {
       console.error('Error initiating payment:', error);
       alert(error.message || 'An error occurred while initiating payment. Please try again.');
@@ -296,15 +296,15 @@ function Checkout() {
   return (
     <div className="checkout-page">
       {/* Hero Section */}
-      <section className="checkout-hero" style={{ 
-        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')",
+      <section className="checkout-hero" style={{
+        backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.7) 100%), url('/images/gallery/checkout.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative'
       }}>
         <div className="hero-content">
           <h1 className="hero-title">
-            <span className="japanese-accent">会計</span>
+            <span className="japanese-accent">チェックアウト</span>
             <span className="main-title">Checkout</span>
           </h1>
           <p className="hero-subtitle">Complete your order</p>
@@ -432,8 +432,8 @@ function Checkout() {
                 </div>
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="pay-btn"
                 disabled={isProcessing}
               >
@@ -445,7 +445,7 @@ function Checkout() {
           {/* Order Summary */}
           <div className="checkout-summary">
             <h2>Order Summary</h2>
-            
+
             <div className="summary-items">
               {cart.map((item) => (
                 <div key={item.id} className="summary-item">

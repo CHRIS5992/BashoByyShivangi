@@ -18,7 +18,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
+    background-image:
         repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(61, 47, 42, 0.02) 2px, rgba(61, 47, 42, 0.02) 4px);
     opacity: 0.3;
 }
@@ -155,25 +155,35 @@
     border-left: 4px solid var(--terracotta);
 }
 
-/* ========== PRODUCT GRID ========== */
+/* ========== PRODUCT GRID - PREMIUM COLLECTION STYLING ========== */
+
+/* Import Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap');
+
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--spacing-md);
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
     margin-top: var(--spacing-lg);
+    position: relative;
+    z-index: 2;
 }
 
+/* Background removed - blank slate */
+
 .product-card {
-    background: var(--off-white);
-    border: 1px solid rgba(61, 47, 42, 0.1);
+    background: #fdfbf8;
+    border: 1px solid rgba(101, 40, 16, 0.08);
+    border-radius: 12px;
     overflow: hidden;
-    transition: var(--transition);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     position: relative;
+    box-shadow: 0 4px 12px rgba(101, 40, 16, 0.06);
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(101, 40, 16, 0.15);
 }
 
 .product-image {
@@ -186,53 +196,70 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: var(--transition);
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover .product-image img {
-    transform: scale(1.1);
+    transform: scale(1.08);
 }
 
 .product-badge {
     position: absolute;
     top: var(--spacing-sm);
     right: var(--spacing-sm);
-    background: var(--terracotta);
-    color: var(--washi-white);
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-    font-weight: 500;
+    background: linear-gradient(135deg, #652810 0%, #8E5022 100%);
+    color: #EDD8B4;
+    padding: 0.5rem 1.2rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(101, 40, 16, 0.3);
 }
 
 .product-info {
-    padding: var(--spacing-md);
+    padding: 1.5rem;
+    background: #fdfbf8;
 }
 
+/* Product Name - Bricolage Grotesque Semi-Bold */
 .product-name {
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-    color: var(--clay-dark);
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #442D1C;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
 }
 
 .product-description {
-    color: var(--clay-medium);
-    font-size: 0.95rem;
+    font-family: 'Work Sans', sans-serif;
+    color: #6B5344;
+    font-size: 0.9rem;
     margin-bottom: var(--spacing-sm);
+    line-height: 1.5;
+    opacity: 0.85;
 }
 
 .product-details {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: var(--spacing-sm);
-    border-top: 1px solid rgba(61, 47, 42, 0.1);
+    padding-top: 1rem;
+    margin-top: 0.5rem;
+    border-top: 1px solid rgba(101, 40, 16, 0.1);
 }
 
+/* Product Price - Work Sans Bold Terracotta */
 .product-price {
-    font-family: var(--font-primary);
-    font-size: 1.5rem;
-    color: var(--terracotta);
-    font-weight: 600;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.4rem;
+    color: #652810;
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 .product-actions {
@@ -240,39 +267,84 @@
     gap: 0.5rem;
 }
 
+/* Cart Button - Premium Terracotta Style with Flip Effect */
 .btn-icon {
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #C85428;
-    color: var(--washi-white);
-    border: none;
-    border-radius: 8px;
+    background: #652810;
+    color: #ffffff;
+    border: 2px solid #652810;
+    border-radius: 10px;
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #EDD8B4;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 0;
 }
 
 .btn-icon:hover {
-    background: #a84420;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(200, 84, 40, 0.3);
+    background: #EDD8B4;
+    border-color: #652810;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(101, 40, 16, 0.25);
 }
 
+.btn-icon:hover::before {
+    transform: scaleX(1);
+}
+
+.btn-icon svg,
+.btn-icon span {
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.btn-icon:hover svg {
+    color: #652810 !important;
+    stroke: #652810 !important;
+}
+
+/* Product Tags/Labels - Work Sans Medium with Ceramic Look */
 .product-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 0.75rem;
 }
 
 .meta-tag {
-    background: var(--cream);
-    padding: 0.3rem 0.8rem;
-    font-size: 0.85rem;
-    color: var(--clay-medium);
-    border-radius: 2px;
+    background: rgba(237, 216, 180, 0.6);
+    padding: 0.35rem 0.9rem;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #5A3D2B;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    border: 1px solid rgba(101, 40, 16, 0.08);
+    transition: all 0.2s ease;
+}
+
+.meta-tag:hover {
+    background: rgba(237, 216, 180, 0.85);
+    border-color: rgba(101, 40, 16, 0.15);
 }
 
 /* ========== FILTER BAR ========== */
@@ -314,7 +386,7 @@
     background: linear-gradient(135deg, #ffffff 0%, #fdfbf7 100%);
     padding: 3rem 2.5rem;
     border-radius: 16px;
-    box-shadow: 
+    box-shadow:
         0 10px 40px rgba(101, 40, 16, 0.08),
         0 2px 8px rgba(101, 40, 16, 0.04);
     border: 1px solid rgba(101, 40, 16, 0.08);
@@ -437,7 +509,7 @@
 }
 
 .workshop-detail-card {
-    background: rgba(255,255,255,0.92);
+    background: rgba(255, 255, 255, 0.92);
     padding: var(--spacing-lg);
     border: 1px solid rgba(61, 47, 42, 0.1);
 }
@@ -592,12 +664,12 @@
     .timeline::before {
         left: 20px;
     }
-    
+
     .timeline-item {
         grid-template-columns: auto 1fr;
         gap: var(--spacing-sm);
     }
-    
+
     .timeline-marker {
         grid-column: 1;
         grid-row: 1;
@@ -605,16 +677,16 @@
         height: 40px;
         font-size: 0.9rem;
     }
-    
+
     .timeline-content {
         grid-column: 2;
         grid-row: 1;
     }
-    
+
     .timeline-item:nth-child(even) .timeline-content {
         grid-column: 2;
     }
-    
+
     .form-row {
         grid-template-columns: 1fr;
     }
