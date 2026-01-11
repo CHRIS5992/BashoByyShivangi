@@ -51,17 +51,17 @@ function Corporate() {
 
   return (
     <div className="corporate-page">
-      {/* HEADER - Corporate Services */}
-      <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.05) 50%, rgba(0,0,0,0.2) 100%), url('/images/gallery/corpo.jpg')", backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center' }}>
+      {/* HEADER - 1/3 screen with pattern and Japanese text */}
+      <header className="workshops-header" style={{ backgroundImage: "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.8) 100%), url('/static/images/gallery/pattern-brown.jpg.png')" }}>
         <h1 className="funnel-title">
-          <span className="japanese-accent">法人</span>
+          <span className="japanese-accent">法人向けサービス</span>
           Corporate Services
         </h1>
         <p>Elevate Your Corporate Culture with Artisanal Excellence</p>
       </header>
 
       {/* Combined Quote and Services Section */}
-      <section className="intro-quote" style={{ backgroundImage: 'url(/static/images/gallery/corporate-why.jpg)', backgroundSize: '100%', backgroundPosition: 'center 20%', backgroundBlendMode: 'overlay', backgroundColor: 'rgba(237, 216, 180, 0.87)', filter: 'contrast(1.05)', paddingBottom: '5rem' }}>
+      <section className="intro-quote" style={{ backgroundImage: 'url(/static/images/gallery/corporate-why.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundBlendMode: 'overlay', backgroundColor: 'rgba(23, 15, 0, 0.87)', filter: 'contrast(1.05)', paddingBottom: '5rem' }}>
         <div className="quote-container" style={{ filter: 'contrast(0.952)' }}>
           <h2 className="quote-text">
             "We bridge traditional craftsmanship with modern business needs to create meaningful connections that last."
@@ -79,12 +79,7 @@ function Corporate() {
             {/* Service 1 */}
             <div className="service-card-new">
               <div className="service-icon-new">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#652810" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="3" y="8" width="18" height="4" rx="1" />
-                  <path d="M12 8v13" />
-                  <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
-                  <path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5" />
-                </svg>
+                <span>🎁</span>
               </div>
               <div className="service-content-new">
                 <h3 className="service-title-new">Corporate Gifting</h3>
@@ -101,12 +96,7 @@ function Corporate() {
             {/* Service 2 */}
             <div className="service-card-new">
               <div className="service-icon-new">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#652810" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                  <circle cx="9" cy="7" r="4" />
-                  <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
+                <span>👥</span>
               </div>
               <div className="service-content-new">
                 <h3 className="service-title-new">Team Workshops</h3>
@@ -122,13 +112,7 @@ function Corporate() {
             {/* Service 3 */}
             <div className="service-card-new">
               <div className="service-icon-new">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#652810" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  {/* Two interlocking ceramic bowls */}
-                  <path d="M2 14 Q2 20, 8 20 Q14 20, 14 14" />
-                  <ellipse cx="8" cy="14" rx="6" ry="2" />
-                  <path d="M10 14 Q10 20, 16 20 Q22 20, 22 14" />
-                  <ellipse cx="16" cy="14" rx="6" ry="2" />
-                </svg>
+                <span>🤝</span>
               </div>
               <div className="service-content-new">
                 <h3 className="service-title-new">Brand Collaborations</h3>
@@ -146,59 +130,44 @@ function Corporate() {
 
       {/* Artisanal Difference */}
       <section className="difference-section">
-        {/* Living Glaze Trails - Animated Background */}
-        <svg
-          className="glaze-trails-svg"
-          width="100%"
-          height="100%"
-          viewBox="0 0 1400 800"
-          preserveAspectRatio="xMidYMid slice"
-          style={{ position: 'absolute', top: 0, left: 0, opacity: 0.07, pointerEvents: 'none', zIndex: 0 }}
-        >
-          {/* Trail 1 - Large sweeping curve */}
-          <path
-            className="glaze-trail glaze-trail-1"
-            d="M-50 150 Q200 50, 400 180 T800 120 T1200 200 T1500 100"
-            fill="none" stroke="#652810" strokeWidth="3" strokeLinecap="round"
-          />
-          {/* Trail 2 - Mid-height wave */}
-          <path
-            className="glaze-trail glaze-trail-2"
-            d="M-100 350 Q150 280, 350 380 T750 320 T1100 400 T1450 340"
-            fill="none" stroke="#652810" strokeWidth="2.5" strokeLinecap="round"
-          />
-          {/* Trail 3 - Lower gentle curve */}
-          <path
-            className="glaze-trail glaze-trail-3"
-            d="M-80 550 Q250 480, 500 580 T900 520 T1300 600 T1500 540"
-            fill="none" stroke="#652810" strokeWidth="3.5" strokeLinecap="round"
-          />
-          {/* Trail 4 - Top delicate line */}
-          <path
-            className="glaze-trail glaze-trail-4"
-            d="M0 80 Q300 20, 600 100 T1000 60 T1400 120"
-            fill="none" stroke="#652810" strokeWidth="2" strokeLinecap="round"
-          />
-          {/* Trail 5 - Bottom flowing stroke */}
-          <path
-            className="glaze-trail glaze-trail-5"
-            d="M-50 680 Q200 620, 450 700 T850 650 T1250 720 T1500 680"
-            fill="none" stroke="#652810" strokeWidth="2.8" strokeLinecap="round"
-          />
-          {/* Trail 6 - Central organic brush */}
-          <path
-            className="glaze-trail glaze-trail-6"
-            d="M-100 420 Q180 350, 420 450 T820 380 T1180 480 T1500 400"
-            fill="none" stroke="#652810" strokeWidth="3.2" strokeLinecap="round"
-          />
-          {/* Trail 7 - Upper accent */}
-          <path
-            className="glaze-trail glaze-trail-7"
-            d="M100 250 Q350 180, 600 280 T1000 220 T1350 300"
-            fill="none" stroke="#652810" strokeWidth="2.2" strokeLinecap="round"
-          />
+        {/* Pottery decorations for artisanal section */}
+        <svg className="pottery-decor pottery-decor-1" width="110" height="150" viewBox="0 0 110 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M38 18 Q33 38, 38 58 L38 115 Q38 135, 55 135 Q72 135, 72 115 L72 58 Q77 38, 72 18 Q63 13, 55 13 Q47 13, 38 18 Z" stroke="#C85428" strokeWidth="2" opacity="0.15" fill="none"/>
+          <ellipse cx="55" cy="18" rx="17" ry="5" stroke="#C85428" strokeWidth="1.5" opacity="0.12" fill="none"/>
         </svg>
-
+        <svg className="pottery-decor pottery-decor-2" width="90" height="110" viewBox="0 0 90 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 38 Q18 75, 45 92 Q72 75, 72 38" stroke="#652810" strokeWidth="2" opacity="0.16" fill="none"/>
+          <ellipse cx="45" cy="38" rx="27" ry="7" stroke="#652810" strokeWidth="1.5" opacity="0.13" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-3" width="95" height="130" viewBox="0 0 95 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M28 18 L28 95 Q28 115, 47 115 Q66 115, 66 95 L66 18" stroke="#C85428" strokeWidth="2" opacity="0.14" fill="none"/>
+          <ellipse cx="47" cy="18" rx="19" ry="5" stroke="#C85428" strokeWidth="1.5" opacity="0.11" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-4" width="100" height="120" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 28 Q25 48, 30 68 L30 95 Q30 105, 50 105 Q70 105, 70 95 L70 68 Q75 48, 70 28" stroke="#652810" strokeWidth="2" opacity="0.15" fill="none"/>
+          <ellipse cx="50" cy="28" rx="20" ry="6" stroke="#652810" strokeWidth="1.5" opacity="0.12" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-5" width="80" height="105" viewBox="0 0 80 105" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 28 L23 68 Q23 83, 40 83 Q57 83, 57 68 L57 28" stroke="#C85428" strokeWidth="1.8" opacity="0.13" fill="none"/>
+          <ellipse cx="40" cy="28" rx="17" ry="5" stroke="#C85428" strokeWidth="1.5" opacity="0.11" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-6" width="88" height="118" viewBox="0 0 88 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M28 38 Q26 53, 28 68 L28 88 Q28 98, 44 98 Q60 98, 60 88 L60 68 Q62 53, 60 38" stroke="#652810" strokeWidth="2" opacity="0.16" fill="none"/>
+          <ellipse cx="44" cy="38" rx="16" ry="6" stroke="#652810" strokeWidth="1.5" opacity="0.13" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-7" width="98" height="138" viewBox="0 0 98 138" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M33 23 L33 105 Q33 120, 49 120 Q65 120, 65 105 L65 23" stroke="#C85428" strokeWidth="2" opacity="0.14" fill="none"/>
+          <ellipse cx="49" cy="23" rx="16" ry="6" stroke="#C85428" strokeWidth="1.5" opacity="0.12" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-8" width="92" height="125" viewBox="0 0 92 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M34 20 Q29 40, 34 60 L34 95 Q34 110, 46 110 Q58 110, 58 95 L58 60 Q63 40, 58 20 Q52 15, 46 15 Q40 15, 34 20 Z" stroke="#652810" strokeWidth="2" opacity="0.15" fill="none"/>
+          <ellipse cx="46" cy="20" rx="12" ry="5" stroke="#652810" strokeWidth="1.5" opacity="0.12" fill="none"/>
+        </svg>
+        <svg className="pottery-decor pottery-decor-9" width="85" height="112" viewBox="0 0 85 112" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M30 25 Q28 40, 30 55 L30 80 Q30 90, 42 90 Q55 90, 55 80 L55 55 Q57 40, 55 25" stroke="#C85428" strokeWidth="2" opacity="0.14" fill="none"/>
+          <ellipse cx="42" cy="25" rx="13" ry="5" stroke="#C85428" strokeWidth="1.5" opacity="0.11" fill="none"/>
+        </svg>
+        
         <div className="container-new">
           <div className="difference-header">
             <h2 className="section-title-new">The Artisanal Difference</h2>
@@ -234,14 +203,68 @@ function Corporate() {
 
       {/* Inquiry Form */}
       <section className="inquiry-modern">
-
-        {/* DESCRIPTION SECTION - Restored White Quote Card */}
-        <div className="quote-container-restored">
-          <p style={{ fontSize: '1.5rem', color: '#652810', fontWeight: 500, lineHeight: 1.6, margin: 0, fontFamily: "'Cormorant Garamond', serif", fontStyle: 'italic', textAlign: 'center' }}>
-            "Bring the warmth of artisanal heritage to your team and clients through curated experiences, sustainable gifts, and meaningful collaborations. We bridge traditional craftsmanship with modern business needs to create connections that last."
-          </p>
-        </div>
-
+        {/* Pottery-shaped decorative SVG elements */}
+        <svg className="japanese-decor japanese-decor-1" width="120" height="160" viewBox="0 0 120 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Vase shape */}
+          <path d="M40 20 Q35 40, 40 60 L40 120 Q40 140, 60 140 Q80 140, 80 120 L80 60 Q85 40, 80 20 Q70 15, 60 15 Q50 15, 40 20 Z" stroke="#C85428" strokeWidth="2.5" opacity="0.25" fill="none"/>
+          <ellipse cx="60" cy="20" rx="20" ry="5" stroke="#C85428" strokeWidth="2" opacity="0.2" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-2" width="100" height="120" viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Bowl shape */}
+          <path d="M20 40 Q20 80, 50 100 Q80 80, 80 40" stroke="#652810" strokeWidth="2.5" opacity="0.28" fill="none"/>
+          <ellipse cx="50" cy="40" rx="30" ry="8" stroke="#652810" strokeWidth="2" opacity="0.22" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-3" width="90" height="140" viewBox="0 0 90 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Narrow pot */}
+          <path d="M30 20 L30 100 Q30 120, 45 120 Q60 120, 60 100 L60 20" stroke="#C85428" strokeWidth="2.5" opacity="0.22" fill="none"/>
+          <ellipse cx="45" cy="20" rx="15" ry="5" stroke="#C85428" strokeWidth="2" opacity="0.18" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-4" width="110" height="130" viewBox="0 0 110 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Wide jar */}
+          <path d="M35 30 Q30 50, 35 70 L35 100 Q35 110, 55 110 Q75 110, 75 100 L75 70 Q80 50, 75 30" stroke="#652810" strokeWidth="2.5" opacity="0.25" fill="none"/>
+          <ellipse cx="55" cy="30" rx="20" ry="6" stroke="#652810" strokeWidth="2" opacity="0.2" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-5" width="85" height="110" viewBox="0 0 85 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Small cup */}
+          <path d="M25 30 L25 70 Q25 85, 42 85 Q60 85, 60 70 L60 30" stroke="#C85428" strokeWidth="2.2" opacity="0.2" fill="none"/>
+          <ellipse cx="42" cy="30" rx="18" ry="5" stroke="#C85428" strokeWidth="2" opacity="0.16" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-6" width="95" height="125" viewBox="0 0 95 125" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Teapot shape */}
+          <path d="M30 40 Q28 55, 30 70 L30 90 Q30 100, 47 100 Q65 100, 65 90 L65 70 Q67 55, 65 40" stroke="#652810" strokeWidth="2.5" opacity="0.24" fill="none"/>
+          <ellipse cx="47" cy="40" rx="18" ry="6" stroke="#652810" strokeWidth="2" opacity="0.2" fill="none"/>
+          <path d="M65 55 Q75 55, 75 65 Q75 75, 65 75" stroke="#652810" strokeWidth="2" opacity="0.2" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-7" width="105" height="145" viewBox="0 0 105 145" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Tall cylinder */}
+          <path d="M35 25 L35 110 Q35 125, 52 125 Q70 125, 70 110 L70 25" stroke="#C85428" strokeWidth="2.5" opacity="0.23" fill="none"/>
+          <ellipse cx="52" cy="25" rx="18" ry="6" stroke="#C85428" strokeWidth="2" opacity="0.19" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-9" width="100" height="135" viewBox="0 0 100 135" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Amphora */}
+          <path d="M38 25 Q33 45, 38 65 L38 100 Q38 115, 50 115 Q62 115, 62 100 L62 65 Q67 45, 62 25 Q56 20, 50 20 Q44 20, 38 25 Z" stroke="#C85428" strokeWidth="2.5" opacity="0.24" fill="none"/>
+          <ellipse cx="50" cy="25" rx="12" ry="5" stroke="#C85428" strokeWidth="2" opacity="0.2" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-10" width="95" height="115" viewBox="0 0 95 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Rounded jar */}
+          <path d="M32 30 Q30 45, 32 60 L32 85 Q32 95, 47 95 Q63 95, 63 85 L63 60 Q65 45, 63 30" stroke="#652810" strokeWidth="2.5" opacity="0.26" fill="none"/>
+          <ellipse cx="47" cy="30" rx="16" ry="6" stroke="#652810" strokeWidth="2" opacity="0.21" fill="none"/>
+        </svg>
+        <svg className="japanese-decor japanese-decor-11" width="88" height="128" viewBox="0 0 88 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Sake bottle */}
+          <path d="M36 22 L36 30 Q34 45, 36 60 L36 95 Q36 110, 44 110 Q52 110, 52 95 L52 60 Q54 45, 52 30 L52 22" stroke="#C85428" strokeWidth="2.5" opacity="0.23" fill="none"/>
+          <ellipse cx="44" cy="22" rx="8" ry="4" stroke="#C85428" strokeWidth="2" opacity="0.19" fill="none"/>
+        </svg>
+        
+        {/* DESCRIPTION SECTION - Above inquiry form */}
+        <section className="workshops-description-section" style={{ paddingTop: '2rem', paddingBottom: '2rem', background: '#F5EFE7', margin: '0' }}>
+          <div className="workshops-description-center">
+            <p style={{ fontSize: '1.4rem', color: '#442D1C', fontWeight: 400, lineHeight: 1.8, maxWidth: '800px', margin: '0 auto', fontFamily: "'Cormorant Garamond', 'Noto Serif JP', Georgia, serif", fontStyle: 'italic', letterSpacing: '0.3px' }}>
+              Bring the warmth of artisanal heritage to your team and clients through curated experiences, sustainable gifts, and meaningful collaborations. We bridge traditional craftsmanship with modern business needs to create connections that last.
+            </p>
+          </div>
+        </section>
+        
         <div className="container-new" style={{ marginTop: '4rem' }}>
           <div className="inquiry-card">
             {/* Form Side */}
