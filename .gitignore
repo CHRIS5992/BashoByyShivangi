@@ -7,7 +7,9 @@ __pycache__/
 *.egg
 *.egg-info/
 dist/
-build/
+# Ignore Python build/ but NOT frontend/build/
+**/build/
+!frontend/build/
 *.manifest
 *.spec
 pip-log.txt
