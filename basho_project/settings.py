@@ -131,11 +131,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+# Only include paths that exist
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'frontend' / 'build' / 'static',  # React build static files
-    BASE_DIR / 'frontend' / 'build',  # React build root (for images, css folders)
 ]
+
+# Add frontend build paths only if they exist
+if (BASE_DIR / 'frontend' / 'build').exists():
+    STATICFILES_DIRS.extend([
+        BASE_DIR / 'frontend' / 'build' / 'static',  # React build static files
+        BASE_DIR / 'frontend' / 'build',  # React build root (for images, css folders)
+    ])
 
 # WhiteNoise configuration
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
