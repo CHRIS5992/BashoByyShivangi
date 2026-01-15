@@ -71,11 +71,12 @@ const ProductList = ({ products, loading, onProductClick }) => {
                     <span className="product-price">₹{parseFloat(product.price).toLocaleString('en-IN')}</span>
                     <div className="product-actions">
                       <button 
-                        className="btn-icon" 
+                        className="btn-add-to-cart" 
                         onClick={(e) => handleAddToCart(product, e)}
                         title="Add to Cart"
                       >
-                        <ShoppingCart size={20} color="#ffffff" strokeWidth={2.5} />
+                        <ShoppingCart size={18} color="#ffffff" strokeWidth={2.5} />
+                        <span>Add to Cart</span>
                       </button>
                     </div>
                   </div>

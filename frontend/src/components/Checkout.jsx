@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../contexts/AuthContext';
+import { useToast } from '../context/ToastContext';
 import './Cart.css';
 import './Checkout.css';
 import './Checkout.css';
@@ -10,6 +11,7 @@ function Checkout() {
   const navigate = useNavigate();
   const { cart, getCartTotal, clearCart } = useCart();
   const { currentUser } = useAuth();
+  const { showError } = useToast();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -210,7 +212,7 @@ function Checkout() {
         modal: {
           ondismiss: function () {
             setIsProcessing(false);
-            alert('Payment cancelled');
+            showError('Payment cancelled');
           }
         }
       };
@@ -220,7 +222,7 @@ function Checkout() {
 
     } catch (error) {
       console.error('Error initiating payment:', error);
-      alert(error.message || 'An error occurred while initiating payment. Please try again.');
+      showError(error.message || 'An error occurred while initiating payment. Please try again.');
       setIsProcessing(false);
     }
   };
