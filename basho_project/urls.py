@@ -26,6 +26,7 @@ urlpatterns = [
     path('api/', include('workshops.urls')),  # Workshops API URLs
     path('api/', include('studio.urls')),  # Studio API URLs
     path('api/', include('media_content.urls')),  # Media API URLs
+    path('api/', include('homepage.urls')),  # Homepage Creations API URLs
 ]
 
 # Serve media files in development

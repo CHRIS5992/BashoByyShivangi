@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'workshops',  # Basho Workshops App
     'studio',  # Basho Studio App
     'media_content',  # Basho Media App
+    'homepage',  # Homepage Creations Gallery
 ]
 
 MIDDLEWARE = [

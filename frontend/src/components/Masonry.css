@@ -1,0 +1,37 @@
+/* Masonry Grid Container */
+.list {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Hide overflow if animations start from outside */
+}
+
+/* Item Wrapper - Absolute positioned by GSAP, but good to have defaults */
+.item-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    padding: 10px;
+    /* Gap between items */
+    cursor: pointer;
+    will-change: transform, opacity;
+}
+
+/* Inner Image Container */
+.item-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    /* Rounded corners as per request */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.item-wrapper:hover .item-img {
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}

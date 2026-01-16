@@ -1,14 +1,38 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Inspiration from "./Inspiration";
 import Founder from "./Founder";
+import Masonry from "./Masonry";
+import StudioDuo from "./StudioDuo";
 import "./Home.css";
 
 function Home() {
   const paperRef = useRef(null);
   const navigate = useNavigate();
+  const [creations, setCreations] = useState([]);
 
-  /* Scroll effect is now handled by CSS sticky positioning */
+  // Fetch Creations for Masonry Gallery
+  useEffect(() => {
+    const fetchCreations = async () => {
+      try {
+        const response = await axios.get('/api/creations/');
+        const formattedData = response.data.map(item => ({
+          id: item.id,
+          img: item.image_url,
+          height: item.height || 300,
+          url: item.url
+        }));
+        setCreations(formattedData);
+      } catch (error) {
+        console.error("Error loading creations:", error);
+      }
+    };
+
+    fetchCreations();
+  }, []);
+
+  /* Scroll/Stacking effect is handled by CSS sticky positioning in Inspiration.css */
 
   return (
     <div className="home">
@@ -49,6 +73,27 @@ function Home() {
         </div>
       </section>
 
+      {/* ================= CREATIONS MASONRY GALLERY ================= */}
+      {creations.length > 0 && (
+        <section className="creations-section">
+          <div className="creations-header">
+            <h2>Our Creations</h2>
+          </div>
+          <div className="creations-container">
+            <Masonry
+              items={creations}
+              animateFrom="bottom"
+              scaleOnHover={true}
+              hoverScale={0.97}
+              blurToFocus={true}
+            />
+          </div>
+        </section>
+      )}
+
+      {/* ================= STUDIO DUO (PRODUCTS & WORKSHOPS) ================= */}
+      <StudioDuo />
+
       {/* ================= WHAT IS BASHO ================= */}
       <section
         ref={paperRef}
@@ -74,6 +119,7 @@ function Home() {
       </section>
 
       {/* ================= INSPIRATION SECTION ================= */}
+      {/* This section has the sticky stacking effect in Inspiration.css */}
       <Inspiration />
 
       {/* ================= FOUNDER STORY ================= */}

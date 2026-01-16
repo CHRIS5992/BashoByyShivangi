@@ -1,5 +1,6 @@
 /* Google Font Import for Fedora */
 @import url('https://fonts.googleapis.com/css2?family=Federo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&display=swap');
 
 /* =========================
    BASE
@@ -80,6 +81,47 @@
   cursor: pointer;
   background: #652810;
   color: white;
+  border-radius: 30px;
+  font-family: 'Bricolage Grotesque', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.home-actions button:hover {
+  background: #FFDAB9;
+  color: #652810;
+}
+
+/* =========================
+   CREATIONS GALLERY SECTION
+========================= */
+
+.creations-section {
+  width: 100%;
+  position: relative;
+  background: #FCF9F5;
+  z-index: 2;
+  padding: 80px 20px 100px;
+  box-sizing: border-box;
+}
+
+.creations-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.creations-header h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  color: #652810;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.creations-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 /* =========================
@@ -155,5 +197,19 @@
   .whatisbasho-text {
     text-align: left;
     max-width: 90%;
+  }
+
+  .whatisbasho-text h2 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .creations-header h2 {
+    font-size: 2rem;
+  }
+
+  .home-actions {
+    flex-direction: column;
   }
 }
