@@ -1,71 +1,41 @@
+
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
-.Python
-*.egg
-*.egg-info/
-dist/
-# Ignore Python build/ but NOT frontend/build/
-**/build/
-!frontend/build/
-*.manifest
-*.spec
-pip-log.txt
-pip-delete-this-directory.txt
-.pytest_cache/
-.coverage
-htmlcov/
-*.cover
-.hypothesis/
-
-# Virtual Environments
-venv/
-env/
-ENV/
-.venv
 
 # Django
 *.log
-#db.sqlite3
-#db.sqlite3-journal
-/media
-/staticfiles
 local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+
+# Virtual Environment
+.venv/
+venv/
+env/
 
 # IDEs
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Node.js / React
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-# Allow committing lockfiles for reproducible builds
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# Build outputs
-myapp/build/
 
 # Environment variables
 .env
-*.env
 
-# OS
-Thumbs.db
+# JavaScript/Node
+node_modules/
+frontend/node_modules/
+frontend/build/
+frontend/.env.local
+frontend/.env.development.local
+frontend/.env.test.local
+frontend/.env.production.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS specific
 .DS_Store
-
-# Temporary files
-*.tmp
-*.bak
-*.swp
-*~
+Thumbs.db
