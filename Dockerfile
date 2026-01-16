@@ -16,19 +16,27 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy frontend and build it
-COPY frontend/package*.json ./frontend/
-WORKDIR /app/frontend
+# --- Build Frontend ---
+WORKDIR /app/frontend_build
+COPY frontend/package*.json ./
 RUN npm ci
-
 COPY frontend/ ./
 RUN npm run build
 
-# Go back to app root
+# --- Setup Backend ---
 WORKDIR /app
 
 # Copy the rest of the project
 COPY . .
+
+# Copy built frontend assets to the expected location
+# We do this AFTER "COPY . ." to ensure they aren't overwritten
+RUN rm -rf frontend/build && \
+    mkdir -p frontend/build && \
+    cp -r /app/frontend_build/build/* frontend/build/
+
+# Check if index.html exists (for debugging build logs)
+RUN ls -la frontend/build/index.html
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
