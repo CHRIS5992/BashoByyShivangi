@@ -30,7 +30,7 @@ export const useOrders = () => {
 
             try {
                 // Fetch orders from Django API filtered by Firebase UID
-                const response = await fetch(`http://localhost:8000/api/orders/?firebase_uid=${currentUser.uid}`);
+                const response = await fetch(`/api/orders/?firebase_uid=${currentUser.uid}`);
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch order history from server');

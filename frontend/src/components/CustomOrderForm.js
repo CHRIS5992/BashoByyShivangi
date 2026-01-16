@@ -46,7 +46,7 @@ const CustomOrderForm = () => {
         formDataToSend.append('reference_images', referenceImage);
       }
 
-      const response = await axios.post('http://localhost:8000/api/custom-orders/', formDataToSend, {
+      const response = await axios.post('/api/custom-orders/', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

@@ -1,0 +1,41 @@
+{
+    "builds": [
+        {
+            "src": "basho_project/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.12"
+            }
+        },
+        {
+            "src": "frontend/package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "build"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/static/(.*)",
+            "dest": "/basho_project/wsgi.py"
+        },
+        {
+            "src": "/media/(.*)",
+            "dest": "/basho_project/wsgi.py"
+        },
+        {
+            "src": "/api/(.*)",
+            "dest": "/basho_project/wsgi.py"
+        },
+        {
+            "src": "/admin/(.*)",
+            "dest": "/basho_project/wsgi.py"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/frontend/$1"
+        }
+    ]
+}
