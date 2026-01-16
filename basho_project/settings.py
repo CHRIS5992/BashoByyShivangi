@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,12 +27,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-@^y*w!pkb*pza+bqln*u+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,.vercel.app').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,.railway.app').split(',')
+
+# CSRF trusted origins for Railway
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'http://localhost:8000,http://127.0.0.1:8000').split(',')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',  # Modern admin theme - MUST be before django.contrib.admin
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -85,13 +90,21 @@ WSGI_APPLICATION = 'basho_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+# Use DATABASE_URL from environment if available (Railway provides this)
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if DATABASE_URL:
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
@@ -173,23 +186,120 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'vinanthp@gmail.com'
-EMAIL_HOST_PASSWORD = 'pudd wqdo ygnh qnyq'  # Gmail App Password
-DEFAULT_FROM_EMAIL = 'vinanthp@gmail.com'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', 'vinanthp@gmail.com')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', 'pudd wqdo ygnh qnyq')
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL', 'vinanthp@gmail.com')
 
 # Company Information
 COMPANY_NAME = 'Basho By Shivangi'
-COMPANY_EMAIL = 'vinanthp@gmail.com'  # Admin email address
+COMPANY_EMAIL = os.environ.get('COMPANY_EMAIL', 'vinanthp@gmail.com')
 COMPANY_PHONE = '+91 XXXXX XXXXX'
 COMPANY_ADDRESS = 'Pottery Studio, India'
 
 # Razorpay Configuration
-# Get these from: https://dashboard.razorpay.com/app/keys
-# IMPORTANT: Never commit real API keys to version control!
-# Set these in your .env file (create from .env.example)
-# TODO: Move these credentials to .env file before pushing to git!
 RAZORPAY_KEY_ID = os.environ.get('RAZORPAY_KEY_ID', 'rzp_test_S1lAGZcFMuNU0Y')
 RAZORPAY_KEY_SECRET = os.environ.get('RAZORPAY_KEY_SECRET', 'AI3Nxw061P2yE5nTj95yaG8S')
 
+# Celery Configuration
+# Redis as message broker for background tasks
+CELERY_BROKER_URL = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+CELERY_RESULT_BACKEND = os.environ.get('REDIS_URL', 'redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes max task time
 
 
+# ====================
+# JAZZMIN ADMIN THEME CONFIGURATION
+# Modern, user-friendly admin interface
+# ====================
+JAZZMIN_SETTINGS = {
+    "site_title": "Basho Admin",
+    "site_header": "Basho By Shivangi",
+    "site_brand": "Basho Admin Panel",
+    "welcome_sign": "Welcome to Basho Admin Panel",
+    "copyright": "Basho By Shivangi",
+    "use_google_fonts_cdn": True,
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "order_with_respect_to": [
+        "products",
+        "workshops", 
+        "studio",
+        "media_content",
+        "auth"
+    ],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "products.Product": "fas fa-shopping-bag",
+        "products.CustomOrder": "fas fa-clipboard-list",
+        "products.CartItem": "fas fa-shopping-cart",
+        "workshops.Workshop": "fas fa-hands",
+        "workshops.WorkshopSlot": "fas fa-calendar-alt",
+        "workshops.WorkshopRegistration": "fas fa-user-check",
+        "studio.UpcomingExhibition": "fas fa-calendar-plus",
+        "studio.PastPopup": "fas fa-history",
+        "studio.EventGalleryImage": "fas fa-images",
+        "media_content.GalleryImage": "fas fa-image",
+        "media_content.TextTestimonial": "fas fa-quote-right",
+        "media_content.VideoTestimonial": "fas fa-video",
+        "media_content.CustomerExperience": "fas fa-book-open",
+    },
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    "related_modal_active": False,
+    "custom_css": "admin/css/custom_admin.css",
+    "custom_js": None,
+    "show_ui_builder": False,
+    "changeform_format": "horizontal_tabs",
+    "theme": "flatly",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary", 
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    "body_small_text": False,
+    "footer_small_text": True,
+    "navbar_small_text": False,
+    "sidebar_small_text": False,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": True,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark navbar-brown",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-brown",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "flatly",
+    "dark_mode_theme": None,
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
+}
