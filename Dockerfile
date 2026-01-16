@@ -34,7 +34,8 @@ COPY . .
 RUN python manage.py collectstatic --noinput
 
 # Expose port
+ENV PORT=8080
 EXPOSE 8080
 
 # Start command
-CMD python manage.py migrate && gunicorn basho_project.wsgi:application --bind 0.0.0.0:${PORT:-8080}
+CMD python manage.py migrate && gunicorn basho_project.wsgi:application --bind 0.0.0.0:$PORT --log-file -
