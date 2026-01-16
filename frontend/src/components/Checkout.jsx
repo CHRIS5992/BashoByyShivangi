@@ -45,7 +45,7 @@ function Checkout() {
     if (cart.length > 0) {
       calculateShipping();
     }
-  }, [cart]);
+  }, [cart, calculateShipping]);
 
   const calculateShipping = async () => {
     try {
