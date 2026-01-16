@@ -28,26 +28,7 @@ function Checkout() {
   const [isCalculatingShipping, setIsCalculatingShipping] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
 
-  // Load Razorpay script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  // Calculate shipping when cart changes
-  useEffect(() => {
-    if (cart.length > 0) {
-      calculateShipping();
-    }
-  }, [cart, calculateShipping]);
-
-  const calculateShipping = async () => {
+  const calculateShipping = React.useCallback(async () => {
     try {
       setIsCalculatingShipping(true);
 
@@ -84,7 +65,26 @@ function Checkout() {
     } finally {
       setIsCalculatingShipping(false);
     }
-  };
+  }, [cart, getCartTotal]);
+
+  // Load Razorpay script
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
+  // Calculate shipping when cart changes
+  useEffect(() => {
+    if (cart.length > 0) {
+      calculateShipping();
+    }
+  }, [cart, calculateShipping]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
